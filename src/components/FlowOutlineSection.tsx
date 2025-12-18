@@ -16,30 +16,30 @@ const FlowOutlineSection = () => {
   const textOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
   const textY = useTransform(scrollYProgress, [0.3, 0.5], [30, 0]);
 
-  // Flow path configurations
+  // Flow path configurations - 4 lines representing engagement phases
   const flowPaths = [
-    { id: 1, color: '#232f85', startY: 15, chaos: 45, delay: 0 },
-    { id: 2, color: '#6866ff', startY: 30, chaos: 65, delay: 0.05 },
-    { id: 3, color: '#232f85', startY: 45, chaos: 25, delay: 0.1 },
-    { id: 4, color: '#6866ff', startY: 55, chaos: 55, delay: 0.15 },
-    { id: 5, color: '#232f85', startY: 70, chaos: 40, delay: 0.2 },
-    { id: 6, color: '#6866ff', startY: 85, chaos: 60, delay: 0.25 },
+    { id: 1, color: '#232f85', startY: 20, chaos: 35, delay: 0 },      // Understand
+    { id: 2, color: '#6866ff', startY: 40, chaos: 50, delay: 0.08 },   // Structure
+    { id: 3, color: '#232f85', startY: 60, chaos: 45, delay: 0.16 },   // Deploy
+    { id: 4, color: '#6866ff', startY: 80, chaos: 55, delay: 0.24 },   // Measure
   ];
 
-  // Generate SVG path for each flow line
+  // Generate SVG path for each flow line - all converge to single exit line
   const generateFlowPath = (startY: number, chaos: number) => {
     const centerY = 50;
-    const exitY = centerY + (startY - centerY) * 0.15; // Lines become more parallel on exit
+    const exitY = 50; // ALL lines exit at the same Y position = single unified line
     
-    // Control points for the bezier curve
+    // Control points for entry (chaotic)
     const cp1x = 20 + (chaos * 0.2);
-    const cp1y = startY + (Math.sin(chaos) * 15);
+    const cp1y = startY + (Math.sin(chaos) * 12);
     const cp2x = 35;
-    const cp2y = startY + (centerY - startY) * 0.3;
+    const cp2y = startY + (centerY - startY) * 0.5;
+    
+    // Control points for exit (unified)
     const cp3x = 65;
-    const cp3y = centerY + (exitY - centerY) * 0.3;
-    const cp4x = 80 - (chaos * 0.1);
-    const cp4y = exitY - (Math.cos(chaos) * 5);
+    const cp3y = centerY;
+    const cp4x = 80;
+    const cp4y = exitY;
 
     return `M -5 ${startY} 
             C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, 50 ${centerY}
