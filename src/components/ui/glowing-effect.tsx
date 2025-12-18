@@ -145,17 +145,17 @@ const GlowingEffect = memo(
                       var(--black),
                       var(--black) calc(25% / var(--repeating-conic-gradient-times))
                     )`
-                  : `radial-gradient(ellipse at 50% 0%, hsla(0, 0%, 100%, 0.6), transparent 50%),
+                  : `radial-gradient(ellipse at 50% 0%, hsla(236, 59%, 33%, 0.5), transparent 50%),
                      radial-gradient(ellipse at 50% 100%, hsla(241, 100%, 70%, 0.55), transparent 50%),
-                     radial-gradient(ellipse at 0% 50%, hsla(341, 80%, 65%, 0.55), transparent 50%),
-                     radial-gradient(ellipse at 100% 50%, hsla(269, 100%, 70%, 0.55), transparent 50%),
+                     radial-gradient(ellipse at 0% 50%, hsla(0, 84%, 75%, 0.5), transparent 50%),
+                     radial-gradient(ellipse at 100% 50%, hsla(241, 100%, 70%, 0.55), transparent 50%),
                      repeating-conic-gradient(
                        from calc(var(--start) * 1deg) at 50% 50%,
-                       hsla(241, 100%, 70%, 0.06) 0%,
-                       hsla(269, 100%, 70%, 0.75) calc(25% / var(--repeating-conic-gradient-times)),
-                       hsla(341, 80%, 65%, 0.75) calc(50% / var(--repeating-conic-gradient-times)),
-                       hsla(269, 100%, 70%, 0.75) calc(75% / var(--repeating-conic-gradient-times)),
-                       hsla(241, 100%, 70%, 0.06) calc(100% / var(--repeating-conic-gradient-times))
+                       hsla(236, 59%, 33%, 0.06) 0%,
+                       hsla(241, 100%, 70%, 0.75) calc(25% / var(--repeating-conic-gradient-times)),
+                       hsla(0, 84%, 75%, 0.65) calc(50% / var(--repeating-conic-gradient-times)),
+                       hsla(241, 100%, 70%, 0.75) calc(75% / var(--repeating-conic-gradient-times)),
+                       hsla(236, 59%, 33%, 0.06) calc(100% / var(--repeating-conic-gradient-times))
                      )`,
             } as React.CSSProperties
           }
