@@ -11,6 +11,14 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <AnimatePresence>
+          <motion.p
+            className="text-sm sm:text-base tracking-[0.3em] uppercase text-accent font-medium mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.5, 0, 0, 1] }}
+          >
+            Transvyra
+          </motion.p>
           <motion.h1 
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-primary mb-8"
             initial={{ opacity: 0, y: 40 }}
