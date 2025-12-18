@@ -53,7 +53,7 @@ export function PulsingBorderAccent() {
               d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"
             />
           </defs>
-          <text className="fill-primary/40 text-[10px] uppercase tracking-[0.3em]">
+          <text className="fill-primary/80 text-[12px] font-semibold uppercase tracking-[0.25em]">
             <textPath href="#circlePath">
               Transvyra • Operational Clarity • Delivered •
             </textPath>
