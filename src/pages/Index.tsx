@@ -3,6 +3,7 @@ import HeroSection from '../components/HeroSection';
 import WhoWeAreSection from '../components/WhoWeAreSection';
 import WhatWeDoSection from '../components/WhatWeDoSection';
 import HowWeWorkSection from '../components/HowWeWorkSection';
+import FlowOutlineSection from '../components/FlowOutlineSection';
 import WhoWeWorkWithSection from '../components/WhoWeWorkWithSection';
 import WhyTransvyraSection from '../components/WhyTransvyraSection';
 import ClosingSection from '../components/ClosingSection';
@@ -17,6 +18,7 @@ const Index = () => {
         <WhoWeAreSection />
         <WhatWeDoSection />
         <HowWeWorkSection />
+        <FlowOutlineSection />
         <WhoWeWorkWithSection />
         <WhyTransvyraSection />
         <ClosingSection />
