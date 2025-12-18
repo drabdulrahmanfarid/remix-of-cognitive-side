@@ -1,106 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import ShaderHero from './ui/ShaderHero';
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Grid pattern background */}
-      <div className="absolute inset-0 grid-pattern" />
-      
-      {/* Animated grid lines */}
-      <svg 
-        className="absolute inset-0 w-full h-full" 
-        viewBox="0 0 1200 800" 
-        preserveAspectRatio="xMidYMid slice"
-      >
-        {/* Horizontal lines */}
-        {[200, 400, 600].map((y, i) => (
-          <motion.line
-            key={`h-${y}`}
-            x1="0"
-            y1={y}
-            x2="1200"
-            y2={y}
-            stroke="hsl(231, 58%, 33%)"
-            strokeWidth="1"
-            strokeOpacity="0.05"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: i * 0.2, ease: [0.5, 0, 0, 1] }}
-          />
-        ))}
-        {/* Vertical lines */}
-        {[300, 600, 900].map((x, i) => (
-          <motion.line
-            key={`v-${x}`}
-            x1={x}
-            y1="0"
-            x2={x}
-            y2="800"
-            stroke="hsl(241, 100%, 70%)"
-            strokeWidth="1"
-            strokeOpacity="0.04"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: 0.5 + i * 0.2, ease: [0.5, 0, 0, 1] }}
-          />
-        ))}
-      </svg>
-
-      {/* Constellation dots at intersections */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[[300, 200], [600, 400], [900, 200], [600, 600], [300, 400]].map(([x, y], i) => (
-          <motion.div
-            key={`dot-${i}`}
-            className="absolute w-1.5 h-1.5 rounded-full bg-accent/40"
-            style={{ left: `${(x / 1200) * 100}%`, top: `${(y / 800) * 100}%` }}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ 
-              scale: [1, 1.5, 1], 
-              opacity: [0.4, 0.8, 0.4] 
-            }}
-            transition={{
-              duration: 3,
-              delay: 1 + i * 0.3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Subtle gradient blobs - reduced opacity */}
-      <motion.div 
-        className="absolute top-1/4 -left-1/4 w-[800px] h-[800px] rounded-full opacity-15 blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, hsl(231 58% 33% / 0.3) 0%, transparent 70%)',
-        }}
-        animate={{
-          y: [0, -30, 0],
-          x: [0, 20, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div 
-        className="absolute -bottom-1/4 right-0 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl"
-        style={{
-          background: 'radial-gradient(circle, hsl(241 100% 70% / 0.2) 0%, transparent 70%)',
-        }}
-        animate={{
-          y: [0, 25, 0],
-          x: [0, -15, 0],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
+      {/* Shader background with pulsing border accent */}
+      <ShaderHero showPulsingBorder={true} />
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
