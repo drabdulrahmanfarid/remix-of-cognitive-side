@@ -26,13 +26,16 @@ const HowWeWorkSection = () => {
   return (
     <section 
       ref={ref}
-      className="py-32 md:py-40 px-6"
+      className="py-32 md:py-40 px-6 relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto">
+      {/* Grid pattern */}
+      <div className="absolute inset-0 grid-pattern opacity-30" />
+      
+      <div className="max-w-5xl mx-auto relative z-10">
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
           className="block text-sm font-medium tracking-widest uppercase text-accent mb-20 text-center"
         >
           How we engage
@@ -40,13 +43,15 @@ const HowWeWorkSection = () => {
 
         {/* Desktop: Horizontal timeline */}
         <div className="hidden md:block relative">
-          {/* Animated connecting line */}
+          {/* Animated gradient connecting line */}
           <motion.div 
-            className="absolute top-6 left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-border to-transparent origin-left"
+            className="absolute top-6 left-[10%] right-[10%] h-[1px] origin-left overflow-hidden"
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ duration: 1.2, ease: [0.25, 0.4, 0.25, 1] }}
-          />
+            transition={{ duration: 1.2, ease: [0.5, 0, 0, 1] }}
+          >
+            <div className="w-full h-full bg-gradient-to-r from-transparent via-accent/50 to-transparent animate-border-glow" />
+          </motion.div>
           
           <div className="grid grid-cols-4 gap-4">
             {steps.map((step, index) => (
@@ -58,25 +63,45 @@ const HowWeWorkSection = () => {
                 transition={{ 
                   duration: 0.6, 
                   delay: 0.3 + index * 0.15,
-                  ease: [0.25, 0.4, 0.25, 1]
+                  ease: [0.5, 0, 0, 1]
                 }}
               >
-                {/* Step indicator */}
+                {/* Step indicator with glow */}
                 <div className="relative mb-8">
                   <motion.div 
-                    className="w-12 h-12 mx-auto rounded-full bg-card border-2 border-primary/20 flex items-center justify-center cursor-default"
+                    className="w-12 h-12 mx-auto rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center cursor-default"
                     whileHover={{ 
                       scale: 1.15,
-                      borderColor: 'hsl(241 100% 70%)',
-                      boxShadow: '0 0 20px hsl(241 100% 70% / 0.3)',
+                      borderColor: 'hsl(241 100% 70% / 0.6)',
+                      boxShadow: '0 0 30px hsl(241 100% 70% / 0.3), inset 0 0 20px hsl(241 100% 70% / 0.1)',
                     }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4, ease: [0.5, 0, 0, 1] }}
                   >
                     <span className="text-sm font-semibold text-primary">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </motion.div>
+                  
+                  {/* Pulsing glow ring */}
+                  <motion.div
+                    className="absolute inset-0 w-12 h-12 mx-auto rounded-full"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { 
+                      opacity: [0, 0.3, 0],
+                      scale: [1, 1.5, 1.8],
+                    } : { opacity: 0 }}
+                    transition={{
+                      duration: 2,
+                      delay: 1 + index * 0.2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                    }}
+                    style={{
+                      background: 'radial-gradient(circle, hsl(241 100% 70% / 0.3) 0%, transparent 70%)',
+                    }}
+                  />
                 </div>
+                
                 <h3 className="text-xl font-semibold text-primary mb-3">
                   {step.title}
                 </h3>
@@ -90,13 +115,15 @@ const HowWeWorkSection = () => {
 
         {/* Mobile: Vertical timeline */}
         <div className="md:hidden relative">
-          {/* Vertical line */}
+          {/* Vertical gradient line */}
           <motion.div 
-            className="absolute left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-border via-border to-transparent origin-top"
+            className="absolute left-6 top-0 bottom-0 w-[1px] origin-top overflow-hidden"
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-            transition={{ duration: 1, ease: [0.25, 0.4, 0.25, 1] }}
-          />
+            transition={{ duration: 1, ease: [0.5, 0, 0, 1] }}
+          >
+            <div className="w-full h-full bg-gradient-to-b from-accent/50 via-accent/30 to-transparent" />
+          </motion.div>
           
           <div className="space-y-10">
             {steps.map((step, index) => (
@@ -108,15 +135,22 @@ const HowWeWorkSection = () => {
                 transition={{ 
                   duration: 0.6, 
                   delay: 0.2 + index * 0.15,
-                  ease: [0.25, 0.4, 0.25, 1]
+                  ease: [0.5, 0, 0, 1]
                 }}
               >
                 {/* Step indicator */}
-                <div className="w-8 h-8 rounded-full bg-card border-2 border-primary/20 flex items-center justify-center flex-shrink-0 z-10">
+                <motion.div 
+                  className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center flex-shrink-0 z-10"
+                  whileHover={{ 
+                    borderColor: 'hsl(241 100% 70% / 0.5)',
+                    boxShadow: '0 0 20px hsl(241 100% 70% / 0.2)',
+                  }}
+                >
                   <span className="text-xs font-semibold text-primary">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                </div>
+                </motion.div>
+                
                 <div>
                   <h3 className="text-lg font-semibold text-primary mb-1">
                     {step.title}

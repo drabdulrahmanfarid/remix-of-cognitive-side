@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
+import { ArrowRight } from 'lucide-react';
 
 const services = [
   {
@@ -28,7 +29,7 @@ const cardVariants = {
     transition: {
       duration: 0.6,
       delay: index * 0.12,
-      ease: [0.25, 0.4, 0.25, 1] as const,
+      ease: [0.5, 0, 0, 1] as const,
     },
   }),
 };
@@ -39,13 +40,16 @@ const WhatWeDoSection = () => {
   return (
     <section 
       ref={ref}
-      className="py-32 md:py-40 px-6 bg-secondary/30"
+      className="py-32 md:py-40 px-6 bg-secondary/30 relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 grid-pattern opacity-50" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
           className="block text-sm font-medium tracking-widest uppercase text-accent mb-16 text-center"
         >
           What we do
@@ -61,84 +65,59 @@ const WhatWeDoSection = () => {
               variants={cardVariants}
               whileHover={{ 
                 y: -8,
-                transition: { duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }
+                transition: { duration: 0.4, ease: [0.5, 0, 0, 1] }
               }}
-              className="group relative p-6 md:p-8 rounded-2xl bg-card border border-border/50 overflow-hidden cursor-default"
+              className="group relative p-6 md:p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 overflow-hidden cursor-default"
             >
-              {/* Animated gradient background on hover */}
+              {/* Animated gradient border glow */}
               <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
                 style={{
-                  background: 'linear-gradient(135deg, hsl(241 100% 70% / 0.03) 0%, hsl(359 82% 75% / 0.03) 100%)',
-                }}
-              />
-              
-              {/* Animated border glow */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  boxShadow: 'inset 0 0 0 1px hsl(241 100% 70% / 0.2), 0 20px 40px -20px hsl(231 58% 33% / 0.15)',
+                  background: 'linear-gradient(135deg, hsl(241 100% 70% / 0.1) 0%, transparent 50%, hsl(241 100% 70% / 0.05) 100%)',
+                  boxShadow: 'inset 0 0 0 1px hsl(241 100% 70% / 0.3), 0 20px 40px -20px hsl(241 100% 70% / 0.2)',
                 }}
               />
 
-              {/* Floating accent line */}
+              {/* Animated top border line */}
               <motion.div
-                className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-accent/50 to-transparent"
-                initial={{ scaleX: 0, opacity: 0 }}
-                whileHover={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
+                className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.5, ease: [0.5, 0, 0, 1] }}
               />
 
               <div className="relative z-10">
-                {/* Title with animated underline */}
-                <div className="relative inline-block mb-3">
-                  <motion.h3 
-                    className="text-xl md:text-2xl font-semibold text-primary"
-                  >
-                    <motion.span
-                      className="inline-block"
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {service.title}
-                    </motion.span>
-                  </motion.h3>
-                  {/* Animated underline */}
-                  <motion.div
-                    className="absolute -bottom-1 left-0 h-[2px] bg-accent"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: '100%' }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-                  />
-                </div>
+                {/* Title with glow on hover */}
+                <motion.h3 
+                  className="text-xl md:text-2xl font-semibold text-primary mb-3 group-hover:text-glow transition-all duration-300"
+                >
+                  {service.title}
+                </motion.h3>
 
-                {/* Description with subtle fade-up on card hover */}
+                {/* Animated underline */}
+                <motion.div
+                  className="h-[1px] bg-accent/60 mb-4 origin-left"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  style={{ width: '40px' }}
+                  transition={{ duration: 0.4, ease: [0.5, 0, 0, 1] }}
+                />
+
                 <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
                   {service.description}
                 </p>
 
-                {/* Subtle arrow indicator on hover */}
+                {/* Arrow indicator with slide animation */}
                 <motion.div
-                  className="mt-4 flex items-center gap-2 text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ x: -10 }}
-                  whileHover={{ x: 0 }}
+                  className="mt-5 flex items-center gap-2 text-accent"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileHover={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, ease: [0.5, 0, 0, 1] }}
                 >
-                  <span className="text-xs font-medium">Learn more</span>
-                  <motion.svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    className="group-hover:translate-x-1 transition-transform duration-300"
-                  >
-                    <path
-                      d="M3 8H13M13 8L9 4M13 8L9 12"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </motion.svg>
+                  <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Learn more
+                  </span>
+                  <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-300" />
                 </motion.div>
               </div>
             </motion.div>
