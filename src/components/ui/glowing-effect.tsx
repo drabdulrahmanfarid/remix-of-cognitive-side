@@ -145,31 +145,42 @@ const GlowingEffect = memo(
                       var(--black),
                       var(--black) calc(25% / var(--repeating-conic-gradient-times))
                     )`
-                  : `radial-gradient(ellipse at 50% 0%, hsla(236, 59%, 33%, 0.5), transparent 50%),
-                     radial-gradient(ellipse at 50% 100%, hsla(241, 100%, 70%, 0.55), transparent 50%),
-                     radial-gradient(ellipse at 0% 50%, hsla(0, 84%, 75%, 0.5), transparent 50%),
-                     radial-gradient(ellipse at 100% 50%, hsla(241, 100%, 70%, 0.55), transparent 50%),
+                  : `radial-gradient(circle, hsla(236, 59%, 33%, 0.6) 10%, hsla(236, 59%, 33%, 0) 20%),
+                     radial-gradient(circle at 40% 40%, hsla(241, 100%, 70%, 0.5) 5%, hsla(241, 100%, 70%, 0) 15%),
+                     radial-gradient(circle at 60% 60%, hsla(0, 84%, 75%, 0.5) 10%, hsla(0, 84%, 75%, 0) 20%),
+                     radial-gradient(circle at 40% 60%, hsla(241, 100%, 70%, 0.5) 10%, hsla(241, 100%, 70%, 0) 20%),
                      repeating-conic-gradient(
-                       from calc(var(--start) * 1deg) at 50% 50%,
-                       hsla(236, 59%, 33%, 0.06) 0%,
-                       hsla(241, 100%, 70%, 0.75) calc(25% / var(--repeating-conic-gradient-times)),
-                       hsla(0, 84%, 75%, 0.65) calc(50% / var(--repeating-conic-gradient-times)),
-                       hsla(241, 100%, 70%, 0.75) calc(75% / var(--repeating-conic-gradient-times)),
-                       hsla(236, 59%, 33%, 0.06) calc(100% / var(--repeating-conic-gradient-times))
+                       from 236.84deg at 50% 50%,
+                       hsla(236, 59%, 33%, 1) 0%,
+                       hsla(241, 100%, 70%, 1) calc(25% / var(--repeating-conic-gradient-times)),
+                       hsla(0, 84%, 75%, 1) calc(50% / var(--repeating-conic-gradient-times)),
+                       hsla(241, 100%, 70%, 1) calc(75% / var(--repeating-conic-gradient-times)),
+                       hsla(236, 59%, 33%, 1) calc(100% / var(--repeating-conic-gradient-times))
                      )`,
             } as React.CSSProperties
           }
           className={cn(
-            "pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition-opacity",
-            "before:absolute before:inset-0 before:rounded-[inherit] before:p-[var(--glowingeffect-border-width)] before:will-change-[background,opacity,filter] before:[-webkit-mask-composite:xor] before:[background:var(--gradient)] before:[mask-clip:padding-box,border-box] before:[mask-composite:exclude] before:[mask:linear-gradient(transparent,transparent),linear-gradient(#fff,#fff)] before:content-['']",
-            "after:absolute after:inset-0 after:rounded-[inherit] after:p-[var(--glowingeffect-border-width)] after:will-change-[background,opacity,filter] after:[-webkit-mask-composite:xor] after:[background:var(--gradient)] after:[mask-clip:padding-box,border-box] after:[mask-composite:exclude] after:[mask:linear-gradient(transparent,transparent),linear-gradient(#fff,#fff)] after:content-['']",
-            glow && "after:opacity-[var(--active)] after:blur-[var(--blur)]",
-            "before:opacity-[var(--active)]",
+            "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",
+            glow && "opacity-100",
             blur > 0 && "blur-[var(--blur)]",
             className,
             disabled && "!hidden"
           )}
-        />
+        >
+          <div
+            className={cn(
+              "glow",
+              "rounded-[inherit]",
+              'after:content-[""] after:rounded-[inherit] after:absolute after:inset-[calc(-1*var(--glowingeffect-border-width))]',
+              "after:[border:var(--glowingeffect-border-width)_solid_transparent]",
+              "after:[background:var(--gradient)] after:[background-attachment:fixed]",
+              "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
+              "after:[mask-clip:padding-box,border-box]",
+              "after:[mask-composite:intersect]",
+              "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]"
+            )}
+          />
+        </div>
       </>
     );
   }
