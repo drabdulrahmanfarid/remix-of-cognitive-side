@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 import { ArrowRight } from 'lucide-react';
+import { Suspense, lazy } from 'react';
+
+const NeonRaymarcher = lazy(() => import('./ui/neon-raymarcher'));
 
 const ClosingSection = () => {
   const { ref, isInView } = useInView({ threshold: 0.3 });
@@ -11,8 +14,15 @@ const ClosingSection = () => {
       ref={ref}
       className="py-32 md:py-48 px-6 relative overflow-hidden"
     >
-      {/* Grid pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30" />
+      {/* 3D Raymarcher Background */}
+      <div className="absolute inset-0 opacity-50">
+        <Suspense fallback={<div className="absolute inset-0 grid-pattern opacity-30" />}>
+          <NeonRaymarcher />
+        </Suspense>
+      </div>
+      
+      {/* Subtle overlay for text readability */}
+      <div className="absolute inset-0 bg-background/30" />
       
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.h2 
@@ -23,7 +33,6 @@ const ClosingSection = () => {
         >
           <span className="relative inline-block">
             Work should move with
-            {/* Animated underline on "clarity" */}
           </span>{' '}
           <span className="relative inline-block text-glow-strong">
             clarity.
