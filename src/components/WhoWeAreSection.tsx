@@ -55,13 +55,13 @@ const WhoWeAreSection = () => {
             variants={itemVariants}
             className="text-xl sm:text-2xl text-muted-foreground font-light leading-relaxed"
           >
-            We work with teams to structure how work flows, executes, and scales.
+            We work with leadership teams to translate strategy into structured execution.
           </motion.p>
           <motion.p 
             variants={itemVariants}
             className="text-lg text-primary/70 font-medium"
           >
-            No theory. Only implementation.
+            Our focus is not tools — it is how work actually gets done.
           </motion.p>
         </div>
       </motion.div>

@@ -25,7 +25,7 @@ const ClosingSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
         >
-          We help organizations design that clarity.
+          We design the systems that make that possible.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
