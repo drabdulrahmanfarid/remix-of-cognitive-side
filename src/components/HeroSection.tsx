@@ -9,43 +9,36 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <AnimatePresence>
-          <motion.h1 initial={{
-          opacity: 0,
-          y: 40
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2,
-          ease: [0.5, 0, 0, 1]
-        }} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-primary mb-8 text-center">
-            Operational clarity, delivered.
+          <motion.p 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.5, 0, 0, 1] }}
+            className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-bold tracking-tight text-primary mb-6 text-center"
+          >
+            Transvyra
+          </motion.p>
+          <motion.h1 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.5, 0, 0, 1] }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-primary mb-8 text-center"
+          >
+            • Adoption. Structure. Results
           </motion.h1>
-          <motion.p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto mb-6" initial={{
-          opacity: 0,
-          y: 30
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.5,
-          ease: [0.5, 0, 0, 1]
-        }}>
+          <motion.p 
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto mb-6" 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.5, 0, 0, 1] }}
+          >
             We help organizations structure how work flows, executes, and scales across teams.
           </motion.p>
-          <motion.p className="text-sm tracking-widest uppercase text-muted-foreground/70 mb-12" initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.7,
-          ease: [0.5, 0, 0, 1]
-        }}>
+          <motion.p 
+            className="text-sm tracking-widest uppercase text-muted-foreground/70 mb-12" 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.5, 0, 0, 1] }}
+          >
             Adoption • Execution • Measurable outcomes
           </motion.p>
           <motion.div initial={{
