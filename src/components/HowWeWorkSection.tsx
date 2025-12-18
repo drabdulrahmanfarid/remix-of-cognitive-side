@@ -2,10 +2,22 @@ import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 
 const steps = [
-  { title: 'Understand', subtitle: 'Map current state' },
-  { title: 'Structure', subtitle: 'Design the flow' },
-  { title: 'Deploy', subtitle: 'Implement change' },
-  { title: 'Measure', subtitle: 'Track outcomes' },
+  { 
+    title: 'Understand', 
+    description: 'We analyze how work currently flows across teams.' 
+  },
+  { 
+    title: 'Structure', 
+    description: 'We redesign processes into clear, executable workflows.' 
+  },
+  { 
+    title: 'Deploy', 
+    description: 'We implement workflows directly inside the organization.' 
+  },
+  { 
+    title: 'Measure', 
+    description: 'We track usage, efficiency, and performance improvement.' 
+  },
 ];
 
 const HowWeWorkSection = () => {
@@ -23,7 +35,7 @@ const HowWeWorkSection = () => {
           transition={{ duration: 0.6 }}
           className="block text-sm font-medium tracking-widest uppercase text-accent mb-20 text-center"
         >
-          How we work
+          How we engage
         </motion.span>
 
         {/* Desktop: Horizontal timeline */}
@@ -65,11 +77,11 @@ const HowWeWorkSection = () => {
                     </span>
                   </motion.div>
                 </div>
-                <h3 className="text-xl font-semibold text-primary mb-2">
+                <h3 className="text-xl font-semibold text-primary mb-3">
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  {step.subtitle}
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {step.description}
                 </p>
               </motion.div>
             ))}
@@ -86,7 +98,7 @@ const HowWeWorkSection = () => {
             transition={{ duration: 1, ease: [0.25, 0.4, 0.25, 1] }}
           />
           
-          <div className="space-y-12">
+          <div className="space-y-10">
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}
@@ -109,8 +121,8 @@ const HowWeWorkSection = () => {
                   <h3 className="text-lg font-semibold text-primary mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {step.subtitle}
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.description}
                   </p>
                 </div>
               </motion.div>

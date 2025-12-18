@@ -4,15 +4,19 @@ import { useInView } from '../hooks/useInView';
 const services = [
   {
     title: 'Adoption',
-    description: 'We ensure tools are used correctly inside real workflows.',
+    description: 'We ensure teams don\'t just learn tools — they use them correctly inside daily operations.',
   },
   {
-    title: 'Execution',
-    description: 'We design and deploy operational workflows that remove friction.',
+    title: 'Workflow Design',
+    description: 'We map, simplify, and structure operational workflows across departments.',
   },
   {
-    title: 'Measurement',
-    description: 'We track performance and continuously optimize outcomes.',
+    title: 'Execution Enablement',
+    description: 'We deploy workflows that remove friction, delays, and manual dependency.',
+  },
+  {
+    title: 'Performance Tracking',
+    description: 'We measure outcomes and continuously optimize operational performance.',
   },
 ];
 
@@ -23,7 +27,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      delay: index * 0.15,
+      delay: index * 0.12,
       ease: [0.25, 0.4, 0.25, 1] as const,
     },
   }),
@@ -47,7 +51,7 @@ const WhatWeDoSection = () => {
           What we do
         </motion.span>
         
-        <div className="grid md:grid-cols-3 gap-8 md:gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -59,7 +63,7 @@ const WhatWeDoSection = () => {
                 y: -8,
                 transition: { duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }
               }}
-              className="group relative p-8 md:p-10 rounded-2xl bg-card border border-border/50 overflow-hidden cursor-default"
+              className="group relative p-6 md:p-8 rounded-2xl bg-card border border-border/50 overflow-hidden cursor-default"
             >
               {/* Animated gradient background on hover */}
               <motion.div
@@ -79,7 +83,7 @@ const WhatWeDoSection = () => {
 
               {/* Floating accent line */}
               <motion.div
-                className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-accent/50 to-transparent"
+                className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-accent/50 to-transparent"
                 initial={{ scaleX: 0, opacity: 0 }}
                 whileHover={{ scaleX: 1, opacity: 1 }}
                 transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
@@ -87,9 +91,9 @@ const WhatWeDoSection = () => {
 
               <div className="relative z-10">
                 {/* Title with animated underline */}
-                <div className="relative inline-block mb-4">
+                <div className="relative inline-block mb-3">
                   <motion.h3 
-                    className="text-2xl md:text-3xl font-semibold text-primary"
+                    className="text-xl md:text-2xl font-semibold text-primary"
                   >
                     <motion.span
                       className="inline-block"
@@ -109,20 +113,20 @@ const WhatWeDoSection = () => {
                 </div>
 
                 {/* Description with subtle fade-up on card hover */}
-                <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
+                <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
                   {service.description}
                 </p>
 
                 {/* Subtle arrow indicator on hover */}
                 <motion.div
-                  className="mt-6 flex items-center gap-2 text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="mt-4 flex items-center gap-2 text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={{ x: -10 }}
                   whileHover={{ x: 0 }}
                 >
-                  <span className="text-sm font-medium">Learn more</span>
+                  <span className="text-xs font-medium">Learn more</span>
                   <motion.svg
-                    width="16"
-                    height="16"
+                    width="14"
+                    height="14"
                     viewBox="0 0 16 16"
                     fill="none"
                     className="group-hover:translate-x-1 transition-transform duration-300"
