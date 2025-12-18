@@ -11,6 +11,7 @@ const FlowOutlineSection = () => {
 
   // Transform scroll progress for different animation phases
   const pathProgress = useTransform(scrollYProgress, [0.1, 0.6], [0, 1]);
+  const pathOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 0.7]);
   const convergenceOpacity = useTransform(scrollYProgress, [0.25, 0.45, 0.65], [0, 0.5, 0]);
   const convergenceScale = useTransform(scrollYProgress, [0.25, 0.45, 0.65], [0.5, 1, 1.3]);
   const textOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
@@ -102,7 +103,7 @@ const FlowOutlineSection = () => {
               filter="url(#softGlow)"
               style={{
                 pathLength: pathProgress,
-                opacity: useTransform(scrollYProgress, [0.1, 0.2], [0, 0.7])
+                opacity: pathOpacity
               }}
             />
           ))}
