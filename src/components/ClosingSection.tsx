@@ -128,7 +128,7 @@ const ClosingSection = () => {
         >
           <div className="relative">
             {/* Main text container */}
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden pb-2">
               <motion.div
                 animate={{ 
                   opacity: isClicked ? 0 : 1,
