@@ -35,7 +35,7 @@ export function PulsingBorderAccent() {
             <path id="circlePath" d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0" />
           </defs>
           <text className="fill-primary/80 text-[12px] font-semibold uppercase tracking-[0.25em]">
-            <textPath href="#circlePath">
+            <textPath href="#circlePath" startOffset="25%">
               Transvyra • Operational Clarity • Delivered •
             </textPath>
           </text>
