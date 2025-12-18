@@ -6,6 +6,7 @@ import HowWeWorkSection from '../components/HowWeWorkSection';
 import FlowOutlineSection from '../components/FlowOutlineSection';
 import WhoWeWorkWithSection from '../components/WhoWeWorkWithSection';
 import WhyTransvyraSection from '../components/WhyTransvyraSection';
+import TestimonialsSection from '../components/TestimonialsSection';
 import ClosingSection from '../components/ClosingSection';
 import Footer from '../components/Footer';
 
@@ -21,6 +22,7 @@ const Index = () => {
         <FlowOutlineSection />
         <WhoWeWorkWithSection />
         <WhyTransvyraSection />
+        <TestimonialsSection />
         <ClosingSection />
       </main>
       <Footer />
