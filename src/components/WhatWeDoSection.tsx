@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 import { ArrowRight } from 'lucide-react';
+import { GlowingEffect } from './ui/glowing-effect';
 
 const services = [
   {
@@ -55,74 +56,56 @@ const WhatWeDoSection = () => {
           What we do
         </motion.span>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0">
           {services.map((service, index) => (
-            <motion.div
+            <motion.li
               key={service.title}
               custom={index}
               initial="initial"
               animate={isInView ? "animate" : "initial"}
               variants={cardVariants}
-              whileHover={{ 
-                y: -8,
-                transition: { duration: 0.4, ease: [0.5, 0, 0, 1] }
-              }}
-              className="group relative p-6 md:p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 overflow-hidden cursor-default"
+              className="relative min-h-[14rem] list-none"
             >
-              {/* Animated gradient border glow */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(241 100% 70% / 0.1) 0%, transparent 50%, hsl(241 100% 70% / 0.05) 100%)',
-                  boxShadow: 'inset 0 0 0 1px hsl(241 100% 70% / 0.3), 0 20px 40px -20px hsl(241 100% 70% / 0.2)',
-                }}
-              />
-
-              {/* Animated top border line */}
-              <motion.div
-                className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.5, ease: [0.5, 0, 0, 1] }}
-              />
-
-              <div className="relative z-10">
-                {/* Title with glow on hover */}
-                <motion.h3 
-                  className="text-xl md:text-2xl font-semibold text-primary mb-3 group-hover:text-glow transition-all duration-300"
-                >
-                  {service.title}
-                </motion.h3>
-
-                {/* Animated underline */}
-                <motion.div
-                  className="h-[1px] bg-accent/60 mb-4 origin-left"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  style={{ width: '40px' }}
-                  transition={{ duration: 0.4, ease: [0.5, 0, 0, 1] }}
+              <div className="relative h-full rounded-2xl border border-border/50 p-px">
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
                 />
+                <div className="group relative h-full flex flex-col justify-between gap-4 overflow-hidden rounded-2xl p-6 md:p-8 bg-card/80 backdrop-blur-sm">
+                  <div className="relative z-10">
+                    <h3 className="text-xl md:text-2xl font-semibold text-primary mb-3 group-hover:text-glow transition-all duration-300">
+                      {service.title}
+                    </h3>
 
-                <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
-                  {service.description}
-                </p>
+                    <motion.div
+                      className="h-[1px] bg-accent/60 mb-4 origin-left"
+                      initial={{ scaleX: 0.3 }}
+                      whileInView={{ scaleX: 0.3 }}
+                      style={{ width: '40px' }}
+                    />
 
-                {/* Arrow indicator with slide animation */}
-                <motion.div
-                  className="mt-5 flex items-center gap-2 text-accent"
-                  initial={{ opacity: 0, x: -10 }}
-                  whileHover={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, ease: [0.5, 0, 0, 1] }}
-                >
-                  <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Learn more
-                  </span>
-                  <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-300" />
-                </motion.div>
+                    <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  <motion.div
+                    className="flex items-center gap-2 text-accent"
+                    initial={{ opacity: 0, x: -10 }}
+                  >
+                    <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Learn more
+                    </span>
+                    <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-300" />
+                  </motion.div>
+                </div>
               </div>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
