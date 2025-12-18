@@ -23,7 +23,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.5, 0, 0, 1] }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-primary mb-8 text-center"
           >
-            • Adoption. Structure. Results
+            Adoption. Structure. Results
           </motion.h1>
           <motion.p 
             className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto mb-6" 
