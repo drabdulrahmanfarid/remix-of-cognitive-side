@@ -19,32 +19,28 @@ const FlowOutlineSection = () => {
 
   // Flow path configurations - 4 lines representing engagement phases
   const flowPaths = [
-    { id: 1, color: '#232f85', startY: 20, chaos: 35, delay: 0 },      // Understand
-    { id: 2, color: '#6866ff', startY: 40, chaos: 50, delay: 0.08 },   // Structure
-    { id: 3, color: '#232f85', startY: 60, chaos: 45, delay: 0.16 },   // Deploy
-    { id: 4, color: '#6866ff', startY: 80, chaos: 55, delay: 0.24 },   // Measure
+    { id: 1, color: '#232f85', startY: 20, chaos: 35, delay: 0 },
+    { id: 2, color: '#6866ff', startY: 40, chaos: 50, delay: 0.08 },
+    { id: 3, color: '#232f85', startY: 60, chaos: 45, delay: 0.16 },
+    { id: 4, color: '#6866ff', startY: 80, chaos: 55, delay: 0.24 },
   ];
 
   // Generate SVG path for each flow line - all converge to single exit line
   const generateFlowPath = (startY: number, chaos: number) => {
     const centerY = 50;
-    const exitY = 50; // ALL lines exit at the same Y position = single unified line
+    const exitY = 50;
     
-    // Control points for entry (chaotic)
     const cp1x = 20 + (chaos * 0.2);
     const cp1y = startY + (Math.sin(chaos) * 12);
     const cp2x = 35;
     const cp2y = startY + (centerY - startY) * 0.5;
     
-    // Control points for exit (unified)
     const cp3x = 65;
     const cp3y = centerY;
     const cp4x = 80;
     const cp4y = exitY;
 
-    return `M -5 ${startY} 
-            C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, 50 ${centerY}
-            C ${cp3x} ${cp3y}, ${cp4x} ${cp4y}, 105 ${exitY}`;
+    return `M -5 ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, 50 ${centerY} C ${cp3x} ${cp3y}, ${cp4x} ${cp4y}, 105 ${exitY}`;
   };
 
   return (
@@ -53,7 +49,6 @@ const FlowOutlineSection = () => {
       className="py-24 md:py-32 relative overflow-hidden"
       style={{ backgroundColor: '#ebeae7' }}
     >
-      {/* Subtle grid pattern */}
       <div 
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -65,7 +60,6 @@ const FlowOutlineSection = () => {
         }}
       />
 
-      {/* SVG Animation Container */}
       <div className="relative w-full h-[300px] md:h-[400px] px-4">
         <svg 
           viewBox="0 0 100 100" 
@@ -73,7 +67,6 @@ const FlowOutlineSection = () => {
           preserveAspectRatio="xMidYMid slice"
           style={{ overflow: 'visible' }}
         >
-          {/* Subtle glow filter */}
           <defs>
             <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="0.5" result="blur" />
@@ -91,7 +84,6 @@ const FlowOutlineSection = () => {
             </filter>
           </defs>
 
-          {/* Flow paths */}
           {flowPaths.map((path) => (
             <motion.path
               key={path.id}
@@ -108,7 +100,6 @@ const FlowOutlineSection = () => {
             />
           ))}
 
-          {/* Convergence point */}
           <motion.circle
             cx="50"
             cy="50"
@@ -123,7 +114,6 @@ const FlowOutlineSection = () => {
             }}
           />
           
-          {/* Inner convergence dot */}
           <motion.circle
             cx="50"
             cy="50"
@@ -135,7 +125,6 @@ const FlowOutlineSection = () => {
           />
         </svg>
 
-        {/* Soft radial glow behind convergence */}
         <motion.div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 rounded-full pointer-events-none"
           style={{
@@ -145,7 +134,6 @@ const FlowOutlineSection = () => {
         />
       </div>
 
-      {/* Text content */}
       <motion.div 
         className="relative z-10 text-center mt-12 md:mt-16 px-6"
         style={{
@@ -153,7 +141,6 @@ const FlowOutlineSection = () => {
           y: textY
         }}
       >
-        {/* Small label */}
         <span 
           className="text-xs md:text-sm tracking-[0.25em] uppercase font-medium"
           style={{ color: '#6866ff', opacity: 0.7 }}
@@ -161,7 +148,6 @@ const FlowOutlineSection = () => {
           How work flows
         </span>
         
-        {/* Main statement */}
         <h2 
           className="text-2xl md:text-3xl lg:text-4xl font-light mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed"
           style={{ color: '#232f85' }}
@@ -169,7 +155,6 @@ const FlowOutlineSection = () => {
           From fragmented effort to structured execution.
         </h2>
         
-        {/* Micro-line */}
         <p 
           className="text-sm md:text-base mt-4 max-w-lg mx-auto"
           style={{ color: '#232f85', opacity: 0.6 }}
