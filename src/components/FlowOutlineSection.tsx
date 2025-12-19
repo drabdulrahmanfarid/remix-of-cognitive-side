@@ -19,10 +19,10 @@ const FlowOutlineSection = () => {
 
   // Flow path configurations - 4 lines representing engagement phases
   const flowPaths = [
-    { id: 1, color: '#232f85', startY: 20, chaos: 35, delay: 0 },
-    { id: 2, color: '#6866ff', startY: 40, chaos: 50, delay: 0.08 },
-    { id: 3, color: '#232f85', startY: 60, chaos: 45, delay: 0.16 },
-    { id: 4, color: '#6866ff', startY: 80, chaos: 55, delay: 0.24 },
+    { id: 1, startY: 20, chaos: 35, delay: 0 },
+    { id: 2, startY: 40, chaos: 50, delay: 0.08 },
+    { id: 3, startY: 60, chaos: 45, delay: 0.16 },
+    { id: 4, startY: 80, chaos: 55, delay: 0.24 },
   ];
 
   // Generate SVG path for each flow line - all converge to single exit line
@@ -68,6 +68,14 @@ const FlowOutlineSection = () => {
           style={{ overflow: 'visible' }}
         >
           <defs>
+            {/* Gradient from silver to gold - convergence at center */}
+            <linearGradient id="silverToGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#a8a8a8" />
+              <stop offset="45%" stopColor="#c0c0c0" />
+              <stop offset="50%" stopColor="#c9a227" />
+              <stop offset="55%" stopColor="#b8860b" />
+              <stop offset="100%" stopColor="#daa520" />
+            </linearGradient>
             <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="0.5" result="blur" />
               <feMerge>
@@ -88,7 +96,7 @@ const FlowOutlineSection = () => {
             <motion.path
               key={path.id}
               d={generateFlowPath(path.startY, path.chaos)}
-              stroke={path.color}
+              stroke="url(#silverToGold)"
               strokeWidth={0.4}
               fill="none"
               strokeLinecap="round"
