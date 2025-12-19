@@ -6,7 +6,7 @@ const FlowOutlineSection = () => {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 50%", "end 20%"],
+    offset: ["start 80%", "end 20%"],
   });
 
   // Transform scroll progress for different animation phases
@@ -101,11 +101,11 @@ const FlowOutlineSection = () => {
             />
           ))}
 
-          {/* Golden output line - always visible, fades in */}
+          {/* Golden output line */}
           <motion.path
             d={goldenOutputPath}
-            stroke="#c9a227"
-            strokeWidth={2.5}
+            stroke="hsl(var(--accent))"
+            strokeWidth={1.8}
             fill="none"
             strokeLinecap="round"
             filter="url(#goldenGlow)"
