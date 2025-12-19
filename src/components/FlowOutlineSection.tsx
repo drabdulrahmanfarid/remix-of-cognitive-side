@@ -46,15 +46,14 @@ const FlowOutlineSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 md:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#ebeae7' }}
+      className="py-24 md:py-32 relative overflow-hidden bg-background"
     >
       <div 
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, #232f85 1px, transparent 1px),
-            linear-gradient(to bottom, #232f85 1px, transparent 1px)
+            linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px'
         }}
@@ -150,22 +149,19 @@ const FlowOutlineSection = () => {
         }}
       >
         <span 
-          className="text-xs md:text-sm tracking-[0.25em] uppercase font-medium"
-          style={{ color: '#6866ff', opacity: 0.7 }}
+          className="text-xs md:text-sm tracking-[0.25em] uppercase font-medium text-accent"
         >
           How work flows
         </span>
         
         <h2 
-          className="text-2xl md:text-3xl lg:text-4xl font-light mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed"
-          style={{ color: '#232f85' }}
+          className="text-2xl md:text-3xl lg:text-4xl font-light mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed text-foreground"
         >
           From fragmented effort to structured execution.
         </h2>
         
         <p 
-          className="text-sm md:text-base mt-4 max-w-lg mx-auto"
-          style={{ color: '#232f85', opacity: 0.6 }}
+          className="text-sm md:text-base mt-4 max-w-lg mx-auto text-muted-foreground"
         >
           We design how work converges, executes, and scales.
         </p>
