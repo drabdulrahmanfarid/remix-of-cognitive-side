@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
     id: 4,
     name: "Sarah Williams",
     avatar: "https://randomuser.me/api/portraits/women/2.jpg",
-    description: "Transvyra transformed our business operations. Their solutions are innovative and perfectly tailored to our needs."
+    description: "goldenfield.io transformed our business operations. Their solutions are innovative and perfectly tailored to our needs."
   }
 ];
 

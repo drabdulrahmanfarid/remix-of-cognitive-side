@@ -21,7 +21,7 @@ const ClosingSection = () => {
   };
 
   const handleBookCall = () => {
-    window.location.href = 'mailto:contact@transvyra.com?subject=Project%20Inquiry';
+    window.location.href = 'mailto:contact@goldenfield.io?subject=Project%20Inquiry';
   };
 
   return (
@@ -189,10 +189,10 @@ const ClosingSection = () => {
         transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
       >
         <a 
-          href="mailto:contact@transvyra.com"
+          href="mailto:contact@goldenfield.io"
           className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
         >
-          contact@transvyra.com
+          contact@goldenfield.io
         </a>
       </motion.div>
     </section>

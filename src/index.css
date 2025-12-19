@@ -4,98 +4,98 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Transvyra Design System
-   Background: #ebeae7 → HSL(45, 9%, 91%)
-   Primary: #232f85 → HSL(231, 58%, 33%)
-   Accent: #6866ff → HSL(241, 100%, 70%)
-   CTA: #f48c8d → HSL(359, 82%, 75%)
+/* goldenfield.io Design System
+   Background: #faf7f2 → HSL(42, 50%, 97%)
+   Primary: #5c4a3d → HSL(25, 20%, 30%)
+   Accent: #c9a227 → HSL(47, 70%, 47%)
+   CTA: #b8860b → HSL(43, 90%, 38%)
 */
 
 @layer base {
   :root {
-    --background: 45 9% 91%;
-    --foreground: 231 58% 33%;
+    --background: 42 50% 97%;
+    --foreground: 25 20% 30%;
 
     --card: 0 0% 100%;
-    --card-foreground: 231 58% 33%;
+    --card-foreground: 25 20% 30%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 231 58% 33%;
+    --popover-foreground: 25 20% 30%;
 
-    --primary: 231 58% 33%;
-    --primary-foreground: 45 9% 91%;
+    --primary: 25 20% 30%;
+    --primary-foreground: 42 50% 97%;
 
-    --secondary: 45 6% 85%;
-    --secondary-foreground: 231 58% 33%;
+    --secondary: 40 30% 90%;
+    --secondary-foreground: 25 20% 30%;
 
-    --muted: 45 6% 85%;
-    --muted-foreground: 231 30% 45%;
+    --muted: 40 20% 88%;
+    --muted-foreground: 25 15% 45%;
 
-    --accent: 241 100% 70%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 70% 47%;
+    --accent-foreground: 25 20% 15%;
 
-    --cta: 359 82% 75%;
-    --cta-foreground: 231 58% 33%;
+    --cta: 43 90% 38%;
+    --cta-foreground: 42 50% 97%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 45 6% 80%;
-    --input: 45 6% 80%;
-    --ring: 241 100% 70%;
+    --border: 40 20% 82%;
+    --input: 40 20% 82%;
+    --ring: 47 70% 47%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 45 9% 91%;
-    --sidebar-foreground: 231 58% 33%;
-    --sidebar-primary: 231 58% 33%;
-    --sidebar-primary-foreground: 45 9% 91%;
-    --sidebar-accent: 241 100% 70%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 45 6% 80%;
-    --sidebar-ring: 241 100% 70%;
+    --sidebar-background: 42 50% 97%;
+    --sidebar-foreground: 25 20% 30%;
+    --sidebar-primary: 25 20% 30%;
+    --sidebar-primary-foreground: 42 50% 97%;
+    --sidebar-accent: 47 70% 47%;
+    --sidebar-accent-foreground: 25 20% 15%;
+    --sidebar-border: 40 20% 82%;
+    --sidebar-ring: 47 70% 47%;
   }
 
   .dark {
-    --background: 231 58% 10%;
-    --foreground: 45 9% 91%;
+    --background: 25 20% 8%;
+    --foreground: 42 50% 94%;
 
-    --card: 231 58% 15%;
-    --card-foreground: 45 9% 91%;
+    --card: 25 20% 12%;
+    --card-foreground: 42 50% 94%;
 
-    --popover: 231 58% 15%;
-    --popover-foreground: 45 9% 91%;
+    --popover: 25 20% 12%;
+    --popover-foreground: 42 50% 94%;
 
-    --primary: 45 9% 91%;
-    --primary-foreground: 231 58% 33%;
+    --primary: 42 50% 94%;
+    --primary-foreground: 25 20% 15%;
 
-    --secondary: 231 40% 20%;
-    --secondary-foreground: 45 9% 91%;
+    --secondary: 25 18% 18%;
+    --secondary-foreground: 42 50% 94%;
 
-    --muted: 231 40% 20%;
-    --muted-foreground: 45 9% 70%;
+    --muted: 25 18% 18%;
+    --muted-foreground: 42 30% 60%;
 
-    --accent: 241 100% 70%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 70% 50%;
+    --accent-foreground: 25 20% 10%;
 
-    --cta: 359 82% 75%;
-    --cta-foreground: 231 58% 33%;
+    --cta: 43 90% 45%;
+    --cta-foreground: 25 20% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 231 40% 25%;
-    --input: 231 40% 25%;
-    --ring: 241 100% 70%;
+    --border: 25 18% 22%;
+    --input: 25 18% 22%;
+    --ring: 47 70% 50%;
     
-    --sidebar-background: 231 58% 10%;
-    --sidebar-foreground: 45 9% 91%;
-    --sidebar-primary: 45 9% 91%;
-    --sidebar-primary-foreground: 231 58% 33%;
-    --sidebar-accent: 241 100% 70%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 231 40% 25%;
-    --sidebar-ring: 241 100% 70%;
+    --sidebar-background: 25 20% 8%;
+    --sidebar-foreground: 42 50% 94%;
+    --sidebar-primary: 42 50% 94%;
+    --sidebar-primary-foreground: 25 20% 15%;
+    --sidebar-accent: 47 70% 50%;
+    --sidebar-accent-foreground: 25 20% 10%;
+    --sidebar-border: 25 18% 22%;
+    --sidebar-ring: 47 70% 50%;
   }
 }
 
@@ -120,7 +120,7 @@
   }
 }
 
-/* Nexomic-style grid pattern */
+/* Golden grid pattern */
 .grid-pattern {
   background-image: 
     linear-gradient(to right, hsl(var(--primary) / 0.03) 1px, transparent 1px),

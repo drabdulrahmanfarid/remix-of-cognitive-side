@@ -49,7 +49,7 @@ const WhoWeAreSection = () => {
             variants={itemVariants}
             className="text-2xl sm:text-3xl md:text-4xl font-medium text-primary leading-relaxed"
           >
-            Transvyra is an operations enablement firm.
+            goldenfield.io is an operations enablement firm.
           </motion.p>
           <motion.p 
             variants={itemVariants}

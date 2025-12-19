@@ -28,12 +28,12 @@ const Navigation = () => {
           <div className="mx-auto max-w-7xl px-6 py-4">
             <nav className="flex items-center justify-between rounded-full bg-card/60 backdrop-blur-2xl px-6 py-3 border border-accent/10 luminous-border">
               <span className="text-xl font-semibold tracking-tight text-primary">
-                Transvyra
+                goldenfield.io
               </span>
               <motion.a
                 href="#contact"
                 className="group relative flex items-center gap-2 px-5 py-2 text-sm font-medium text-primary rounded-full border border-primary/20 overflow-hidden"
-                whileHover={{ borderColor: 'hsl(241 100% 70% / 0.5)' }}
+                whileHover={{ borderColor: 'hsl(47 70% 47% / 0.5)' }}
                 transition={{ duration: 0.3 }}
               >
                 {/* Background fill on hover */}

@@ -187,17 +187,17 @@ vec3 getHolographicMaterial(vec3 normal, vec3 viewDir, float time) {
   
   float hue = dot(normal, viewDir) * 3.14159 + time * 0.5;
   
-  // Transvyra brand colors: Blue (#232f85) to Purple (#6866ff) with coral hints (#f48c8d)
+  // goldenfield.io brand colors: Deep brown (#5c4a3d) to Gold (#c9a227) with amber hints (#b8860b)
   vec3 brandShades = vec3(
-    sin(hue * 0.5) * 0.15 + 0.14,           // Red - subtle coral hint
-    sin(hue + 0.8) * 0.15 + 0.20,           // Green - muted
-    sin(hue + 1.2) * 0.25 + 0.55            // Blue - dominant brand color
+    sin(hue * 0.5) * 0.15 + 0.75,           // Red - warm golden
+    sin(hue + 0.8) * 0.15 + 0.60,           // Green - amber tone
+    sin(hue + 1.2) * 0.10 + 0.15            // Blue - minimal for warmth
   );
   
-  // Add purple accent
-  vec3 purpleAccent = vec3(0.41, 0.40, 1.0) * (sin(hue * 1.5 + 1.0) * 0.3 + 0.3);
+  // Add golden accent
+  vec3 goldenAccent = vec3(0.79, 0.64, 0.15) * (sin(hue * 1.5 + 1.0) * 0.3 + 0.3);
   
-  return (brandShades + purpleAccent * 0.4) * fresnel * 1.2;
+  return (brandShades + goldenAccent * 0.4) * fresnel * 1.2;
 }
 
 vec3 getIridescence(vec3 normal, vec3 viewDir, float time) {
@@ -244,14 +244,14 @@ void main() {
     vec3 iridescent = getIridescence(normal, viewDir, u_time);
     
     float rimLight = pow(1.0 - max(dot(normal, viewDir), 0.0), 3.0);
-    vec3 rimColor = vec3(0.4, 0.4, 1.0) * rimLight * 0.5; // Blue rim
+    vec3 rimColor = vec3(0.79, 0.64, 0.15) * rimLight * 0.5; // Golden rim
     
     float ao = 1.0 - smoothstep(0.0, 0.3, totalDist / tMax);
     
-    vec3 baseColor = vec3(0.14, 0.18, 0.52); // Dark blue base matching brand
+    vec3 baseColor = vec3(0.36, 0.29, 0.24); // Deep brown base matching brand
     color = baseColor * (0.1 + diff * 0.4) * ao;
     color += iridescent * (0.8 + diff * 0.2);
-    color += vec3(0.95, 0.85, 0.9) * spec * 0.6; // Warm specular
+    color += vec3(1.0, 0.95, 0.85) * spec * 0.6; // Warm specular
     color += rimColor;
     
     float fog = 1.0 - exp(-totalDist * 0.2);
