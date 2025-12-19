@@ -17,44 +17,41 @@ const FlowOutlineSection = () => {
   const textOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
   const textY = useTransform(scrollYProgress, [0.3, 0.5], [30, 0]);
 
-  // Flow path configurations - 4 lines representing engagement phases
+  // Flow path configurations - 4 silver lines representing engagement phases
   const flowPaths = [
-    { id: 1, color: '#232f85', startY: 20, chaos: 35, delay: 0 },
-    { id: 2, color: '#6866ff', startY: 40, chaos: 50, delay: 0.08 },
-    { id: 3, color: '#232f85', startY: 60, chaos: 45, delay: 0.16 },
-    { id: 4, color: '#6866ff', startY: 80, chaos: 55, delay: 0.24 },
+    { id: 1, color: '#8a8a8a', startY: 20, chaos: 35, delay: 0 },      // Silver
+    { id: 2, color: '#a0a0a0', startY: 40, chaos: 50, delay: 0.08 },   // Light silver
+    { id: 3, color: '#8a8a8a', startY: 60, chaos: 45, delay: 0.16 },   // Silver
+    { id: 4, color: '#a0a0a0', startY: 80, chaos: 55, delay: 0.24 },   // Light silver
   ];
 
-  // Generate SVG path for each flow line - all converge to single exit line
+  // Generate SVG path for each flow line - all converge to center
   const generateFlowPath = (startY: number, chaos: number) => {
     const centerY = 50;
-    const exitY = 50;
     
     const cp1x = 20 + (chaos * 0.2);
     const cp1y = startY + (Math.sin(chaos) * 12);
     const cp2x = 35;
     const cp2y = startY + (centerY - startY) * 0.5;
-    
-    const cp3x = 65;
-    const cp3y = centerY;
-    const cp4x = 80;
-    const cp4y = exitY;
 
-    return `M -5 ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, 50 ${centerY} C ${cp3x} ${cp3y}, ${cp4x} ${cp4y}, 105 ${exitY}`;
+    return `M -5 ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, 50 ${centerY}`;
   };
+
+  // Golden output path from center to right
+  const goldenOutputPath = "M 50 50 C 65 50, 80 50, 105 50";
 
   return (
     <section 
       ref={sectionRef}
       className="py-24 md:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#ebeae7' }}
+      style={{ backgroundColor: '#faf7f2' }}
     >
       <div 
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, #232f85 1px, transparent 1px),
-            linear-gradient(to bottom, #232f85 1px, transparent 1px)
+            linear-gradient(to right, #5c4a3d 1px, transparent 1px),
+            linear-gradient(to bottom, #5c4a3d 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px'
         }}
@@ -75,6 +72,13 @@ const FlowOutlineSection = () => {
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
+            <filter id="goldenGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="1" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
             <filter id="convergenceGlow" x="-100%" y="-100%" width="300%" height="300%">
               <feGaussianBlur stdDeviation="2" result="blur" />
               <feMerge>
@@ -84,6 +88,7 @@ const FlowOutlineSection = () => {
             </filter>
           </defs>
 
+          {/* Silver input lines */}
           {flowPaths.map((path) => (
             <motion.path
               key={path.id}
@@ -100,12 +105,27 @@ const FlowOutlineSection = () => {
             />
           ))}
 
+          {/* Golden output line */}
+          <motion.path
+            d={goldenOutputPath}
+            stroke="#c9a227"
+            strokeWidth={0.6}
+            fill="none"
+            strokeLinecap="round"
+            filter="url(#goldenGlow)"
+            style={{
+              pathLength: pathProgress,
+              opacity: pathOpacity
+            }}
+          />
+
+          {/* Convergence point - golden */}
           <motion.circle
             cx="50"
             cy="50"
             r="1.5"
             fill="transparent"
-            stroke="#f48c8d"
+            stroke="#c9a227"
             strokeWidth={0.3}
             filter="url(#convergenceGlow)"
             style={{
@@ -118,7 +138,7 @@ const FlowOutlineSection = () => {
             cx="50"
             cy="50"
             r="0.5"
-            fill="#f48c8d"
+            fill="#b8860b"
             style={{
               opacity: convergenceOpacity
             }}
@@ -128,7 +148,7 @@ const FlowOutlineSection = () => {
         <motion.div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 rounded-full pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(244,140,141,0.12) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 60%)',
             opacity: convergenceOpacity
           }}
         />
@@ -143,21 +163,21 @@ const FlowOutlineSection = () => {
       >
         <span 
           className="text-xs md:text-sm tracking-[0.25em] uppercase font-medium"
-          style={{ color: '#6866ff', opacity: 0.7 }}
+          style={{ color: '#c9a227' }}
         >
           How work flows
         </span>
         
         <h2 
           className="text-2xl md:text-3xl lg:text-4xl font-light mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed"
-          style={{ color: '#232f85' }}
+          style={{ color: '#5c4a3d' }}
         >
           From fragmented effort to structured execution.
         </h2>
         
         <p 
           className="text-sm md:text-base mt-4 max-w-lg mx-auto"
-          style={{ color: '#232f85', opacity: 0.6 }}
+          style={{ color: '#5c4a3d', opacity: 0.6 }}
         >
           We design how work converges, executes, and scales.
         </p>
