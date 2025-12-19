@@ -6,16 +6,25 @@ const FlowOutlineSection = () => {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ["start 80%", "end 20%"]
   });
 
   // Transform scroll progress for different animation phases
-  const pathProgress = useTransform(scrollYProgress, [0.1, 0.6], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 0.7]);
-  const convergenceOpacity = useTransform(scrollYProgress, [0.25, 0.45, 0.65], [0, 0.5, 0]);
-  const convergenceScale = useTransform(scrollYProgress, [0.25, 0.45, 0.65], [0.5, 1, 1.3]);
-  const textOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.3, 0.5], [30, 0]);
+  // Silver lines - complete faster, stay visible
+  const pathProgress = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 0.8]);
+  
+  // Golden line - starts after silver lines converge
+  const goldenPathProgress = useTransform(scrollYProgress, [0.35, 0.6], [0, 1]);
+  const goldenOpacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 0.95]);
+  
+  // Convergence - stays visible
+  const convergenceOpacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 0.8]);
+  const convergenceScale = useTransform(scrollYProgress, [0.25, 0.4], [0.5, 1]);
+  
+  // Text appears after convergence
+  const textOpacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.4, 0.55], [30, 0]);
 
   // Flow path configurations - 4 silver lines representing engagement phases
   const flowPaths = [
@@ -51,7 +60,7 @@ const FlowOutlineSection = () => {
         <svg 
           viewBox="0 0 100 100" 
           className="w-full h-full"
-          preserveAspectRatio="xMidYMid slice"
+          preserveAspectRatio="xMidYMid meet"
           style={{ overflow: 'visible' }}
         >
           <defs>
@@ -99,13 +108,13 @@ const FlowOutlineSection = () => {
           <motion.path
             d={goldenOutputPath}
             stroke="#c9a227"
-            strokeWidth={0.8}
+            strokeWidth={1.2}
             fill="none"
             strokeLinecap="round"
             filter="url(#goldenGlow)"
-            opacity={0.9}
             style={{
-              pathLength: pathProgress
+              pathLength: goldenPathProgress,
+              opacity: goldenOpacity
             }}
           />
 
