@@ -46,16 +46,6 @@ const FlowOutlineSection = () => {
       className="py-24 md:py-32 relative overflow-hidden"
       style={{ backgroundColor: '#faf7f2' }}
     >
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #5c4a3d 1px, transparent 1px),
-            linear-gradient(to bottom, #5c4a3d 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px'
-        }}
-      />
 
       <div className="relative w-full h-[300px] md:h-[400px] px-4">
         <svg 
@@ -109,13 +99,13 @@ const FlowOutlineSection = () => {
           <motion.path
             d={goldenOutputPath}
             stroke="#c9a227"
-            strokeWidth={0.6}
+            strokeWidth={0.8}
             fill="none"
             strokeLinecap="round"
             filter="url(#goldenGlow)"
+            opacity={0.9}
             style={{
-              pathLength: pathProgress,
-              opacity: pathOpacity
+              pathLength: pathProgress
             }}
           />
 
