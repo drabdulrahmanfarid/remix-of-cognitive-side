@@ -6,32 +6,31 @@ const FlowOutlineSection = () => {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 80%", "end 20%"]
+    offset: ["start 80%", "end 20%"],
   });
 
   // Transform scroll progress for different animation phases
   // Silver lines - complete faster, stay visible
   const pathProgress = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 0.8]);
-  
-  // Golden line - starts after silver lines converge
-  const goldenPathProgress = useTransform(scrollYProgress, [0.35, 0.6], [0, 1]);
-  const goldenOpacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 0.95]);
-  
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 0.85]);
+
+  // Golden line - fade in right after convergence (always fully drawn)
+  const goldenOpacity = useTransform(scrollYProgress, [0.25, 0.35], [0, 1]);
+
   // Convergence - stays visible
-  const convergenceOpacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 0.8]);
-  const convergenceScale = useTransform(scrollYProgress, [0.25, 0.4], [0.5, 1]);
-  
+  const convergenceOpacity = useTransform(scrollYProgress, [0.22, 0.35], [0, 0.9]);
+  const convergenceScale = useTransform(scrollYProgress, [0.22, 0.35], [0.5, 1]);
+
   // Text appears after convergence
-  const textOpacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.4, 0.55], [30, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.35, 0.5], [30, 0]);
 
   // Flow path configurations - 4 silver lines representing engagement phases
   const flowPaths = [
-    { id: 1, color: '#8a8a8a', startY: 20, chaos: 35, delay: 0 },      // Silver
-    { id: 2, color: '#a0a0a0', startY: 40, chaos: 50, delay: 0.08 },   // Light silver
-    { id: 3, color: '#8a8a8a', startY: 60, chaos: 45, delay: 0.16 },   // Silver
-    { id: 4, color: '#a0a0a0', startY: 80, chaos: 55, delay: 0.24 },   // Light silver
+    { id: 1, color: 'hsl(0 0% 55%)', startY: 20, chaos: 35, delay: 0 }, // Silver
+    { id: 2, color: 'hsl(0 0% 65%)', startY: 40, chaos: 50, delay: 0.08 }, // Light silver
+    { id: 3, color: 'hsl(0 0% 55%)', startY: 60, chaos: 45, delay: 0.16 }, // Silver
+    { id: 4, color: 'hsl(0 0% 65%)', startY: 80, chaos: 55, delay: 0.24 }, // Light silver
   ];
 
   // Generate SVG path for each flow line - all converge to center
@@ -47,20 +46,18 @@ const FlowOutlineSection = () => {
   };
 
   // Golden output path from center to right
-  const goldenOutputPath = "M 50 50 C 65 50, 80 50, 105 50";
+  const goldenOutputPath = "M 50 50 C 65 50, 80 50, 98 50";
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="py-24 md:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#faf7f2' }}
+      className="py-24 md:py-32 relative overflow-hidden bg-background"
     >
-
-      <div className="relative w-full h-[300px] md:h-[400px] px-4">
-        <svg 
-          viewBox="0 0 100 100" 
+      <div className="relative w-full h-[420px] md:h-[520px] px-4">
+        <svg
+          viewBox="0 0 100 100"
           className="w-full h-full"
-          preserveAspectRatio="xMidYMid meet"
+          preserveAspectRatio="xMidYMid slice"
           style={{ overflow: 'visible' }}
         >
           <defs>
@@ -107,14 +104,13 @@ const FlowOutlineSection = () => {
           {/* Golden output line */}
           <motion.path
             d={goldenOutputPath}
-            stroke="#c9a227"
-            strokeWidth={1.2}
+            stroke="hsl(var(--accent))"
+            strokeWidth={1.8}
             fill="none"
             strokeLinecap="round"
             filter="url(#goldenGlow)"
             style={{
-              pathLength: goldenPathProgress,
-              opacity: goldenOpacity
+              opacity: goldenOpacity,
             }}
           />
 
