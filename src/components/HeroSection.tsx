@@ -33,7 +33,7 @@ const HeroSection = () => {
         }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-primary mb-8 text-center">
             Adoption. Structure. Results
           </motion.h1>
-          <motion.p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto mb-6" initial={{
+          <motion.p initial={{
           opacity: 0,
           y: 30
         }} animate={{
@@ -43,7 +43,7 @@ const HeroSection = () => {
           duration: 0.8,
           delay: 0.5,
           ease: [0.5, 0, 0, 1]
-        }}>
+        }} className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-6 font-semibold text-primary">
             We help organizations structure how work flows, executes, and scales across teams.
           </motion.p>
           <motion.p className="text-sm tracking-widest uppercase text-muted-foreground/70 mb-12" initial={{
