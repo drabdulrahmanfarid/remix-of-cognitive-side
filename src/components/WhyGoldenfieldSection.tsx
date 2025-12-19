@@ -50,7 +50,7 @@ const WhyTransvyraSection = () => {
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
           className="block text-sm font-medium tracking-widest uppercase text-accent mb-12 text-center"
         >
-          Why Transvyra
+          Why goldenfield.io
         </motion.span>
 
         <motion.ul 
@@ -70,7 +70,7 @@ const WhyTransvyraSection = () => {
                 <motion.div 
                   className="w-8 h-[1px] bg-accent/40 origin-left"
                   initial={{ scaleX: 0.5 }}
-                  whileHover={{ scaleX: 1, backgroundColor: 'hsl(241 100% 70%)' }}
+                  whileHover={{ scaleX: 1, backgroundColor: 'hsl(47 70% 47%)' }}
                   transition={{ duration: 0.4, ease: [0.5, 0, 0, 1] }}
                 />
                 {/* Glowing dot at end */}
@@ -81,7 +81,7 @@ const WhyTransvyraSection = () => {
                   transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
                   whileHover={{ 
                     scale: 1.5, 
-                    boxShadow: '0 0 10px hsl(241 100% 70% / 0.6)',
+                    boxShadow: '0 0 10px hsl(47 70% 47% / 0.6)',
                   }}
                 />
               </div>

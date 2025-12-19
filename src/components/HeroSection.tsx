@@ -15,7 +15,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.5, 0, 0, 1] }}
             className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-bold tracking-tight text-primary mb-6 text-center"
           >
-            Transvyra
+            goldenfield.io
           </motion.p>
           <motion.h1 
             initial={{ opacity: 0, y: 40 }}
@@ -53,7 +53,7 @@ const HeroSection = () => {
           ease: [0.5, 0, 0, 1]
         }}>
             <motion.a href="#contact" className="group relative inline-flex items-center gap-3 px-8 py-4 text-base font-medium rounded-full border border-primary/30 text-primary overflow-hidden" whileHover={{
-            borderColor: 'hsl(241 100% 70% / 0.6)'
+            borderColor: 'hsl(47 70% 47% / 0.6)'
           }} transition={{
             duration: 0.4
           }}>
@@ -75,7 +75,7 @@ const HeroSection = () => {
               
               {/* Luminous border glow */}
               <motion.div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-              boxShadow: '0 0 30px hsl(241 100% 70% / 0.3)'
+              boxShadow: '0 0 30px hsl(47 70% 47% / 0.3)'
             }} />
             </motion.a>
           </motion.div>

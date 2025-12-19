@@ -6,7 +6,7 @@ interface ShaderHeroProps {
   showPulsingBorder?: boolean;
 }
 export function ShaderHeroBackground() {
-  return <MeshGradient colors={["#232f85", "#6866ff", "#f48c8d", "#ebeae7"]} speed={0.15} style={{
+  return <MeshGradient colors={["#5c4a3d", "#c9a227", "#b8860b", "#faf7f2"]} speed={0.15} style={{
     position: 'absolute',
     width: '100%',
     height: '100%',
@@ -16,7 +16,7 @@ export function ShaderHeroBackground() {
 }
 export function PulsingBorderAccent() {
   return <div className="relative w-[200px] h-[200px]">
-      <PulsingBorder colors={["#6866ff", "#f48c8d", "#232f85"]} colorBack="#ebeae7" roundness={1} thickness={0.15} softness={0.5} scale={0.7} speed={0.5} style={{
+      <PulsingBorder colors={["#c9a227", "#b8860b", "#5c4a3d"]} colorBack="#faf7f2" roundness={1} thickness={0.15} softness={0.5} scale={0.7} speed={0.5} style={{
       width: '100%',
       height: '100%',
       borderRadius: '50%'
@@ -36,7 +36,7 @@ export function PulsingBorderAccent() {
           </defs>
           <text className="fill-primary/80 text-[12px] font-semibold uppercase tracking-[0.25em]">
             <textPath href="#circlePath" startOffset="25%">
-              Transvyra • Operational Clarity • Delivered •
+              goldenfield.io • Operational Clarity • Delivered •
             </textPath>
           </text>
         </svg>
