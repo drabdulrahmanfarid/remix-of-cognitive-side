@@ -19,7 +19,7 @@ const HeroSection = () => {
           duration: 0.8,
           delay: 0.1,
           ease: [0.5, 0, 0, 1]
-        }} className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-tight text-primary mb-6 text-center px-[18px] lg:text-9xl">GoldenField</motion.p>
+        }} className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-tight text-primary mb-6 text-center px-[18px] lg:text-9xl">Cognitive Side</motion.p>
           <motion.h1 initial={{
           opacity: 0,
           y: 40
