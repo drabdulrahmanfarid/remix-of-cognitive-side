@@ -28,7 +28,7 @@ const Navigation = () => {
           <div className="mx-auto max-w-7xl px-6 py-4">
             <nav className="flex items-center justify-between rounded-full bg-card/60 backdrop-blur-2xl px-6 py-3 border border-accent/10 luminous-border">
               <span className="text-xl font-semibold tracking-tight text-primary">
-                goldenfield.io
+                Cognitive Side
               </span>
               <motion.a
                 href="#contact"

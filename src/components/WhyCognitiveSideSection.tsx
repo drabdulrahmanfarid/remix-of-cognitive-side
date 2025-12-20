@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 const differentiators = ['Execution over theory', 'Built for real teams, not demos', 'Structured, repeatable delivery', 'Focus on measurable outcomes', 'Designed for scale'];
-const WhyTransvyraSection = () => {
+const WhyCognitiveSideSection = () => {
   const {
     ref,
     isInView
@@ -52,7 +52,7 @@ const WhyTransvyraSection = () => {
         duration: 0.6,
         ease: [0.5, 0, 0, 1]
       }} className="block font-medium tracking-widest uppercase text-accent mb-12 text-center text-3xl">
-          Why goldenfield.io
+          Why Cognitive Side
         </motion.span>
 
         <motion.ul className="space-y-8" variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
@@ -95,4 +95,4 @@ const WhyTransvyraSection = () => {
       </div>
     </section>;
 };
-export default WhyTransvyraSection;
+export default WhyCognitiveSideSection;

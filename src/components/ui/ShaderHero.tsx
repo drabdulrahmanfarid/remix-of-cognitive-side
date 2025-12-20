@@ -36,7 +36,7 @@ export function PulsingBorderAccent() {
           </defs>
           <text className="fill-primary/80 text-[12px] font-semibold uppercase tracking-[0.25em]">
             <textPath href="#circlePath" startOffset="25%">
-              goldenfield.io • Operational Clarity • Delivered •
+              Cognitive Side • Operational Clarity • Delivered •
             </textPath>
           </text>
         </svg>
