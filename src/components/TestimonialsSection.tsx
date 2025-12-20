@@ -20,7 +20,7 @@ const testimonials: Testimonial[] = [{
   id: 4,
   name: "Sarah Williams",
   avatar: "https://randomuser.me/api/portraits/women/2.jpg",
-  description: "goldenfield.io transformed our business operations. Their solutions are innovative and perfectly tailored to our needs."
+  description: "Cognitive Side transformed our business operations. Their solutions are innovative and perfectly tailored to our needs."
 }];
 const TestimonialsSection = () => {
   const {

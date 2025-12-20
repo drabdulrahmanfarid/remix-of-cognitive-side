@@ -40,7 +40,7 @@ const WhoWeAreSection = () => {
         </motion.span>
         <div className="space-y-6">
           <motion.p variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl font-medium text-primary leading-relaxed">
-            goldenfield.io is an operations enablement firm.
+            Cognitive Side is an operations enablement firm.
           </motion.p>
           <motion.p variants={itemVariants} className="text-xl sm:text-2xl leading-relaxed text-primary font-semibold">
             We work with leadership teams to translate strategy into structured execution.
