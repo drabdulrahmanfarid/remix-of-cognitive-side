@@ -44,7 +44,7 @@ const HeroSection = () => {
           duration: 0.8,
           delay: 0.1,
           ease: [0.5, 0, 0, 1]
-        }} className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-tight text-primary mb-6 text-center px-[18px] lg:text-9xl">
+        }} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-primary mb-6 text-center whitespace-nowrap">
             Cognitive Side
           </motion.p>
           
