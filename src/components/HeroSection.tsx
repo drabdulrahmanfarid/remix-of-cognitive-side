@@ -22,7 +22,7 @@ const HeroSection = () => {
             <motion.img
               src={logo}
               alt="Cognitive Side Logo"
-              className="h-40 sm:h-52 md:h-64 w-auto mx-auto"
+              className="h-56 sm:h-72 md:h-96 w-auto mx-auto"
               style={{
                 filter: 'drop-shadow(0 0 30px hsl(47 70% 47% / 0.4)) drop-shadow(0 0 60px hsl(47 70% 47% / 0.2))',
               }}
