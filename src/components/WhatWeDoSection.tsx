@@ -18,6 +18,25 @@ const services = [
   }
 ];
 
+const serviceFeatures = [
+  {
+    title: 'Expert Configuration',
+    description: 'Personalized setup and configuration tailored to your specific workflow and requirements.'
+  },
+  {
+    title: 'Cost Efficiency',
+    description: 'Optimized solutions that maximize ROI while minimizing operational overhead.'
+  },
+  {
+    title: 'Team Empowerment',
+    description: 'Training and support to help your team leverage AI tools effectively.'
+  },
+  {
+    title: 'Continuous Support',
+    description: 'Ongoing maintenance, updates, and dedicated support for long-term success.'
+  }
+];
+
 const cardVariants = {
   initial: { opacity: 0, y: 40 },
   animate: (index: number) => ({
@@ -49,7 +68,7 @@ const WhatWeDoSection = () => {
           What we do
         </motion.span>
         
-        <ul className="grid md:grid-cols-3 gap-6 list-none p-0 m-0">
+        <ul className="grid md:grid-cols-3 gap-6 list-none p-0 m-0 mb-20">
           {services.map((service, index) => (
             <motion.li
               key={service.title}
@@ -93,6 +112,35 @@ const WhatWeDoSection = () => {
             </motion.li>
           ))}
         </ul>
+
+        {/* Service Features */}
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
+          className="text-2xl md:text-3xl font-semibold text-primary text-center mb-12"
+        >
+          What Sets Us Apart
+        </motion.h3>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {serviceFeatures.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.5, 0, 0, 1] }}
+              className="text-center p-6 rounded-2xl bg-background border border-border/50 hover:border-accent/30 transition-colors duration-300"
+            >
+              <h4 className="text-lg font-semibold text-primary mb-2">
+                {feature.title}
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {feature.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
