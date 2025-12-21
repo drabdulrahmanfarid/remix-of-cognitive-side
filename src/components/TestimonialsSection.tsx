@@ -7,7 +7,7 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: "Marco Rossi",
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    description: "MorfeusHub transformed our customer service operations. Their AI solution reduced response times by 70% and improved customer satisfaction significantly."
+    description: "Cognitive Side transformed our customer service operations. Their AI solution reduced response times by 70% and improved customer satisfaction significantly."
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
     id: 4,
     name: "Giulia Marino",
     avatar: "https://randomuser.me/api/portraits/women/67.jpg",
-    description: "Working with MorfeusHub was a game-changer. Their custom AI software has given us a significant competitive advantage in our market."
+    description: "Working with Cognitive Side was a game-changer. Their custom AI software has given us a significant competitive advantage in our market."
   }
 ];
 

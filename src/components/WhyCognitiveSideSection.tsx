@@ -48,7 +48,7 @@ const WhyCognitiveSideSection = () => {
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
           className="block font-medium tracking-widest uppercase text-accent mb-12 text-center text-3xl"
         >
-          Why MorfeusHub
+          Why Cognitive Side
         </motion.span>
 
         <motion.ul
