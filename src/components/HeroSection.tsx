@@ -31,26 +31,7 @@ const HeroSection = () => {
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
-          }} className="h-80 sm:h-[28rem] md:h-[36rem] w-auto mx-auto opacity-100 shadow-2xl border-none border-0 object-contain rounded-3xl" src="/lovable-uploads/47d46ac7-ba85-4186-a3a8-3826de2ee882.png" />
-          </motion.div>
-
-          {/* Stats badge */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6,
-          delay: 0.2,
-          ease: [0.5, 0, 0, 1]
-        }} className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-accent/30 bg-card/50 backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-            </span>
-            <span className="text-sm font-medium text-primary">30+ Successful Projects Delivered</span>
+          }} className="h-[30rem] sm:h-[38rem] md:h-[48rem] w-auto mx-auto opacity-80 shadow-2xl border-none border-0 object-contain rounded-3xl" src="/lovable-uploads/47d46ac7-ba85-4186-a3a8-3826de2ee882.png" />
           </motion.div>
 
           <motion.p initial={{
@@ -63,7 +44,7 @@ const HeroSection = () => {
           duration: 0.8,
           delay: 0.1,
           ease: [0.5, 0, 0, 1]
-        }} className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-tight text-primary mb-6 text-center px-[18px] lg:text-9xl">
+        }} className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-primary mb-6 text-center whitespace-nowrap">
             Cognitive Side
           </motion.p>
           
