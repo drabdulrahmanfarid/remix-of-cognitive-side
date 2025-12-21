@@ -1,6 +1,7 @@
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import WhoWeAreSection from '../components/WhoWeAreSection';
+import TeamSection from '../components/TeamSection';
 import WhatWeDoSection from '../components/WhatWeDoSection';
 import HowWeWorkSection from '../components/HowWeWorkSection';
 import FlowOutlineSection from '../components/FlowOutlineSection';
@@ -18,6 +19,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <WhoWeAreSection />
+        <TeamSection />
         <WhatWeDoSection />
         <HowWeWorkSection />
         <FlowOutlineSection />

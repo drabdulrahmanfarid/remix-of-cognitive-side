@@ -1,23 +1,78 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { ArrowUpRight, Calendar, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Calendar, MessageCircle, Send } from 'lucide-react';
 import { Suspense, lazy, useState } from 'react';
+import { Button } from './ui/button';
 
 const NeonRaymarcher = lazy(() => import('./ui/neon-raymarcher'));
 
-const ClosingSection = () => {
-  const { ref, isInView } = useInView({ threshold: 0.3 });
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
+const budgetOptions = [
+  { value: '', label: 'Select budget range' },
+  { value: 'under-5k', label: 'Less than €5,000' },
+  { value: '5k-10k', label: '€5,000 - €10,000' },
+  { value: '10k-20k', label: '€10,000 - €20,000' },
+  { value: '20k-40k', label: '€20,000 - €40,000' },
+  { value: 'over-40k', label: '€40,000+' }
+];
 
-  const handleClick = () => {
-    if (isClicked) return;
-    setIsClicked(true);
+interface FormData {
+  name: string;
+  email: string;
+  company: string;
+  website: string;
+  phone: string;
+  budget: string;
+  message: string;
+  privacy: boolean;
+}
+
+const ClosingSection = () => {
+  const { ref, isInView } = useInView({ threshold: 0.2 });
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    company: '',
+    website: '',
+    phone: '',
+    budget: '',
+    message: '',
+    privacy: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setIsSubmitting(false);
+    setSubmitSuccess(true);
+    
+    // Reset form after success
     setTimeout(() => {
-      setShowSuccess(true);
-    }, 500);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        website: '',
+        phone: '',
+        budget: '',
+        message: '',
+        privacy: false
+      });
+      setSubmitSuccess(false);
+    }, 3000);
   };
 
   const handleBookCall = () => {
@@ -28,17 +83,19 @@ const ClosingSection = () => {
     window.open('https://wa.me/message', '_blank');
   };
 
+  const inputClasses = "w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 backdrop-blur-sm";
+
   return (
-    <section id="contact" ref={ref} className="min-h-screen py-32 md:py-48 px-6 relative overflow-hidden flex items-center justify-center">
+    <section id="contact" ref={ref} className="py-32 md:py-48 px-6 relative overflow-hidden">
       {/* 3D Raymarcher Background */}
-      <div className="absolute inset-0 opacity-50">
+      <div className="absolute inset-0 opacity-40">
         <Suspense fallback={<div className="absolute inset-0 grid-pattern opacity-30" />}>
           <NeonRaymarcher />
         </Suspense>
       </div>
       
       {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-background/40" />
+      <div className="absolute inset-0 bg-background/60" />
       
       {/* Availability Status - Top Right */}
       <motion.div
@@ -56,140 +113,266 @@ const ClosingSection = () => {
         </span>
       </motion.div>
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center">
-        
-        {/* Success State - "Perfect, Let's talk" */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{
-            opacity: showSuccess ? 1 : 0,
-            height: showSuccess ? 'auto' : 0
-          }}
-          transition={{ duration: 0.5, ease: [0.5, 0, 0, 1] }}
-        >
-          <span className="text-accent text-lg font-medium tracking-wide">
-            Perfect
-          </span>
-          <h3 className="text-2xl md:text-3xl font-semibold text-primary mt-1">
-            Let's talk
-          </h3>
-        </motion.div>
-
-        {/* Contact buttons - Appears after click */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-center gap-4 mb-12"
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Section Title */}
+        <motion.span
           initial={{ opacity: 0, y: 20 }}
-          animate={{
-            opacity: showSuccess ? 1 : 0,
-            y: showSuccess ? 0 : 20
-          }}
-          transition={{ duration: 0.5, delay: showSuccess ? 0.15 : 0, ease: [0.5, 0, 0, 1] }}
-          style={{ pointerEvents: showSuccess ? 'auto' : 'none' }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
+          className="block font-medium tracking-widest uppercase text-accent mb-4 text-center text-3xl"
         >
-          <motion.button
-            onClick={handleBookCall}
-            onMouseEnter={() => setIsButtonHovered(true)}
-            onMouseLeave={() => setIsButtonHovered(false)}
-            className="group flex items-center gap-3 px-6 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-colors"
-            whileHover={{ scale: 1.02 }}
-          >
-            <Calendar className="w-4 h-4 text-accent" />
-            <span className="text-primary font-medium">Book a call</span>
-            <ArrowUpRight className="w-4 h-4 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </motion.button>
+          Contact Us
+        </motion.span>
 
-          <motion.button
-            onClick={handleWhatsApp}
-            className="group flex items-center gap-3 px-6 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-colors"
-            whileHover={{ scale: 1.02 }}
-          >
-            <MessageCircle className="w-4 h-4 text-accent" />
-            <span className="text-primary font-medium">WhatsApp</span>
-            <ArrowUpRight className="w-4 h-4 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </motion.button>
-        </motion.div>
-
-        {/* Main Interactive Headline */}
-        <motion.button
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={handleClick}
-          className="relative cursor-pointer group"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          whileHover={{ scale: 1.03 }}
-          transition={{ duration: 0.7, ease: [0.5, 0, 0, 1] }}
-          style={{ pointerEvents: isClicked ? 'none' : 'auto' }}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.5, 0, 0, 1] }}
+          className="text-4xl md:text-5xl font-bold text-primary text-center mb-6"
         >
-          <div className="relative">
-            {/* Main text container */}
-            <div className="relative overflow-hidden pb-4">
-              <motion.div
-                animate={{
-                  opacity: isClicked ? 0 : 1,
-                  y: isClicked ? -20 : 0
-                }}
-                transition={{ duration: 0.5, ease: [0.5, 0, 0, 1] }}
-              >
-                <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-primary leading-none">
-                  Let's work
-                </span>
-                <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-primary leading-none mt-2">
-                  together
-                </span>
-              </motion.div>
-            </div>
+          Let's Work Together
+        </motion.h2>
 
-            {/* Hover decoration - Arrow */}
-            <motion.div
-              className="absolute -right-8 md:-right-16 top-1/2 -translate-y-1/2"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{
-                opacity: isHovered && !isClicked ? 1 : 0,
-                x: isHovered && !isClicked ? 0 : -10
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <ArrowUpRight className="w-8 h-8 md:w-12 md:h-12 text-accent" />
-            </motion.div>
-
-            {/* Underline accent */}
-            <motion.div
-              className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: isHovered && !isClicked ? 1 : 0 }}
-              transition={{ duration: 0.4, ease: [0.5, 0, 0, 1] }}
-            />
-          </div>
-        </motion.button>
-
-        {/* Subtext */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.5, 0, 0, 1] }}
-          className="mt-8 max-w-md text-primary text-2xl font-semibold"
+          className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-16"
         >
-          {showSuccess ? "15 min discovery call" : "Have a project in mind? Let's create something exceptional together."}
+          Have a project in mind? Let's create something exceptional together.
         </motion.p>
-      </div>
 
-      {/* Email - Bottom */}
-      <motion.div
-        className="absolute bottom-8 left-0 right-0 text-center z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
-      >
-        <a
-          href="mailto:info@cognitiveside.com"
-          className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
-        >
-          info@cognitiveside.com
-        </a>
-      </motion.div>
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Form */}
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.5, 0, 0, 1] }}
+            className="space-y-5 p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50"
+          >
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className={inputClasses}
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={inputClasses}
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-primary mb-2">
+                  Company
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className={inputClasses}
+                  placeholder="Company name"
+                />
+              </div>
+              <div>
+                <label htmlFor="website" className="block text-sm font-medium text-primary mb-2">
+                  Website
+                </label>
+                <input
+                  type="url"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleInputChange}
+                  className={inputClasses}
+                  placeholder="https://yoursite.com"
+                />
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className={inputClasses}
+                  placeholder="+1 234 567 890"
+                />
+              </div>
+              <div>
+                <label htmlFor="budget" className="block text-sm font-medium text-primary mb-2">
+                  Budget Range
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleInputChange}
+                  className={inputClasses}
+                >
+                  {budgetOptions.map(option => (
+                    <option key={option.value} value={option.value} className="bg-background">
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
+                Project Description *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={4}
+                value={formData.message}
+                onChange={handleInputChange}
+                className={inputClasses + " resize-none"}
+                placeholder="Tell us about your project..."
+              />
+            </div>
+
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="privacy"
+                name="privacy"
+                required
+                checked={formData.privacy}
+                onChange={handleInputChange}
+                className="mt-1 w-4 h-4 rounded border-border/50 bg-background/50 text-accent focus:ring-accent/20"
+              />
+              <label htmlFor="privacy" className="text-sm text-muted-foreground">
+                I agree to the processing of my personal data in accordance with the privacy policy *
+              </label>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isSubmitting || submitSuccess}
+              className="w-full py-6 text-base font-semibold"
+            >
+              {isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
+                  />
+                  Sending...
+                </span>
+              ) : submitSuccess ? (
+                <span className="flex items-center gap-2">
+                  ✓ Message Sent!
+                </span>
+              ) : (
+                <span className="flex items-center gap-2">
+                  Send Message
+                  <Send className="w-4 h-4" />
+                </span>
+              )}
+            </Button>
+          </motion.form>
+
+          {/* Contact Options */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
+            className="space-y-8"
+          >
+            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
+              <h3 className="text-xl font-semibold text-primary mb-6">
+                Prefer a direct conversation?
+              </h3>
+              
+              <div className="space-y-4">
+                <motion.button
+                  onClick={handleBookCall}
+                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-background/30 hover:border-accent/50 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <Calendar className="w-5 h-5 text-accent" />
+                  </div>
+                  <div className="text-left flex-grow">
+                    <span className="block text-primary font-medium">Book a Strategic Call</span>
+                    <span className="text-sm text-muted-foreground">15 min discovery call</span>
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </motion.button>
+
+                <motion.button
+                  onClick={handleWhatsApp}
+                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-background/30 hover:border-accent/50 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-5 h-5 text-accent" />
+                  </div>
+                  <div className="text-left flex-grow">
+                    <span className="block text-primary font-medium">WhatsApp</span>
+                    <span className="text-sm text-muted-foreground">Quick chat with our team</span>
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </motion.button>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
+              <h3 className="text-xl font-semibold text-primary mb-4">
+                Email Us
+              </h3>
+              <a
+                href="mailto:hello@cognitiveside.com"
+                className="text-lg text-accent hover:text-primary transition-colors duration-300"
+              >
+                hello@cognitiveside.com
+              </a>
+              
+              <div className="mt-6 pt-6 border-t border-border/50">
+                <p className="text-sm text-muted-foreground">
+                  We typically respond within 24 hours during business days.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 };
