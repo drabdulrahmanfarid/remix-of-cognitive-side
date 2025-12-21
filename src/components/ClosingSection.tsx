@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { Send } from 'lucide-react';
-import { Suspense, lazy, useState, useEffect } from 'react';
-import { Button } from './ui/button';
+import { Suspense, lazy, useEffect } from 'react';
 
 const NeonRaymarcher = lazy(() => import('./ui/neon-raymarcher'));
 
@@ -14,62 +12,8 @@ declare global {
   }
 }
 
-interface FormData {
-  name: string;
-  email: string;
-  company: string;
-  website: string;
-  phone: string;
-  message: string;
-  privacy: boolean;
-}
-
 const ClosingSection = () => {
   const { ref, isInView } = useInView({ threshold: 0.2 });
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    company: '',
-    website: '',
-    phone: '',
-    message: '',
-    privacy: false
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    
-    // Reset form after success
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        website: '',
-        phone: '',
-        message: '',
-        privacy: false
-      });
-      setSubmitSuccess(false);
-    }, 3000);
-  };
 
   useEffect(() => {
     const initCalendly = () => {
@@ -94,8 +38,6 @@ const ClosingSection = () => {
       return () => clearInterval(checkCalendly);
     }
   }, []);
-
-  const inputClasses = "w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 backdrop-blur-sm";
 
   return (
     <section id="contact" ref={ref} className="py-32 md:py-48 px-6 relative overflow-hidden">
@@ -125,7 +67,7 @@ const ClosingSection = () => {
         </span>
       </motion.div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-2xl mx-auto relative z-10">
         {/* Section Title */}
         <motion.span
           initial={{ opacity: 0, y: 20 }}
@@ -154,189 +96,42 @@ const ClosingSection = () => {
           Have a project in mind? Let's create something exceptional together.
         </motion.p>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.5, 0, 0, 1] }}
-            className="space-y-5 p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50"
-          >
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className={inputClasses}
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={inputClasses}
-                  placeholder="your@email.com"
-                />
-              </div>
-            </div>
+        {/* Contact Options */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.5, 0, 0, 1] }}
+          className="space-y-8"
+        >
+          <div className="p-6 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
+            <h3 className="text-xl font-semibold text-primary mb-4">
+              Book a Strategic Call
+            </h3>
+            <div 
+              id="calendly-embed" 
+              className="rounded-xl overflow-hidden"
+              style={{ minWidth: '320px', height: '600px' }}
+            />
+          </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-primary mb-2">
-                  Company
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  className={inputClasses}
-                  placeholder="Company name"
-                />
-              </div>
-              <div>
-                <label htmlFor="website" className="block text-sm font-medium text-primary mb-2">
-                  Website
-                </label>
-                <input
-                  type="url"
-                  id="website"
-                  name="website"
-                  value={formData.website}
-                  onChange={handleInputChange}
-                  className={inputClasses}
-                  placeholder="https://yoursite.com"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
-                Phone
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className={inputClasses}
-                placeholder="+1 234 567 890"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
-                Project Description *
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={4}
-                value={formData.message}
-                onChange={handleInputChange}
-                className={inputClasses + " resize-none"}
-                placeholder="Tell us about your project..."
-              />
-            </div>
-
-            <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="privacy"
-                name="privacy"
-                required
-                checked={formData.privacy}
-                onChange={handleInputChange}
-                className="mt-1 w-4 h-4 rounded border-border/50 bg-background/50 text-accent focus:ring-accent/20"
-              />
-              <label htmlFor="privacy" className="text-sm text-muted-foreground">
-                I agree to the processing of my personal data in accordance with the privacy policy *
-              </label>
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isSubmitting || submitSuccess}
-              className="w-full py-6 text-base font-semibold"
+          <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
+            <h3 className="text-xl font-semibold text-primary mb-4">
+              Email Us
+            </h3>
+            <a
+              href="mailto:support@cognitiveside.com"
+              className="text-lg text-accent hover:text-primary transition-colors duration-300"
             >
-              {isSubmitting ? (
-                <span className="flex items-center gap-2">
-                  <motion.span
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
-                  />
-                  Sending...
-                </span>
-              ) : submitSuccess ? (
-                <span className="flex items-center gap-2">
-                  ✓ Message Sent!
-                </span>
-              ) : (
-                <span className="flex items-center gap-2">
-                  Send Message
-                  <Send className="w-4 h-4" />
-                </span>
-              )}
-            </Button>
-          </motion.form>
-
-          {/* Contact Options */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
-            className="space-y-8"
-          >
-            <div className="p-6 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
-              <h3 className="text-xl font-semibold text-primary mb-4">
-                Book a Strategic Call
-              </h3>
-              <div 
-                id="calendly-embed" 
-                className="rounded-xl overflow-hidden"
-                style={{ minWidth: '320px', height: '600px' }}
-              />
+              support@cognitiveside.com
+            </a>
+            
+            <div className="mt-6 pt-6 border-t border-border/50">
+              <p className="text-sm text-muted-foreground">
+                We typically respond within 24 hours during business days.
+              </p>
             </div>
-
-            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
-              <h3 className="text-xl font-semibold text-primary mb-4">
-                Email Us
-              </h3>
-              <a
-                href="mailto:support@cognitiveside.com"
-                className="text-lg text-accent hover:text-primary transition-colors duration-300"
-              >
-                support@cognitiveside.com
-              </a>
-              
-              <div className="mt-6 pt-6 border-t border-border/50">
-                <p className="text-sm text-muted-foreground">
-                  We typically respond within 24 hours during business days.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
