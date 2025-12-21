@@ -31,7 +31,7 @@ const HeroSection = () => {
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
-          }} src="/lovable-uploads/47d46ac7-ba85-4186-a3a8-3826de2ee882.png" className="h-48 sm:h-64 md:h-80 lg:h-96 w-auto mx-auto opacity-80 border-none border-0 object-contain shadow-none" />
+          }} src="/lovable-uploads/47d46ac7-ba85-4186-a3a8-3826de2ee882.png" className="h-64 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem] w-auto mx-auto opacity-80 border-none border-0 object-contain shadow-none" />
           </motion.div>
 
           <motion.p initial={{
