@@ -1,7 +1,20 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { usePerformance } from '@/hooks/usePerformance';
+import LightweightFlowOutline from './ui/LightweightFlowOutline';
 
 const FlowOutlineSection = () => {
+  const { isLowEnd } = usePerformance();
+  
+  // For low-end devices, use the lightweight version
+  if (isLowEnd) {
+    return <LightweightFlowOutline />;
+  }
+  
+  return <FullFlowOutlineSection />;
+};
+
+const FullFlowOutlineSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   
   const { scrollYProgress } = useScroll({
