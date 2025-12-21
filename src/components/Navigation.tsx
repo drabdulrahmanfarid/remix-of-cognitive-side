@@ -47,7 +47,7 @@ const Navigation = () => {
                 <img 
                   src={logo} 
                   alt="Cognitive Side" 
-                  className="h-8 w-auto transition-all duration-300 group-hover:drop-shadow-[0_0_12px_hsl(47_70%_47%/0.6)]"
+                  className="h-10 w-auto transition-all duration-300 group-hover:drop-shadow-[0_0_12px_hsl(47_70%_47%/0.6)]"
                 />
                 <span className="text-lg font-semibold tracking-tight text-primary hidden sm:inline">
                   Cognitive Side
