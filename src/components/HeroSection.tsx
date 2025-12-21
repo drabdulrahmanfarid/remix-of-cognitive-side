@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import ShaderHero from './ui/ShaderHero';
+import logo from '@/assets/logo.png';
 
 const HeroSection = () => {
   return (
@@ -11,11 +12,41 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <AnimatePresence>
+          {/* Animated Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0, ease: [0.5, 0, 0, 1] }}
+            className="mb-8"
+          >
+            <motion.img
+              src={logo}
+              alt="Cognitive Side Logo"
+              className="h-28 sm:h-36 md:h-44 w-auto mx-auto"
+              style={{
+                filter: 'drop-shadow(0 0 30px hsl(47 70% 47% / 0.4)) drop-shadow(0 0 60px hsl(47 70% 47% / 0.2))',
+              }}
+              animate={{ 
+                y: [0, -8, 0],
+                filter: [
+                  'drop-shadow(0 0 30px hsl(47 70% 47% / 0.4)) drop-shadow(0 0 60px hsl(47 70% 47% / 0.2))',
+                  'drop-shadow(0 0 40px hsl(47 70% 47% / 0.6)) drop-shadow(0 0 80px hsl(47 70% 47% / 0.3))',
+                  'drop-shadow(0 0 30px hsl(47 70% 47% / 0.4)) drop-shadow(0 0 60px hsl(47 70% 47% / 0.2))',
+                ]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            />
+          </motion.div>
+
           {/* Stats badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0, ease: [0.5, 0, 0, 1] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.5, 0, 0, 1] }}
             className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-accent/30 bg-card/50 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
