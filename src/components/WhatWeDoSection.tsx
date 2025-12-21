@@ -130,14 +130,19 @@ const WhatWeDoSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.5, 0, 0, 1] }}
-              className="text-center p-6 rounded-2xl bg-background border border-border/50 hover:border-accent/30 transition-colors duration-300"
+              className="relative min-h-[10rem]"
             >
-              <h4 className="text-lg font-semibold text-primary mb-2">
-                {feature.title}
-              </h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+              <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
+                <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
+                <div className="h-full text-center p-6 rounded-xl bg-background border border-border/50">
+                  <h4 className="text-lg font-semibold text-primary mb-2">
+                    {feature.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
