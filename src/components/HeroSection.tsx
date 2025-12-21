@@ -109,44 +109,6 @@ const HeroSection = () => {
             Custom AI • Business Consulting • Autonomous Agents
           </motion.p>
           
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.9,
-          ease: [0.5, 0, 0, 1]
-        }}>
-            <motion.a href="#contact" className="group relative inline-flex items-center gap-3 px-8 py-4 text-base font-medium rounded-full border border-primary/30 text-primary overflow-hidden" whileHover={{
-            borderColor: 'hsl(47 70% 47% / 0.6)'
-          }} transition={{
-            duration: 0.4
-          }}>
-              {/* Background fill animation */}
-              <motion.div className="absolute inset-0 bg-primary" initial={{
-              x: '-100%'
-            }} whileHover={{
-              x: 0
-            }} transition={{
-              duration: 0.5,
-              ease: [0.5, 0, 0, 1]
-            }} />
-              <span className="relative z-10 group-hover:text-primary-foreground transition-colors duration-400">
-                Start a conversation
-              </span>
-              <motion.span className="relative z-10 group-hover:text-primary-foreground transition-colors duration-400">
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </motion.span>
-              
-              {/* Luminous border glow */}
-              <motion.div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-              boxShadow: '0 0 30px hsl(47 70% 47% / 0.3)'
-            }} />
-            </motion.a>
-          </motion.div>
         </AnimatePresence>
       </div>
 
