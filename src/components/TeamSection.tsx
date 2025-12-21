@@ -11,7 +11,7 @@ const teamMembers = [
     image: 'https://randomuser.me/api/portraits/men/45.jpg'
   },
   {
-    name: 'Matteo Arnaboldi',
+    name: 'Dr Abdulrahman Farid',
     role: 'Founder | AI Strategy & Implementation',
     bio: "A doctor who designs and deploys AI-driven workflows—from strategy to execution—so companies operate smoother, faster, and smarter.",
     image: 'https://randomuser.me/api/portraits/men/32.jpg'
