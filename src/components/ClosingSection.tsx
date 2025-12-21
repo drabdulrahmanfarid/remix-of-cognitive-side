@@ -21,7 +21,7 @@ const ClosingSection = () => {
   };
 
   const handleBookCall = () => {
-    window.open('https://calendly.com/morfeushub', '_blank');
+    window.open('https://calendly.com/cognitiveside', '_blank');
   };
 
   const handleWhatsApp = () => {
@@ -184,10 +184,10 @@ const ClosingSection = () => {
         transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
       >
         <a
-          href="mailto:info@morfeushub.com"
+          href="mailto:info@cognitiveside.com"
           className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
         >
-          info@morfeushub.com
+          info@cognitiveside.com
         </a>
       </motion.div>
     </section>
