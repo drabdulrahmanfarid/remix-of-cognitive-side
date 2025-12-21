@@ -13,7 +13,7 @@ const teamMembers = [
   {
     name: 'Matteo Arnaboldi',
     role: 'Co-Founder | Project Manager',
-    bio: 'Marketing Advisor & Business Consultant with extensive experience launching innovative projects and driving digital transformation.',
+    bio: "I'm a doctor who designs and deploys AI-driven workflows—from strategy to execution—so companies run smoother, faster, and smarter.",
     image: 'https://randomuser.me/api/portraits/men/32.jpg'
   }
 ];
