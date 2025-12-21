@@ -1,10 +1,18 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { ArrowUpRight, Calendar, Send } from 'lucide-react';
-import { Suspense, lazy, useState } from 'react';
+import { Send } from 'lucide-react';
+import { Suspense, lazy, useState, useEffect } from 'react';
 import { Button } from './ui/button';
 
 const NeonRaymarcher = lazy(() => import('./ui/neon-raymarcher'));
+
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void;
+    };
+  }
+}
 
 interface FormData {
   name: string;
@@ -63,9 +71,29 @@ const ClosingSection = () => {
     }, 3000);
   };
 
-  const handleBookCall = () => {
-    window.open('https://calendly.com/cognitiveside', '_blank');
-  };
+  useEffect(() => {
+    const initCalendly = () => {
+      const calendlyContainer = document.getElementById('calendly-embed');
+      if (window.Calendly && calendlyContainer) {
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/drabdulrahmanfarid/30min?background_color=f8f8f0&text_color=5c4a3d&primary_color=c8a24a',
+          parentElement: calendlyContainer,
+        });
+      }
+    };
+
+    if (window.Calendly) {
+      initCalendly();
+    } else {
+      const checkCalendly = setInterval(() => {
+        if (window.Calendly) {
+          initCalendly();
+          clearInterval(checkCalendly);
+        }
+      }, 100);
+      return () => clearInterval(checkCalendly);
+    }
+  }, []);
 
   const inputClasses = "w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 backdrop-blur-sm";
 
@@ -279,28 +307,15 @@ const ClosingSection = () => {
             transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
             className="space-y-8"
           >
-            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
-              <h3 className="text-xl font-semibold text-primary mb-6">
-                Prefer a direct conversation?
+            <div className="p-6 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
+              <h3 className="text-xl font-semibold text-primary mb-4">
+                Book a Strategic Call
               </h3>
-              
-              <div className="space-y-4">
-                <motion.button
-                  onClick={handleBookCall}
-                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-background/30 hover:border-accent/50 transition-all duration-300"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Calendar className="w-5 h-5 text-accent" />
-                  </div>
-                  <div className="text-left flex-grow">
-                    <span className="block text-primary font-medium">Book a Strategic Call</span>
-                    <span className="text-sm text-muted-foreground">15 min discovery call</span>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </motion.button>
-
-              </div>
+              <div 
+                id="calendly-embed" 
+                className="rounded-xl overflow-hidden"
+                style={{ minWidth: '320px', height: '600px' }}
+              />
             </div>
 
             <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
