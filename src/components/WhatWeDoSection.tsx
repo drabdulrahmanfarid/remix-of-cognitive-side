@@ -54,7 +54,7 @@ const WhatWeDoSection = () => {
   const { ref, isInView } = useInView({ threshold: 0.2 });
 
   return (
-    <section ref={ref} id="services" className="py-32 md:py-40 px-6 bg-secondary/30 relative overflow-hidden">
+    <section ref={ref} id="services" className="py-32 md:py-40 px-6 bg-secondary/40 relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
@@ -63,7 +63,7 @@ const WhatWeDoSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
-          className="block font-medium tracking-widest uppercase text-accent mb-16 text-center text-3xl"
+          className="block font-medium tracking-widest uppercase text-primary mb-16 text-center text-3xl"
         >
           What we do
         </motion.span>
@@ -80,14 +80,14 @@ const WhatWeDoSection = () => {
             >
               <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
                 <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                <div className="group relative h-full flex flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] md:p-6">
+                <div className="group relative h-full flex flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border bg-card p-6 shadow-sm md:p-6">
                   <div className="relative z-10">
-                    <h3 className="text-xl md:text-2xl font-semibold text-primary mb-3 group-hover:text-glow transition-all duration-300">
+                    <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-3 group-hover:text-glow transition-all duration-300">
                       {service.title}
                     </h3>
 
                     <motion.div
-                      className="h-[1px] bg-accent/60 mb-4 origin-left"
+                      className="h-[1px] bg-primary/60 mb-4 origin-left"
                       initial={{ scaleX: 0.3 }}
                       whileInView={{ scaleX: 0.3 }}
                       style={{ width: '40px' }}
@@ -99,7 +99,7 @@ const WhatWeDoSection = () => {
                   </div>
 
                   <motion.div
-                    className="flex items-center gap-2 text-accent"
+                    className="flex items-center gap-2 text-primary"
                     initial={{ opacity: 0, x: -10 }}
                   >
                     <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -118,7 +118,7 @@ const WhatWeDoSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
-          className="text-2xl md:text-3xl font-semibold text-primary text-center mb-12"
+          className="text-2xl md:text-3xl font-semibold text-foreground text-center mb-12"
         >
           What Sets Us Apart
         </motion.h3>
@@ -130,9 +130,9 @@ const WhatWeDoSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.5, 0, 0, 1] }}
-              className="text-center p-6 rounded-2xl bg-background border border-border/50 hover:border-accent/30 transition-colors duration-300"
+              className="text-center p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors duration-300"
             >
-              <h4 className="text-lg font-semibold text-primary mb-2">
+              <h4 className="text-lg font-semibold text-foreground mb-2">
                 {feature.title}
               </h4>
               <p className="text-sm text-muted-foreground leading-relaxed">

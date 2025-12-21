@@ -37,26 +37,26 @@ const WhoWeAreSection = () => {
       >
         <motion.span
           variants={itemVariants}
-          className="inline-block font-medium tracking-widest uppercase text-accent mb-8 text-3xl"
+          className="inline-block font-medium tracking-widest uppercase text-primary mb-8 text-3xl"
         >
           Who we are
         </motion.span>
         <div className="space-y-6">
           <motion.p
             variants={itemVariants}
-            className="text-2xl sm:text-3xl md:text-4xl font-medium text-primary leading-relaxed"
+            className="text-2xl sm:text-3xl md:text-4xl font-medium text-foreground leading-relaxed"
           >
             Cognitive Side is an AI software house founded in 2021.
           </motion.p>
           <motion.p
             variants={itemVariants}
-            className="text-xl sm:text-2xl leading-relaxed text-primary font-semibold"
+            className="text-xl sm:text-2xl leading-relaxed text-foreground font-semibold"
           >
             We design and develop intelligent AI systems that transform business operations and unlock new possibilities.
           </motion.p>
           <motion.p
             variants={itemVariants}
-            className="text-lg text-primary font-semibold"
+            className="text-lg text-foreground font-semibold"
           >
             Our focus is not just tools — it's creating AI solutions that deliver real, measurable results.
           </motion.p>

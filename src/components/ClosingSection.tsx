@@ -83,7 +83,7 @@ const ClosingSection = () => {
     window.open('https://wa.me/message', '_blank');
   };
 
-  const inputClasses = "w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 backdrop-blur-sm";
+  const inputClasses = "w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent-aqua/50 focus:ring-1 focus:ring-accent-aqua/20 transition-all duration-300 backdrop-blur-sm";
 
   return (
     <section id="contact" ref={ref} className="py-32 md:py-48 px-6 relative overflow-hidden">
@@ -105,8 +105,8 @@ const ClosingSection = () => {
         transition={{ duration: 0.6, delay: 0.3, ease: [0.5, 0, 0, 1] }}
       >
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
         </span>
         <span className="text-sm text-muted-foreground font-medium">
           Available for projects
@@ -119,7 +119,7 @@ const ClosingSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
-          className="block font-medium tracking-widest uppercase text-accent mb-4 text-center text-3xl"
+          className="block font-medium tracking-widest uppercase text-primary mb-4 text-center text-3xl"
         >
           Contact Us
         </motion.span>
@@ -128,7 +128,7 @@ const ClosingSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.5, 0, 0, 1] }}
-          className="text-4xl md:text-5xl font-bold text-primary text-center mb-6"
+          className="text-4xl md:text-5xl font-bold text-foreground text-center mb-6"
         >
           Let's Work Together
         </motion.h2>
@@ -149,11 +149,11 @@ const ClosingSection = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.5, 0, 0, 1] }}
-            className="space-y-5 p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50"
+            className="space-y-5 p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border"
           >
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                   Name *
                 </label>
                 <input
@@ -168,7 +168,7 @@ const ClosingSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                   Email *
                 </label>
                 <input
@@ -186,7 +186,7 @@ const ClosingSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
                   Company
                 </label>
                 <input
@@ -200,7 +200,7 @@ const ClosingSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="website" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="website" className="block text-sm font-medium text-foreground mb-2">
                   Website
                 </label>
                 <input
@@ -217,7 +217,7 @@ const ClosingSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
                   Phone
                 </label>
                 <input
@@ -231,7 +231,7 @@ const ClosingSection = () => {
                 />
               </div>
               <div>
-                <label htmlFor="budget" className="block text-sm font-medium text-primary mb-2">
+                <label htmlFor="budget" className="block text-sm font-medium text-foreground mb-2">
                   Budget Range
                 </label>
                 <select
@@ -242,7 +242,7 @@ const ClosingSection = () => {
                   className={inputClasses}
                 >
                   {budgetOptions.map(option => (
-                    <option key={option.value} value={option.value} className="bg-background">
+                    <option key={option.value} value={option.value} className="bg-card">
                       {option.label}
                     </option>
                   ))}
@@ -251,7 +251,7 @@ const ClosingSection = () => {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                 Project Description *
               </label>
               <textarea
@@ -274,7 +274,7 @@ const ClosingSection = () => {
                 required
                 checked={formData.privacy}
                 onChange={handleInputChange}
-                className="mt-1 w-4 h-4 rounded border-border/50 bg-background/50 text-accent focus:ring-accent/20"
+                className="mt-1 w-4 h-4 rounded border-border bg-card text-primary focus:ring-accent-aqua/20"
               />
               <label htmlFor="privacy" className="text-sm text-muted-foreground">
                 I agree to the processing of my personal data in accordance with the privacy policy *
@@ -315,56 +315,56 @@ const ClosingSection = () => {
             transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
             className="space-y-8"
           >
-            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
-              <h3 className="text-xl font-semibold text-primary mb-6">
+            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border">
+              <h3 className="text-xl font-semibold text-foreground mb-6">
                 Prefer a direct conversation?
               </h3>
               
               <div className="space-y-4">
                 <motion.button
                   onClick={handleBookCall}
-                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-background/30 hover:border-accent/50 transition-all duration-300"
+                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border bg-card/30 hover:border-primary/50 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Calendar className="w-5 h-5 text-accent" />
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Calendar className="w-5 h-5 text-primary" />
                   </div>
                   <div className="text-left flex-grow">
-                    <span className="block text-primary font-medium">Book a Strategic Call</span>
+                    <span className="block text-foreground font-medium">Book a Strategic Call</span>
                     <span className="text-sm text-muted-foreground">15 min discovery call</span>
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-5 h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </motion.button>
 
                 <motion.button
                   onClick={handleWhatsApp}
-                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-background/30 hover:border-accent/50 transition-all duration-300"
+                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border bg-card/30 hover:border-primary/50 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-5 h-5 text-accent" />
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <MessageCircle className="w-5 h-5 text-primary" />
                   </div>
                   <div className="text-left flex-grow">
-                    <span className="block text-primary font-medium">WhatsApp</span>
+                    <span className="block text-foreground font-medium">WhatsApp</span>
                     <span className="text-sm text-muted-foreground">Quick chat with our team</span>
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="w-5 h-5 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </motion.button>
               </div>
             </div>
 
-            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border/50">
-              <h3 className="text-xl font-semibold text-primary mb-4">
+            <div className="p-8 rounded-2xl bg-card/30 backdrop-blur-xl border border-border">
+              <h3 className="text-xl font-semibold text-foreground mb-4">
                 Email Us
               </h3>
               <a
                 href="mailto:hello@cognitiveside.com"
-                className="text-lg text-accent hover:text-primary transition-colors duration-300"
+                className="text-lg text-accent-aqua hover:text-accent-aqua/80 transition-colors duration-300"
               >
                 hello@cognitiveside.com
               </a>
               
-              <div className="mt-6 pt-6 border-t border-border/50">
+              <div className="mt-6 pt-6 border-t border-border">
                 <p className="text-sm text-muted-foreground">
                   We typically respond within 24 hours during business days.
                 </p>

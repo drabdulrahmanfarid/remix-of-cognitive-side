@@ -44,13 +44,13 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 mb-6 font-medium tracking-wider uppercase bg-accent/10 text-accent rounded-full border border-accent/20 text-3xl">
+          <span className="inline-block px-4 py-1.5 mb-6 font-medium tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20 text-3xl">
             Testimonials
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
             What Our Clients Say
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-primary font-semibold">
+          <p className="text-lg max-w-2xl mx-auto text-foreground font-semibold">
             Hear from the businesses we've helped transform through innovative AI solutions and dedicated partnership.
           </p>
         </motion.div>
