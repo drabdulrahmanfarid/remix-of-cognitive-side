@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 import { Heart, Award, Users, Zap } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
+import drAbdulrahmanFarid from '@/assets/dr-abdulrahman-farid.png';
 
 const teamMembers = [
   {
@@ -14,7 +15,7 @@ const teamMembers = [
     name: 'Dr Abdulrahman Farid',
     role: 'Founder | AI Strategy & Implementation',
     bio: "A doctor who designs and deploys AI-driven workflows—from strategy to execution—so companies operate smoother, faster, and smarter.",
-    image: 'https://randomuser.me/api/portraits/men/32.jpg'
+    image: drAbdulrahmanFarid
   }
 ];
 
