@@ -42,19 +42,6 @@ const HeroSection = () => {
             />
           </motion.div>
 
-          {/* Stats badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.5, 0, 0, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-accent/30 bg-card/50 backdrop-blur-sm"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-            </span>
-            <span className="text-sm font-medium text-primary">30+ Successful Projects Delivered</span>
-          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 40 }}
