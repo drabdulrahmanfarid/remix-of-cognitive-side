@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { GlowingEffect } from './ui/glowing-effect';
 const steps = [{
   title: 'Discovery',
   description: 'We analyze your business needs and identify AI opportunities.'
@@ -78,45 +77,35 @@ const HowWeWorkSection = () => {
           }}>
                 {/* Step indicator with glow */}
                 <div className="relative mb-8">
-                  <div className="relative w-12 h-12 mx-auto">
-                    <GlowingEffect
-                      spread={40}
-                      glow={true}
-                      disabled={false}
-                      proximity={64}
-                      inactiveZone={0.01}
-                      borderWidth={2}
-                    />
-                    <motion.div className="relative w-full h-full rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center cursor-default" whileHover={{
-                      scale: 1.15,
-                      borderColor: 'hsl(241 100% 70% / 0.6)',
-                      boxShadow: '0 0 30px hsl(241 100% 70% / 0.3), inset 0 0 20px hsl(241 100% 70% / 0.1)'
-                    }} transition={{
-                      duration: 0.4,
-                      ease: [0.5, 0, 0, 1]
-                    }}>
-                      <span className="text-sm font-semibold text-primary">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </motion.div>
-                  </div>
+                  <motion.div className="w-12 h-12 mx-auto rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center cursor-default" whileHover={{
+                scale: 1.15,
+                borderColor: 'hsl(241 100% 70% / 0.6)',
+                boxShadow: '0 0 30px hsl(241 100% 70% / 0.3), inset 0 0 20px hsl(241 100% 70% / 0.1)'
+              }} transition={{
+                duration: 0.4,
+                ease: [0.5, 0, 0, 1]
+              }}>
+                    <span className="text-sm font-semibold text-primary">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </motion.div>
                   
                   {/* Pulsing glow ring */}
                   <motion.div className="absolute inset-0 w-12 h-12 mx-auto rounded-full" initial={{
-                    opacity: 0
-                  }} animate={isInView ? {
-                    opacity: [0, 0.3, 0],
-                    scale: [1, 1.5, 1.8]
-                  } : {
-                    opacity: 0
-                  }} transition={{
-                    duration: 2,
-                    delay: 1 + index * 0.2,
-                    repeat: Infinity,
-                    repeatDelay: 3
-                  }} style={{
-                    background: 'radial-gradient(circle, hsl(241 100% 70% / 0.3) 0%, transparent 70%)'
-                  }} />
+                opacity: 0
+              }} animate={isInView ? {
+                opacity: [0, 0.3, 0],
+                scale: [1, 1.5, 1.8]
+              } : {
+                opacity: 0
+              }} transition={{
+                duration: 2,
+                delay: 1 + index * 0.2,
+                repeat: Infinity,
+                repeatDelay: 3
+              }} style={{
+                background: 'radial-gradient(circle, hsl(241 100% 70% / 0.3) 0%, transparent 70%)'
+              }} />
                 </div>
                 
                 <h3 className="text-lg font-semibold text-primary mb-2">
@@ -161,24 +150,14 @@ const HowWeWorkSection = () => {
             ease: [0.5, 0, 0, 1]
           }}>
                 {/* Step indicator */}
-                <div className="relative w-8 h-8 flex-shrink-0 z-10">
-                  <GlowingEffect
-                    spread={30}
-                    glow={true}
-                    disabled={false}
-                    proximity={48}
-                    inactiveZone={0.01}
-                    borderWidth={2}
-                  />
-                  <motion.div className="relative w-full h-full rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center" whileHover={{
-                    borderColor: 'hsl(241 100% 70% / 0.5)',
-                    boxShadow: '0 0 20px hsl(241 100% 70% / 0.2)'
-                  }}>
-                    <span className="text-xs font-semibold text-primary">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </motion.div>
-                </div>
+                <motion.div className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center flex-shrink-0 z-10" whileHover={{
+              borderColor: 'hsl(241 100% 70% / 0.5)',
+              boxShadow: '0 0 20px hsl(241 100% 70% / 0.2)'
+            }}>
+                  <span className="text-xs font-semibold text-primary">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </motion.div>
                 
                 <div>
                   <h3 className="text-lg font-semibold text-primary mb-1">
