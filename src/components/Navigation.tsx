@@ -37,8 +37,8 @@ const Navigation = () => {
           transition={{ duration: 0.5, ease: [0.5, 0, 0, 1] }}
         >
           <div className="mx-auto max-w-7xl px-6 py-4">
-            <nav className="flex items-center justify-between rounded-full bg-card/80 backdrop-blur-2xl px-6 py-3 border border-border luminous-border">
-              <span className="text-xl font-semibold tracking-tight text-foreground">
+            <nav className="flex items-center justify-between rounded-full bg-card/60 backdrop-blur-2xl px-6 py-3 border border-accent/10 luminous-border">
+              <span className="text-xl font-semibold tracking-tight text-primary">
                 Cognitive Side
               </span>
               
@@ -48,7 +48,7 @@ const Navigation = () => {
                   <motion.a
                     key={link.label}
                     href={link.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    className="text-sm font-medium text-primary/70 hover:text-primary transition-colors duration-300"
                     whileHover={{ y: -2 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -59,8 +59,8 @@ const Navigation = () => {
 
               <motion.a
                 href="#contact"
-                className="group relative flex items-center gap-2 px-5 py-2 text-sm font-medium text-foreground rounded-full border border-border overflow-hidden"
-                whileHover={{ borderColor: 'hsl(43 52% 54% / 0.5)' }}
+                className="group relative flex items-center gap-2 px-5 py-2 text-sm font-medium text-primary rounded-full border border-primary/20 overflow-hidden"
+                whileHover={{ borderColor: 'hsl(47 70% 47% / 0.5)' }}
                 transition={{ duration: 0.3 }}
               >
                 {/* Background fill on hover */}

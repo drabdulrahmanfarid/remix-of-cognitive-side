@@ -71,7 +71,7 @@ const TeamSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
-          className="block font-medium tracking-widest uppercase text-primary mb-8 text-center text-3xl"
+          className="block font-medium tracking-widest uppercase text-accent mb-8 text-center text-3xl"
         >
           Our Team
         </motion.span>
@@ -100,8 +100,8 @@ const TeamSection = () => {
             >
               <div className="relative rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
                 <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                <div className="group relative flex flex-col md:flex-row items-center gap-6 overflow-hidden rounded-xl border-[0.75px] border-border bg-card p-6 shadow-sm">
-                  <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-primary/30 flex-shrink-0">
+                <div className="group relative flex flex-col md:flex-row items-center gap-6 overflow-hidden rounded-xl border-[0.75px] border-border bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)]">
+                  <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-accent/30 flex-shrink-0">
                     <img 
                       src={member.image} 
                       alt={member.name}
@@ -109,10 +109,10 @@ const TeamSection = () => {
                     />
                   </div>
                   <div className="text-center md:text-left">
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-glow transition-all duration-300">
+                    <h3 className="text-xl font-semibold text-primary group-hover:text-glow transition-all duration-300">
                       {member.name}
                     </h3>
-                    <p className="text-primary text-sm font-medium mt-1 mb-3">
+                    <p className="text-accent text-sm font-medium mt-1 mb-3">
                       {member.role}
                     </p>
                     <p className="text-muted-foreground text-sm leading-relaxed">
@@ -130,7 +130,7 @@ const TeamSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.5, 0, 0, 1] }}
-          className="text-2xl md:text-3xl font-semibold text-foreground text-center mb-12"
+          className="text-2xl md:text-3xl font-semibold text-primary text-center mb-12"
         >
           Our Core Values
         </motion.h3>
@@ -145,12 +145,12 @@ const TeamSection = () => {
             <motion.div
               key={value.title}
               variants={itemVariants}
-              className="group text-center p-6 rounded-2xl bg-secondary/50 border border-border hover:border-primary/30 transition-colors duration-300"
+              className="group text-center p-6 rounded-2xl bg-secondary/30 border border-border/50 hover:border-accent/30 transition-colors duration-300"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 text-accent mb-4 group-hover:scale-110 transition-transform duration-300">
                 <value.icon className="w-6 h-6" />
               </div>
-              <h4 className="text-lg font-semibold text-foreground mb-2">
+              <h4 className="text-lg font-semibold text-primary mb-2">
                 {value.title}
               </h4>
               <p className="text-sm text-muted-foreground leading-relaxed">

@@ -42,7 +42,6 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        "accent-aqua": "hsl(var(--accent-aqua))",
         cta: {
           DEFAULT: "hsl(var(--cta))",
           foreground: "hsl(var(--cta-foreground))",
@@ -65,13 +64,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Brand tokens
-        "brand-gold": "hsl(var(--brand-gold))",
-        "brand-gold-hover": "hsl(var(--brand-gold-hover))",
-        // Status colors
-        success: "hsl(var(--success))",
-        warning: "hsl(var(--warning))",
-        error: "hsl(var(--error))",
       },
       borderRadius: {
         lg: "var(--radius)",

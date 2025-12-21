@@ -46,7 +46,7 @@ const WhyCognitiveSideSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
-          className="block font-medium tracking-widest uppercase text-primary mb-12 text-center text-3xl"
+          className="block font-medium tracking-widest uppercase text-accent mb-12 text-center text-3xl"
         >
           Why Cognitive Side
         </motion.span>
@@ -66,28 +66,28 @@ const WhyCognitiveSideSection = () => {
               {/* Animated line marker */}
               <div className="relative flex items-center">
                 <motion.div
-                  className="w-8 h-[1px] bg-primary/40 origin-left"
+                  className="w-8 h-[1px] bg-accent/40 origin-left"
                   initial={{ scaleX: 0.5 }}
                   whileHover={{
                     scaleX: 1,
-                    backgroundColor: 'hsl(43 52% 54%)'
+                    backgroundColor: 'hsl(47 70% 47%)'
                   }}
                   transition={{ duration: 0.4, ease: [0.5, 0, 0, 1] }}
                 />
                 {/* Glowing dot at end */}
                 <motion.div
-                  className="absolute right-0 w-1.5 h-1.5 rounded-full bg-primary/60"
+                  className="absolute right-0 w-1.5 h-1.5 rounded-full bg-accent/60"
                   initial={{ scale: 0, opacity: 0 }}
                   animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                   transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
                   whileHover={{
                     scale: 1.5,
-                    boxShadow: '0 0 10px hsl(43 52% 54% / 0.6)'
+                    boxShadow: '0 0 10px hsl(47 70% 47% / 0.6)'
                   }}
                 />
               </div>
               
-              <span className="text-lg group-hover:text-glow transition-all duration-400 text-foreground font-semibold sm:text-2xl">
+              <span className="text-lg group-hover:text-glow transition-all duration-400 text-primary font-semibold sm:text-2xl">
                 {item}
               </span>
             </motion.li>

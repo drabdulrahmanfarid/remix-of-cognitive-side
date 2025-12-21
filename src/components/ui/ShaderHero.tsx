@@ -2,75 +2,51 @@
 
 import { MeshGradient, PulsingBorder } from "@paper-design/shaders-react";
 import { motion } from "framer-motion";
-
 interface ShaderHeroProps {
   showPulsingBorder?: boolean;
 }
-
 export function ShaderHeroBackground() {
-  return (
-    <MeshGradient 
-      colors={["#0B1220", "#111B2E", "#23314D", "#C8A24A"]} 
-      speed={0.15} 
-      style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        top: 0,
-        left: 0
-      }} 
-    />
-  );
+  return <MeshGradient colors={["#5c4a3d", "#c9a227", "#b8860b", "#faf7f2"]} speed={0.15} style={{
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0
+  }} />;
 }
-
 export function PulsingBorderAccent() {
-  return (
-    <div className="relative w-[200px] h-[200px]">
-      <PulsingBorder 
-        colors={["#C8A24A", "#B8923F", "#23314D"]} 
-        colorBack="#0B1220" 
-        roundness={1} 
-        thickness={0.15} 
-        softness={0.5} 
-        scale={0.7} 
-        speed={0.5} 
-        style={{
-          width: '100%',
-          height: '100%',
-          borderRadius: '50%'
-        }} 
-      />
+  return <div className="relative w-[200px] h-[200px]">
+      <PulsingBorder colors={["#c9a227", "#b8860b", "#5c4a3d"]} colorBack="#faf7f2" roundness={1} thickness={0.15} softness={0.5} scale={0.7} speed={0.5} style={{
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%'
+    }} />
       
       {/* Rotating text around the border */}
-      <motion.div 
-        className="absolute inset-0" 
-        animate={{ rotate: 360 }} 
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      >
+      <motion.div className="absolute inset-0" animate={{
+      rotate: 360
+    }} transition={{
+      duration: 20,
+      repeat: Infinity,
+      ease: "linear"
+    }}>
         <svg viewBox="0 0 200 200" className="w-full h-full mx-0 px-[11px]">
           <defs>
             <path id="circlePath" d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0" />
           </defs>
-          <text className="fill-foreground/80 text-[12px] font-semibold uppercase tracking-[0.25em]">
+          <text className="fill-primary/80 text-[12px] font-semibold uppercase tracking-[0.25em]">
             <textPath href="#circlePath" startOffset="25%">
               Cognitive Side • Operational Clarity • Delivered •
             </textPath>
           </text>
         </svg>
       </motion.div>
-    </div>
-  );
+    </div>;
 }
-
 export default function ShaderHero({
   showPulsingBorder = true
 }: ShaderHeroProps) {
-  return (
-    <>
+  return <>
       {/* Shader background */}
       <div className="absolute inset-0">
         <ShaderHeroBackground />
@@ -80,16 +56,17 @@ export default function ShaderHero({
       <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px]" />
       
       {/* Pulsing border accent */}
-      {showPulsingBorder && (
-        <motion.div 
-          className="absolute bottom-20 right-20 hidden lg:block" 
-          initial={{ opacity: 0, scale: 0.8 }} 
-          animate={{ opacity: 1, scale: 1 }} 
-          transition={{ duration: 1, delay: 1.5 }}
-        >
+      {showPulsingBorder && <motion.div className="absolute bottom-20 right-20 hidden lg:block" initial={{
+      opacity: 0,
+      scale: 0.8
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 1,
+      delay: 1.5
+    }}>
           <PulsingBorderAccent />
-        </motion.div>
-      )}
-    </>
-  );
+        </motion.div>}
+    </>;
 }

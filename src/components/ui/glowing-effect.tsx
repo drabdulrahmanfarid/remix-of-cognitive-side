@@ -145,17 +145,17 @@ const GlowingEffect = memo(
                       var(--black),
                       var(--black) calc(25% / var(--repeating-conic-gradient-times))
                     )`
-                  : `radial-gradient(circle, hsla(43, 52%, 54%, 0.6) 10%, hsla(43, 52%, 54%, 0) 20%),
-                     radial-gradient(circle at 40% 40%, hsla(43, 50%, 48%, 0.5) 5%, hsla(43, 50%, 48%, 0) 15%),
-                     radial-gradient(circle at 60% 60%, hsla(218, 35%, 22%, 0.5) 10%, hsla(218, 35%, 22%, 0) 20%),
-                     radial-gradient(circle at 40% 60%, hsla(43, 52%, 54%, 0.5) 10%, hsla(43, 52%, 54%, 0) 20%),
+                  : `radial-gradient(circle, hsla(43, 90%, 38%, 0.6) 10%, hsla(43, 90%, 38%, 0) 20%),
+                     radial-gradient(circle at 40% 40%, hsla(43, 70%, 50%, 0.5) 5%, hsla(43, 70%, 50%, 0) 15%),
+                     radial-gradient(circle at 60% 60%, hsla(25, 45%, 55%, 0.5) 10%, hsla(25, 45%, 55%, 0) 20%),
+                     radial-gradient(circle at 40% 60%, hsla(43, 70%, 50%, 0.5) 10%, hsla(43, 70%, 50%, 0) 20%),
                      repeating-conic-gradient(
                        from 236.84deg at 50% 50%,
-                       hsla(43, 52%, 54%, 1) 0%,
-                       hsla(43, 50%, 48%, 1) calc(25% / var(--repeating-conic-gradient-times)),
-                       hsla(218, 35%, 22%, 1) calc(50% / var(--repeating-conic-gradient-times)),
-                       hsla(43, 50%, 48%, 1) calc(75% / var(--repeating-conic-gradient-times)),
-                       hsla(43, 52%, 54%, 1) calc(100% / var(--repeating-conic-gradient-times))
+                       hsla(43, 90%, 38%, 1) 0%,
+                       hsla(43, 70%, 50%, 1) calc(25% / var(--repeating-conic-gradient-times)),
+                       hsla(25, 45%, 55%, 1) calc(50% / var(--repeating-conic-gradient-times)),
+                       hsla(43, 70%, 50%, 1) calc(75% / var(--repeating-conic-gradient-times)),
+                       hsla(43, 90%, 38%, 1) calc(100% / var(--repeating-conic-gradient-times))
                      )`,
             } as React.CSSProperties
           }

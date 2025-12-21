@@ -67,13 +67,13 @@ const FlowOutlineSection = () => {
           style={{ overflow: 'visible' }}
         >
           <defs>
-            {/* Gradient from muted to gold - convergence at center */}
-            <linearGradient id="navyToGold" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#A9B4C7" />
-              <stop offset="45%" stopColor="#A9B4C7" />
-              <stop offset="50%" stopColor="#C8A24A" />
-              <stop offset="55%" stopColor="#B8923F" />
-              <stop offset="100%" stopColor="#C8A24A" />
+            {/* Gradient from silver to gold - convergence at center */}
+            <linearGradient id="silverToGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#a8a8a8" />
+              <stop offset="45%" stopColor="#c0c0c0" />
+              <stop offset="50%" stopColor="#c9a227" />
+              <stop offset="55%" stopColor="#b8860b" />
+              <stop offset="100%" stopColor="#daa520" />
             </linearGradient>
             <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="0.5" result="blur" />
@@ -95,7 +95,7 @@ const FlowOutlineSection = () => {
             <motion.path
               key={path.id}
               d={generateFlowPath(path.startY, path.chaos)}
-              stroke="url(#navyToGold)"
+              stroke="url(#silverToGold)"
               strokeWidth={0.4}
               fill="none"
               strokeLinecap="round"
@@ -112,7 +112,7 @@ const FlowOutlineSection = () => {
             cy="50"
             r="1.5"
             fill="transparent"
-            stroke="#22D3EE"
+            stroke="#f48c8d"
             strokeWidth={0.3}
             filter="url(#convergenceGlow)"
             style={{
@@ -125,7 +125,7 @@ const FlowOutlineSection = () => {
             cx="50"
             cy="50"
             r="0.5"
-            fill="#22D3EE"
+            fill="#f48c8d"
             style={{
               opacity: convergenceOpacity
             }}
@@ -135,7 +135,7 @@ const FlowOutlineSection = () => {
         <motion.div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 rounded-full pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(244,140,141,0.12) 0%, transparent 60%)',
             opacity: convergenceOpacity
           }}
         />
@@ -149,7 +149,7 @@ const FlowOutlineSection = () => {
         }}
       >
         <span 
-          className="text-xs md:text-sm tracking-[0.25em] uppercase font-medium text-primary"
+          className="text-xs md:text-sm tracking-[0.25em] uppercase font-medium text-accent"
         >
           How work flows
         </span>
