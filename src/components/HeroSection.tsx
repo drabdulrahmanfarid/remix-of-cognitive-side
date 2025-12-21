@@ -76,7 +76,7 @@ const HeroSection = () => {
             Accelerating businesses with innovative AI solutions that transform operations and drive growth.
           </motion.p>
           
-          <motion.p className="text-sm tracking-widest uppercase text-muted-foreground/70 mb-4 font-bold" initial={{
+          <motion.p className="text-base tracking-widest uppercase text-primary/80 mb-4 font-bold" initial={{
           opacity: 0,
           y: 20
         }} animate={{
