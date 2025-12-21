@@ -2,6 +2,15 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
+const navLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'How We Work', href: '#how-we-work' },
+  { label: 'Benefits', href: '#benefits' },
+  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'FAQ', href: '#faq' },
+];
+
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -28,8 +37,24 @@ const Navigation = () => {
           <div className="mx-auto max-w-7xl px-6 py-4">
             <nav className="flex items-center justify-between rounded-full bg-card/60 backdrop-blur-2xl px-6 py-3 border border-accent/10 luminous-border">
               <span className="text-xl font-semibold tracking-tight text-primary">
-                Cognitive Side
+                MorfeusHub
               </span>
+              
+              {/* Navigation Links */}
+              <div className="hidden md:flex items-center gap-6">
+                {navLinks.map((link) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    className="text-sm font-medium text-primary/70 hover:text-primary transition-colors duration-300"
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+
               <motion.a
                 href="#contact"
                 className="group relative flex items-center gap-2 px-5 py-2 text-sm font-medium text-primary rounded-full border border-primary/20 overflow-hidden"
