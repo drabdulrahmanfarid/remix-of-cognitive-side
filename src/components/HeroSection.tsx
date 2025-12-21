@@ -31,7 +31,7 @@ const HeroSection = () => {
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
-          }} className="h-28 sm:h-36 md:h-44 w-auto mx-auto opacity-100 shadow-2xl border-none border-0 object-contain rounded-3xl" src="/lovable-uploads/47d46ac7-ba85-4186-a3a8-3826de2ee882.png" />
+          }} className="h-80 sm:h-[28rem] md:h-[36rem] w-auto mx-auto opacity-100 shadow-2xl border-none border-0 object-contain rounded-3xl" src="/lovable-uploads/47d46ac7-ba85-4186-a3a8-3826de2ee882.png" />
           </motion.div>
 
           {/* Stats badge */}
