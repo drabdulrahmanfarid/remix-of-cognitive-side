@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -37,9 +38,21 @@ const Navigation = () => {
         >
           <div className="mx-auto max-w-7xl px-6 py-4">
             <nav className="flex items-center justify-between rounded-full bg-card/60 backdrop-blur-2xl px-6 py-3 border border-accent/10 luminous-border">
-              <span className="text-xl font-semibold tracking-tight text-primary">
-                Cognitive Side
-              </span>
+              <motion.a 
+                href="#" 
+                className="flex items-center gap-2 group"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <img 
+                  src={logo} 
+                  alt="Cognitive Side" 
+                  className="h-8 w-auto transition-all duration-300 group-hover:drop-shadow-[0_0_12px_hsl(47_70%_47%/0.6)]"
+                />
+                <span className="text-lg font-semibold tracking-tight text-primary hidden sm:inline">
+                  Cognitive Side
+                </span>
+              </motion.a>
               
               {/* Navigation Links */}
               <div className="hidden md:flex items-center gap-6">
