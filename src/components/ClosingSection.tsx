@@ -1,19 +1,10 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { ArrowUpRight, Calendar, MessageCircle, Send } from 'lucide-react';
+import { ArrowUpRight, Calendar, Send } from 'lucide-react';
 import { Suspense, lazy, useState } from 'react';
 import { Button } from './ui/button';
 
 const NeonRaymarcher = lazy(() => import('./ui/neon-raymarcher'));
-
-const budgetOptions = [
-  { value: '', label: 'Select budget range' },
-  { value: 'under-5k', label: 'Less than €5,000' },
-  { value: '5k-10k', label: '€5,000 - €10,000' },
-  { value: '10k-20k', label: '€10,000 - €20,000' },
-  { value: '20k-40k', label: '€20,000 - €40,000' },
-  { value: 'over-40k', label: '€40,000+' }
-];
 
 interface FormData {
   name: string;
@@ -21,7 +12,6 @@ interface FormData {
   company: string;
   website: string;
   phone: string;
-  budget: string;
   message: string;
   privacy: boolean;
 }
@@ -34,14 +24,13 @@ const ClosingSection = () => {
     company: '',
     website: '',
     phone: '',
-    budget: '',
     message: '',
     privacy: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -67,7 +56,6 @@ const ClosingSection = () => {
         company: '',
         website: '',
         phone: '',
-        budget: '',
         message: '',
         privacy: false
       });
@@ -77,10 +65,6 @@ const ClosingSection = () => {
 
   const handleBookCall = () => {
     window.open('https://calendly.com/cognitiveside', '_blank');
-  };
-
-  const handleWhatsApp = () => {
-    window.open('https://wa.me/message', '_blank');
   };
 
   const inputClasses = "w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 backdrop-blur-sm";
@@ -215,39 +199,19 @@ const ClosingSection = () => {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className={inputClasses}
-                  placeholder="+1 234 567 890"
-                />
-              </div>
-              <div>
-                <label htmlFor="budget" className="block text-sm font-medium text-primary mb-2">
-                  Budget Range
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  value={formData.budget}
-                  onChange={handleInputChange}
-                  className={inputClasses}
-                >
-                  {budgetOptions.map(option => (
-                    <option key={option.value} value={option.value} className="bg-background">
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
+                Phone
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className={inputClasses}
+                placeholder="+1 234 567 890"
+              />
             </div>
 
             <div>
@@ -336,20 +300,6 @@ const ClosingSection = () => {
                   <ArrowUpRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </motion.button>
 
-                <motion.button
-                  onClick={handleWhatsApp}
-                  className="w-full group flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-background/30 hover:border-accent/50 transition-all duration-300"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-5 h-5 text-accent" />
-                  </div>
-                  <div className="text-left flex-grow">
-                    <span className="block text-primary font-medium">WhatsApp</span>
-                    <span className="text-sm text-muted-foreground">Quick chat with our team</span>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </motion.button>
               </div>
             </div>
 
@@ -358,10 +308,10 @@ const ClosingSection = () => {
                 Email Us
               </h3>
               <a
-                href="mailto:hello@cognitiveside.com"
+                href="mailto:support@cognitiveside.com"
                 className="text-lg text-accent hover:text-primary transition-colors duration-300"
               >
-                hello@cognitiveside.com
+                support@cognitiveside.com
               </a>
               
               <div className="mt-6 pt-6 border-t border-border/50">
