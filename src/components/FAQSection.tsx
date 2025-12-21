@@ -38,7 +38,7 @@ const FAQSection = () => {
   const { ref, isInView } = useInView({ threshold: 0.2 });
 
   return (
-    <section ref={ref} id="faq" className="py-32 md:py-40 px-6 bg-secondary/30 relative overflow-hidden">
+    <section ref={ref} id="faq" className="py-32 md:py-40 px-6 bg-secondary/40 relative overflow-hidden">
       {/* Grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-40" />
       
@@ -49,13 +49,13 @@ const FAQSection = () => {
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
           className="text-center mb-16"
         >
-          <span className="inline-block font-medium tracking-widest uppercase text-accent mb-6 text-3xl">
+          <span className="inline-block font-medium tracking-widest uppercase text-primary mb-6 text-3xl">
             FAQ
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-primary font-semibold">
+          <p className="text-lg text-foreground font-semibold">
             Get answers to common questions about our AI solutions and services.
           </p>
         </motion.div>
@@ -70,9 +70,9 @@ const FAQSection = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-border/50 rounded-xl px-6 bg-card/50 backdrop-blur-sm overflow-hidden"
+                className="border border-border rounded-xl px-6 bg-card/50 backdrop-blur-sm overflow-hidden"
               >
-                <AccordionTrigger className="text-left text-primary font-semibold hover:text-accent transition-colors py-5">
+                <AccordionTrigger className="text-left text-foreground font-semibold hover:text-primary transition-colors py-5">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-5">

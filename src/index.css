@@ -4,98 +4,120 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Cognitive Side Design System
-   Background: #faf7f2 → HSL(42, 50%, 97%)
-   Primary: #5c4a3d → HSL(25, 20%, 30%)
-   Accent: #c9a227 → HSL(47, 70%, 47%)
-   CTA: #b8860b → HSL(43, 90%, 38%)
+/* Cognitiveside Design System
+   Deep Navy + Warm Gold + Soft Aqua
+   
+   Base (page bg): #0B1220 → HSL(218, 50%, 8%)
+   Surface (cards): #111B2E → HSL(218, 45%, 12%)
+   Border: #23314D → HSL(218, 35%, 22%)
+   Text Primary: #E9EEF7 → HSL(220, 30%, 94%)
+   Text Muted: #A9B4C7 → HSL(220, 15%, 72%)
+   Brand Gold: #C8A24A → HSL(43, 52%, 54%)
+   Brand Gold Hover: #B8923F → HSL(43, 50%, 48%)
+   Accent Aqua: #22D3EE → HSL(189, 83%, 53%)
 */
 
 @layer base {
   :root {
-    --background: 42 50% 97%;
-    --foreground: 25 20% 30%;
+    /* Base Colors */
+    --background: 218 50% 8%;
+    --foreground: 220 30% 94%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 25 20% 30%;
+    --card: 218 45% 12%;
+    --card-foreground: 220 30% 94%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 25 20% 30%;
+    --popover: 218 45% 12%;
+    --popover-foreground: 220 30% 94%;
 
-    --primary: 25 20% 30%;
-    --primary-foreground: 42 50% 97%;
+    --primary: 43 52% 54%;
+    --primary-foreground: 218 50% 8%;
 
-    --secondary: 40 30% 90%;
-    --secondary-foreground: 25 20% 30%;
+    --secondary: 218 45% 16%;
+    --secondary-foreground: 220 30% 94%;
 
-    --muted: 40 20% 88%;
-    --muted-foreground: 25 15% 45%;
+    --muted: 218 35% 18%;
+    --muted-foreground: 220 15% 72%;
 
-    --accent: 47 70% 47%;
-    --accent-foreground: 25 20% 15%;
+    --accent: 43 52% 54%;
+    --accent-foreground: 218 50% 8%;
 
-    --cta: 43 90% 38%;
-    --cta-foreground: 42 50% 97%;
+    --accent-aqua: 189 83% 53%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --cta: 43 52% 54%;
+    --cta-foreground: 218 50% 8%;
 
-    --border: 40 20% 82%;
-    --input: 40 20% 82%;
-    --ring: 47 70% 47%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 30% 94%;
+
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+
+    --border: 218 35% 22%;
+    --input: 218 35% 22%;
+    --ring: 189 83% 53%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 42 50% 97%;
-    --sidebar-foreground: 25 20% 30%;
-    --sidebar-primary: 25 20% 30%;
-    --sidebar-primary-foreground: 42 50% 97%;
-    --sidebar-accent: 47 70% 47%;
-    --sidebar-accent-foreground: 25 20% 15%;
-    --sidebar-border: 40 20% 82%;
-    --sidebar-ring: 47 70% 47%;
+    --sidebar-background: 218 50% 8%;
+    --sidebar-foreground: 220 30% 94%;
+    --sidebar-primary: 43 52% 54%;
+    --sidebar-primary-foreground: 218 50% 8%;
+    --sidebar-accent: 43 52% 54%;
+    --sidebar-accent-foreground: 218 50% 8%;
+    --sidebar-border: 218 35% 22%;
+    --sidebar-ring: 189 83% 53%;
+
+    /* Brand specific tokens */
+    --brand-gold: 43 52% 54%;
+    --brand-gold-hover: 43 50% 48%;
   }
 
   .dark {
-    --background: 25 20% 8%;
-    --foreground: 42 50% 94%;
+    --background: 218 50% 8%;
+    --foreground: 220 30% 94%;
 
-    --card: 25 20% 12%;
-    --card-foreground: 42 50% 94%;
+    --card: 218 45% 12%;
+    --card-foreground: 220 30% 94%;
 
-    --popover: 25 20% 12%;
-    --popover-foreground: 42 50% 94%;
+    --popover: 218 45% 12%;
+    --popover-foreground: 220 30% 94%;
 
-    --primary: 42 50% 94%;
-    --primary-foreground: 25 20% 15%;
+    --primary: 43 52% 54%;
+    --primary-foreground: 218 50% 8%;
 
-    --secondary: 25 18% 18%;
-    --secondary-foreground: 42 50% 94%;
+    --secondary: 218 45% 16%;
+    --secondary-foreground: 220 30% 94%;
 
-    --muted: 25 18% 18%;
-    --muted-foreground: 42 30% 60%;
+    --muted: 218 35% 18%;
+    --muted-foreground: 220 15% 72%;
 
-    --accent: 47 70% 50%;
-    --accent-foreground: 25 20% 10%;
+    --accent: 43 52% 54%;
+    --accent-foreground: 218 50% 8%;
 
-    --cta: 43 90% 45%;
-    --cta-foreground: 25 20% 10%;
+    --accent-aqua: 189 83% 53%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --cta: 43 52% 54%;
+    --cta-foreground: 218 50% 8%;
 
-    --border: 25 18% 22%;
-    --input: 25 18% 22%;
-    --ring: 47 70% 50%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 220 30% 94%;
+
+    --border: 218 35% 22%;
+    --input: 218 35% 22%;
+    --ring: 189 83% 53%;
     
-    --sidebar-background: 25 20% 8%;
-    --sidebar-foreground: 42 50% 94%;
-    --sidebar-primary: 42 50% 94%;
-    --sidebar-primary-foreground: 25 20% 15%;
-    --sidebar-accent: 47 70% 50%;
-    --sidebar-accent-foreground: 25 20% 10%;
-    --sidebar-border: 25 18% 22%;
-    --sidebar-ring: 47 70% 50%;
+    --sidebar-background: 218 50% 8%;
+    --sidebar-foreground: 220 30% 94%;
+    --sidebar-primary: 43 52% 54%;
+    --sidebar-primary-foreground: 218 50% 8%;
+    --sidebar-accent: 43 52% 54%;
+    --sidebar-accent-foreground: 218 50% 8%;
+    --sidebar-border: 218 35% 22%;
+    --sidebar-ring: 189 83% 53%;
+
+    --brand-gold: 43 52% 54%;
+    --brand-gold-hover: 43 50% 48%;
   }
 }
 
@@ -120,34 +142,34 @@
   }
 }
 
-/* Golden grid pattern */
+/* Navy grid pattern */
 .grid-pattern {
   background-image: 
-    linear-gradient(to right, hsl(var(--primary) / 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--primary) / 0.03) 1px, transparent 1px);
+    linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Luminous border utilities */
+/* Gold luminous border utilities */
 .luminous-border {
   box-shadow: 
-    inset 0 0 0 1px hsl(var(--accent) / 0.15),
-    0 0 30px hsl(var(--accent) / 0.05);
+    inset 0 0 0 1px hsl(var(--primary) / 0.15),
+    0 0 30px hsl(var(--primary) / 0.05);
 }
 
 .luminous-border-hover:hover {
   box-shadow: 
-    inset 0 0 0 1px hsl(var(--accent) / 0.4),
-    0 0 40px hsl(var(--accent) / 0.1);
+    inset 0 0 0 1px hsl(var(--primary) / 0.4),
+    0 0 40px hsl(var(--primary) / 0.1);
 }
 
-/* Text glow effect */
+/* Gold text glow effect */
 .text-glow {
-  text-shadow: 0 0 40px hsl(var(--accent) / 0.3);
+  text-shadow: 0 0 40px hsl(var(--primary) / 0.3);
 }
 
 .text-glow-strong {
-  text-shadow: 0 0 60px hsl(var(--accent) / 0.4), 0 0 100px hsl(var(--primary) / 0.2);
+  text-shadow: 0 0 60px hsl(var(--primary) / 0.4), 0 0 100px hsl(var(--primary) / 0.2);
 }
 
 /* Premium easing variable */

@@ -37,7 +37,7 @@ const HowWeWorkSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
-          className="block font-medium tracking-widest uppercase text-accent mb-20 text-center text-3xl"
+          className="block font-medium tracking-widest uppercase text-primary mb-20 text-center text-3xl"
         >
           How we work
         </motion.span>
@@ -51,7 +51,7 @@ const HowWeWorkSection = () => {
             animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
             transition={{ duration: 1.2, ease: [0.5, 0, 0, 1] }}
           >
-            <div className="w-full h-full bg-gradient-to-r from-transparent via-accent/50 to-transparent animate-border-glow" />
+            <div className="w-full h-full bg-gradient-to-r from-transparent via-primary/50 to-transparent animate-border-glow" />
           </motion.div>
           
           <div className="grid grid-cols-5 gap-4">
@@ -70,15 +70,15 @@ const HowWeWorkSection = () => {
                 {/* Step indicator with glow */}
                 <div className="relative mb-8">
                   <motion.div
-                    className="w-12 h-12 mx-auto rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center cursor-default"
+                    className="w-12 h-12 mx-auto rounded-full bg-card backdrop-blur-sm border border-border flex items-center justify-center cursor-default"
                     whileHover={{
                       scale: 1.15,
-                      borderColor: 'hsl(241 100% 70% / 0.6)',
-                      boxShadow: '0 0 30px hsl(241 100% 70% / 0.3), inset 0 0 20px hsl(241 100% 70% / 0.1)'
+                      borderColor: 'hsl(43 52% 54% / 0.6)',
+                      boxShadow: '0 0 30px hsl(43 52% 54% / 0.3), inset 0 0 20px hsl(43 52% 54% / 0.1)'
                     }}
                     transition={{ duration: 0.4, ease: [0.5, 0, 0, 1] }}
                   >
-                    <span className="text-sm font-semibold text-primary">
+                    <span className="text-sm font-semibold text-foreground">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </motion.div>
@@ -98,12 +98,12 @@ const HowWeWorkSection = () => {
                       repeatDelay: 3
                     }}
                     style={{
-                      background: 'radial-gradient(circle, hsl(241 100% 70% / 0.3) 0%, transparent 70%)'
+                      background: 'radial-gradient(circle, hsl(43 52% 54% / 0.3) 0%, transparent 70%)'
                     }}
                   />
                 </div>
                 
-                <h3 className="text-lg font-semibold text-primary mb-2">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {step.title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
@@ -123,7 +123,7 @@ const HowWeWorkSection = () => {
             animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
             transition={{ duration: 1, ease: [0.5, 0, 0, 1] }}
           >
-            <div className="w-full h-full bg-gradient-to-b from-accent/50 via-accent/30 to-transparent" />
+            <div className="w-full h-full bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" />
           </motion.div>
           
           <div className="space-y-10">
@@ -141,19 +141,19 @@ const HowWeWorkSection = () => {
               >
                 {/* Step indicator */}
                 <motion.div
-                  className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center flex-shrink-0 z-10"
+                  className="w-8 h-8 rounded-full bg-card backdrop-blur-sm border border-border flex items-center justify-center flex-shrink-0 z-10"
                   whileHover={{
-                    borderColor: 'hsl(241 100% 70% / 0.5)',
-                    boxShadow: '0 0 20px hsl(241 100% 70% / 0.2)'
+                    borderColor: 'hsl(43 52% 54% / 0.5)',
+                    boxShadow: '0 0 20px hsl(43 52% 54% / 0.2)'
                   }}
                 >
-                  <span className="text-xs font-semibold text-primary">
+                  <span className="text-xs font-semibold text-foreground">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </motion.div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-primary mb-1">
+                  <h3 className="text-lg font-semibold text-foreground mb-1">
                     {step.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
