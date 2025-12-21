@@ -22,7 +22,7 @@ const HeroSection = () => {
             <motion.img
               src={logo}
               alt="Cognitive Side Logo"
-              className="h-28 sm:h-36 md:h-44 w-auto mx-auto"
+              className="h-40 sm:h-52 md:h-64 w-auto mx-auto"
               style={{
                 filter: 'drop-shadow(0 0 30px hsl(47 70% 47% / 0.4)) drop-shadow(0 0 60px hsl(47 70% 47% / 0.2))',
               }}
@@ -60,7 +60,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.5, 0, 0, 1] }}
-            className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-tight text-primary mb-6 text-center px-[18px] lg:text-9xl"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-primary mb-6 text-center whitespace-nowrap"
           >
             Cognitive Side
           </motion.p>
