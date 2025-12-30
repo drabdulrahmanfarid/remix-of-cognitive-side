@@ -3,6 +3,35 @@ import { useInView } from '../hooks/useInView';
 import { GlowingEffect } from './ui/glowing-effect';
 import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
 
+interface DetailedUseCase {
+  title: string;
+  description: string;
+  outcomes: string[];
+}
+
+const realEstateUseCases: DetailedUseCase[] = [
+  {
+    title: 'AI Property Concierge (Match + Book Viewings)',
+    description: 'An assistant that chats with prospects, captures requirements (budget, location, type, timeline), then recommends the best-fit listings and books a viewing automatically—handing off to the agent when needed.',
+    outcomes: ['Faster replies', 'More viewings booked', 'Higher conversion', 'Less agent admin']
+  },
+  {
+    title: 'Instant Lead Qualification (Smart Handoff)',
+    description: 'Every new inquiry is followed up instantly to qualify intent and collect key details, then your team receives a structured summary so agents focus only on serious prospects.',
+    outcomes: ['Higher lead quality', 'Faster response time', 'Better agent focus', 'Clearer pipeline']
+  },
+  {
+    title: 'Tenant Repair Requests (Two-Way Tracking)',
+    description: 'Tenants submit repair issues once, and managers update status over time—keeping a complete history per unit, including photos and notes, in one organized place.',
+    outcomes: ['Fewer lost requests', 'Faster resolution', 'Full visibility per unit', 'Cleaner documentation']
+  },
+  {
+    title: 'Maintenance Triage (Prioritize + Dispatch)',
+    description: 'Maintenance requests are categorized and prioritized (including emergency escalation) and routed to the right vendor, while tenants receive instant acknowledgments and updates.',
+    outcomes: ['Faster dispatch', 'Fewer urgent misses', 'Higher tenant satisfaction', 'Strong audit trail']
+  }
+];
+
 const industries = [
   {
     title: 'Real Estate',
@@ -45,6 +74,20 @@ const industries = [
     useCases: ['Customer Insights', 'Stock Optimization', 'Sales Forecasting']
   }
 ];
+
+const UseCaseMiniCard = ({ useCase }: { useCase: DetailedUseCase }) => (
+  <div className="p-4 rounded-xl bg-secondary/40 border border-border/40 h-full">
+    <h4 className="text-sm font-semibold text-primary mb-2 leading-tight">
+      {useCase.title}
+    </h4>
+    <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+      {useCase.description}
+    </p>
+    <p className="text-xs text-accent/80">
+      <span className="font-medium">Outcomes:</span> {useCase.outcomes.join(' • ')}
+    </p>
+  </div>
+);
 
 const WhoWeWorkWithSection = () => {
   const { ref, isInView } = useInView({ threshold: 0.2 });
@@ -104,74 +147,104 @@ const WhoWeWorkWithSection = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {industries.map((industry) => (
-            <motion.div
-              key={industry.title}
-              variants={cardVariants}
-              className="group relative"
-              whileHover={{ y: -6, transition: { duration: 0.3, ease: [0.5, 0, 0, 1] } }}
-            >
-              <div className="relative h-full rounded-2xl border border-border bg-background p-6 overflow-hidden">
-                <GlowingEffect
-                  spread={60}
-                  glow={true}
-                  disabled={false}
-                  proximity={80}
-                  inactiveZone={0.01}
-                  borderWidth={1}
-                />
-                
-                <div className="relative z-10">
-                  {/* Title */}
-                  <h3 className="text-xl font-semibold text-primary mb-2">
-                    {industry.title}
-                  </h3>
+          {industries.map((industry) => {
+            const isRealEstate = industry.title === 'Real Estate';
+            
+            return (
+              <motion.div
+                key={industry.title}
+                variants={cardVariants}
+                className={`group relative ${isRealEstate ? 'lg:col-span-2 lg:row-span-2' : ''}`}
+                whileHover={{ y: -6, transition: { duration: 0.3, ease: [0.5, 0, 0, 1] } }}
+              >
+                <div className="relative h-full rounded-2xl border border-border bg-background p-6 overflow-hidden">
+                  <GlowingEffect
+                    spread={60}
+                    glow={true}
+                    disabled={false}
+                    proximity={80}
+                    inactiveZone={0.01}
+                    borderWidth={1}
+                  />
                   
-                  {/* Subtitle */}
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                    {industry.subtitle}
-                  </p>
-                  
-                  {/* Divider */}
-                  <div className="h-px bg-accent/30 mb-4" />
-                  
-                  {/* Use Cases Section */}
-                  <div>
-                    <span className="text-xs font-medium tracking-wider uppercase text-accent/80 mb-3 block">
-                      Use Cases
-                    </span>
+                  <div className="relative z-10">
+                    {/* Title */}
+                    <h3 className="text-xl font-semibold text-primary mb-2">
+                      {industry.title}
+                    </h3>
                     
-                    {/* Desktop: Flex wrap layout */}
-                    <div className="hidden md:flex md:flex-wrap gap-2">
-                      {industry.useCases.slice(0, 3).map((useCase) => (
-                        <span
-                          key={useCase}
-                          className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90"
-                        >
-                          {useCase}
-                        </span>
-                      ))}
-                    </div>
+                    {/* Subtitle */}
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                      {industry.subtitle}
+                    </p>
                     
-                    {/* Mobile: Horizontal swipe carousel */}
-                    <div className="md:hidden">
-                      <Carousel opts={{ align: 'start', dragFree: true }}>
-                        <CarouselContent className="-ml-2">
-                          {industry.useCases.slice(0, 3).map((useCase) => (
-                            <CarouselItem key={useCase} className="basis-auto pl-2">
-                              <span className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 inline-block">
+                    {/* Divider */}
+                    <div className="h-px bg-accent/30 mb-4" />
+                    
+                    {/* Use Cases Section */}
+                    <div>
+                      <span className="text-xs font-medium tracking-wider uppercase text-accent/80 mb-3 block">
+                        Use Cases
+                      </span>
+                      
+                      {isRealEstate ? (
+                        <>
+                          {/* Real Estate: Desktop 2x2 grid */}
+                          <div className="hidden md:grid grid-cols-2 gap-4">
+                            {realEstateUseCases.map((useCase) => (
+                              <UseCaseMiniCard key={useCase.title} useCase={useCase} />
+                            ))}
+                          </div>
+                          
+                          {/* Real Estate: Mobile carousel */}
+                          <div className="md:hidden">
+                            <Carousel opts={{ align: 'start', dragFree: true }}>
+                              <CarouselContent className="-ml-3">
+                                {realEstateUseCases.map((useCase) => (
+                                  <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
+                                    <UseCaseMiniCard useCase={useCase} />
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                            </Carousel>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          {/* Other industries: Desktop flex wrap */}
+                          <div className="hidden md:flex md:flex-wrap gap-2">
+                            {industry.useCases.slice(0, 3).map((useCase) => (
+                              <span
+                                key={useCase}
+                                className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90"
+                              >
                                 {useCase}
                               </span>
-                            </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                      </Carousel>
+                            ))}
+                          </div>
+                          
+                          {/* Other industries: Mobile carousel */}
+                          <div className="md:hidden">
+                            <Carousel opts={{ align: 'start', dragFree: true }}>
+                              <CarouselContent className="-ml-2">
+                                {industry.useCases.slice(0, 3).map((useCase) => (
+                                  <CarouselItem key={useCase} className="basis-auto pl-2">
+                                    <span className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 inline-block">
+                                      {useCase}
+                                    </span>
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                            </Carousel>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
