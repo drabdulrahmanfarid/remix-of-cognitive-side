@@ -141,12 +141,12 @@ const WhoWeWorkWithSection = () => {
                       Use Cases
                     </span>
                     
-                    {/* Desktop: 3-column grid */}
-                    <div className="hidden md:grid grid-cols-3 gap-2">
-                      {industry.useCases.map((useCase) => (
+                    {/* Desktop: Flex wrap layout */}
+                    <div className="hidden md:flex md:flex-wrap gap-2">
+                      {industry.useCases.slice(0, 3).map((useCase) => (
                         <span
                           key={useCase}
-                          className="px-2 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 text-center whitespace-nowrap"
+                          className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90"
                         >
                           {useCase}
                         </span>
@@ -157,9 +157,9 @@ const WhoWeWorkWithSection = () => {
                     <div className="md:hidden">
                       <Carousel opts={{ align: 'start', dragFree: true }}>
                         <CarouselContent className="-ml-2">
-                          {industry.useCases.map((useCase) => (
+                          {industry.useCases.slice(0, 3).map((useCase) => (
                             <CarouselItem key={useCase} className="basis-auto pl-2">
-                              <span className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 whitespace-nowrap inline-block">
+                              <span className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 inline-block">
                                 {useCase}
                               </span>
                             </CarouselItem>
