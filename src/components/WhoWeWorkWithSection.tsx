@@ -114,6 +114,29 @@ const insuranceUseCases: DetailedUseCase[] = [
   }
 ];
 
+const restaurantsUseCases: DetailedUseCase[] = [
+  {
+    title: 'Smart Reservation Handling (Book / Change / Cancel)',
+    description: 'Guests can message to reserve a table, change timing, or cancel—while availability is checked automatically and reservations stay organized for the team.',
+    outcomes: ['Faster confirmations', 'Fewer double-bookings', 'Less phone load', 'Cleaner records']
+  },
+  {
+    title: 'WhatsApp Order Taking + Menu & General Questions',
+    description: 'Customers can order on WhatsApp, ask menu/price/ingredient questions, and get instant answers. Orders are captured in a structured format and handed to staff clearly (items, notes, address, payment, delivery/pickup).',
+    outcomes: ['Faster ordering', 'Fewer mistakes', 'Better experience', 'Less back-and-forth']
+  },
+  {
+    title: 'Automated Customer Feedback Collection',
+    description: 'After a visit or delivery, customers receive a simple feedback request, and responses are stored and organized so you can spot patterns and improve service quality.',
+    outcomes: ['More feedback volume', 'Better insights', 'Higher retention', 'Clear tracking']
+  },
+  {
+    title: 'Complaint & Service Recovery (Fast Escalation)',
+    description: 'If a customer is unhappy, the message is captured, categorized, and escalated to the right person with a structured summary so issues are resolved quickly and professionally.',
+    outcomes: ['Faster resolution', 'Reduced bad reviews', 'Higher trust', 'Strong audit trail']
+  }
+];
+
 const industries = [
   {
     title: 'Real Estate',
@@ -149,6 +172,11 @@ const industries = [
     title: 'Insurance',
     subtitle: 'Faster submissions, better market visibility, and cleaner operations.',
     useCases: ['Claims Processing', 'Risk Assessment', 'Fraud Detection']
+  },
+  {
+    title: 'Restaurants',
+    subtitle: 'From WhatsApp orders to reservations and feedback—run smoother with less manual work.',
+    useCases: ['Reservations', 'Order Taking', 'Feedback Collection']
   },
   {
     title: 'Retail',
@@ -235,7 +263,8 @@ const WhoWeWorkWithSection = () => {
             const isFinance = industry.title === 'Finance & Accounting';
             const isLogistics = industry.title === 'Logistics & Supply Chain';
             const isInsurance = industry.title === 'Insurance';
-            const isExpanded = isRealEstate || isHealthcare || isFinance || isLogistics || isInsurance;
+            const isRestaurants = industry.title === 'Restaurants';
+            const isExpanded = isRealEstate || isHealthcare || isFinance || isLogistics || isInsurance || isRestaurants;
             
             return (
               <motion.div
@@ -381,6 +410,28 @@ const WhoWeWorkWithSection = () => {
                             <Carousel opts={{ align: 'start', dragFree: true }}>
                               <CarouselContent className="-ml-3">
                                 {insuranceUseCases.map((useCase) => (
+                                  <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
+                                    <UseCaseMiniCard useCase={useCase} />
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                            </Carousel>
+                          </div>
+                        </>
+                      ) : isRestaurants ? (
+                        <>
+                          {/* Restaurants: Desktop 2x2 grid */}
+                          <div className="hidden md:grid grid-cols-2 gap-4">
+                            {restaurantsUseCases.map((useCase) => (
+                              <UseCaseMiniCard key={useCase.title} useCase={useCase} />
+                            ))}
+                          </div>
+                          
+                          {/* Restaurants: Mobile carousel */}
+                          <div className="md:hidden">
+                            <Carousel opts={{ align: 'start', dragFree: true }}>
+                              <CarouselContent className="-ml-3">
+                                {restaurantsUseCases.map((useCase) => (
                                   <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
                                     <UseCaseMiniCard useCase={useCase} />
                                   </CarouselItem>
