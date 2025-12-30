@@ -50,6 +50,29 @@ const healthcareUseCases: DetailedUseCase[] = [
   }
 ];
 
+const financeUseCases: DetailedUseCase[] = [
+  {
+    title: 'AI Finance Desk (CFO-Level Support)',
+    description: 'A single finance desk that receives requests (forecasting, budgeting, KPI analysis, cash planning, risk notes) and returns a structured, decision-ready response—like having a virtual finance team on demand.',
+    outcomes: ['Faster decisions', 'Consistent analysis', 'Less back-and-forth', 'Executive-ready summaries']
+  },
+  {
+    title: 'Daily Cash-Flow Pulse (Report + Alerts)',
+    description: 'A daily overview that tracks inflows/outflows, validates entries, and sends a clear daily cash-flow summary to leadership so issues are seen early, not at month-end.',
+    outcomes: ['Real-time visibility', 'Early risk detection', 'Better alignment', 'Clear daily record']
+  },
+  {
+    title: 'Monthly Closing Pack (Totals + Insights)',
+    description: "Automatically compiles the previous month's transactions into a monthly report with totals and short, actionable insights delivered to stakeholders in a consistent format.",
+    outcomes: ['Faster month-end close', 'Clear trends', 'Less manual reporting', 'Better oversight']
+  },
+  {
+    title: 'Chat-Based Expense Logging (With Approvals)',
+    description: 'Teams record income/expenses in a simple chat format. Expenses can require supervisor approval with approve/reject and "view details" actions to keep records controlled.',
+    outcomes: ['Faster capture', 'Stronger spend control', 'Fewer missing details', 'Cleaner tracking']
+  }
+];
+
 const industries = [
   {
     title: 'Real Estate',
@@ -57,8 +80,8 @@ const industries = [
     useCases: ['Property Valuation', 'Lead Scoring', 'Market Analysis']
   },
   {
-    title: 'Finance',
-    subtitle: 'Intelligent risk assessment and fraud detection',
+    title: 'Finance & Accounting',
+    subtitle: 'Reliable reporting, cash visibility, and controlled spending—without manual chasing.',
     useCases: ['Risk Analysis', 'Fraud Detection', 'Portfolio Optimization']
   },
   {
@@ -168,7 +191,8 @@ const WhoWeWorkWithSection = () => {
           {industries.map((industry) => {
             const isRealEstate = industry.title === 'Real Estate';
             const isHealthcare = industry.title === 'Healthcare';
-            const isExpanded = isRealEstate || isHealthcare;
+            const isFinance = industry.title === 'Finance & Accounting';
+            const isExpanded = isRealEstate || isHealthcare || isFinance;
             
             return (
               <motion.div
@@ -255,6 +279,28 @@ const WhoWeWorkWithSection = () => {
                           <p className="text-[10px] text-muted-foreground/70 mt-4 italic">
                             This supports intake and routing and does not replace clinical judgment.
                           </p>
+                        </>
+                      ) : isFinance ? (
+                        <>
+                          {/* Finance: Desktop 2x2 grid */}
+                          <div className="hidden md:grid grid-cols-2 gap-4">
+                            {financeUseCases.map((useCase) => (
+                              <UseCaseMiniCard key={useCase.title} useCase={useCase} />
+                            ))}
+                          </div>
+                          
+                          {/* Finance: Mobile carousel */}
+                          <div className="md:hidden">
+                            <Carousel opts={{ align: 'start', dragFree: true }}>
+                              <CarouselContent className="-ml-3">
+                                {financeUseCases.map((useCase) => (
+                                  <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
+                                    <UseCaseMiniCard useCase={useCase} />
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                            </Carousel>
+                          </div>
                         </>
                       ) : (
                         <>
