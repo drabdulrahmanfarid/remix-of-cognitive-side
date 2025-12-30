@@ -101,6 +101,19 @@ const logisticsUseCases: DetailedUseCase[] = [
   }
 ];
 
+const insuranceUseCases: DetailedUseCase[] = [
+  {
+    title: 'Insurance Market Intelligence (News + Signals)',
+    description: 'We continuously track relevant insurance news and updates, filter by your keywords/topics, and store the most important items in an internal knowledge base so your team sees what matters without manual searching.',
+    outcomes: ['Faster awareness', 'Better market signals', 'Less manual research', 'Searchable internal library']
+  },
+  {
+    title: 'Commercial Submission Automation (Intake → Send)',
+    description: 'We streamline commercial insurance submissions by collecting the required details once, generating a clean submission pack, and sending it to the right recipients with consistent formatting to reduce back-and-forth and speed up quoting.',
+    outcomes: ['Faster submissions', 'Fewer missing fields', 'Less admin work', 'More consistent quoting']
+  }
+];
+
 const industries = [
   {
     title: 'Real Estate',
@@ -134,7 +147,7 @@ const industries = [
   },
   {
     title: 'Insurance',
-    subtitle: 'Automated underwriting and claims processing',
+    subtitle: 'Faster submissions, better market visibility, and cleaner operations.',
     useCases: ['Claims Processing', 'Risk Assessment', 'Fraud Detection']
   },
   {
@@ -221,7 +234,8 @@ const WhoWeWorkWithSection = () => {
             const isHealthcare = industry.title === 'Healthcare';
             const isFinance = industry.title === 'Finance & Accounting';
             const isLogistics = industry.title === 'Logistics & Supply Chain';
-            const isExpanded = isRealEstate || isHealthcare || isFinance || isLogistics;
+            const isInsurance = industry.title === 'Insurance';
+            const isExpanded = isRealEstate || isHealthcare || isFinance || isLogistics || isInsurance;
             
             return (
               <motion.div
@@ -345,6 +359,28 @@ const WhoWeWorkWithSection = () => {
                             <Carousel opts={{ align: 'start', dragFree: true }}>
                               <CarouselContent className="-ml-3">
                                 {logisticsUseCases.map((useCase) => (
+                                  <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
+                                    <UseCaseMiniCard useCase={useCase} />
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                            </Carousel>
+                          </div>
+                        </>
+                      ) : isInsurance ? (
+                        <>
+                          {/* Insurance: Desktop 2-column grid */}
+                          <div className="hidden md:grid grid-cols-2 gap-4">
+                            {insuranceUseCases.map((useCase) => (
+                              <UseCaseMiniCard key={useCase.title} useCase={useCase} />
+                            ))}
+                          </div>
+                          
+                          {/* Insurance: Mobile carousel */}
+                          <div className="md:hidden">
+                            <Carousel opts={{ align: 'start', dragFree: true }}>
+                              <CarouselContent className="-ml-3">
+                                {insuranceUseCases.map((useCase) => (
                                   <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
                                     <UseCaseMiniCard useCase={useCase} />
                                   </CarouselItem>
