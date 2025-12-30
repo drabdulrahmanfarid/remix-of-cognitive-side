@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 import { GlowingEffect } from './ui/glowing-effect';
+import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
 
 const industries = [
   {
@@ -139,15 +140,32 @@ const WhoWeWorkWithSection = () => {
                     <span className="text-xs font-medium tracking-wider uppercase text-accent/80 mb-3 block">
                       Use Cases
                     </span>
-                    <div className="flex flex-wrap gap-2">
+                    
+                    {/* Desktop: 3-column grid */}
+                    <div className="hidden md:grid grid-cols-3 gap-2">
                       {industry.useCases.map((useCase) => (
                         <span
                           key={useCase}
-                          className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90"
+                          className="px-2 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 text-center whitespace-nowrap"
                         >
                           {useCase}
                         </span>
                       ))}
+                    </div>
+                    
+                    {/* Mobile: Horizontal swipe carousel */}
+                    <div className="md:hidden">
+                      <Carousel opts={{ align: 'start', dragFree: true }}>
+                        <CarouselContent className="-ml-2">
+                          {industry.useCases.map((useCase) => (
+                            <CarouselItem key={useCase} className="basis-auto pl-2">
+                              <span className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 whitespace-nowrap inline-block">
+                                {useCase}
+                              </span>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                      </Carousel>
                     </div>
                   </div>
                 </div>
