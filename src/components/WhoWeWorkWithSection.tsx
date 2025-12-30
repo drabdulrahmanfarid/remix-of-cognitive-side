@@ -32,6 +32,24 @@ const realEstateUseCases: DetailedUseCase[] = [
   }
 ];
 
+const healthcareUseCases: DetailedUseCase[] = [
+  {
+    title: 'AI Symptom Pre-Screening + Doctor Recommendations',
+    description: 'Patients describe symptoms in chat or a simple form. The assistant organizes the information, suggests the most relevant specialty/doctor options, and sends a clear next-step message to the patient and your team.',
+    outcomes: ['Faster first response', 'Better routing', 'Less front-desk load', 'Clear patient summaries']
+  },
+  {
+    title: 'Smart Patient Intake + Appointment Booking',
+    description: 'Collects patient details and symptoms, routes to the right department, and schedules the appointment—while keeping a structured record for tracking and follow-up.',
+    outcomes: ['Faster bookings', 'Fewer missed details', 'Reduced admin work', 'Cleaner intake flow']
+  },
+  {
+    title: 'Multi-Channel Clinic Assistant (Registration + Documents)',
+    description: 'A unified assistant that supports registration, scheduling, and basic document intake (text, voice notes, images, PDFs), then hands off structured summaries to the clinic team for review.',
+    outcomes: ['One consistent experience', 'Faster processing', 'Better continuity', 'Stronger team visibility']
+  }
+];
+
 const industries = [
   {
     title: 'Real Estate',
@@ -149,12 +167,14 @@ const WhoWeWorkWithSection = () => {
         >
           {industries.map((industry) => {
             const isRealEstate = industry.title === 'Real Estate';
+            const isHealthcare = industry.title === 'Healthcare';
+            const isExpanded = isRealEstate || isHealthcare;
             
             return (
               <motion.div
                 key={industry.title}
                 variants={cardVariants}
-                className={`group relative ${isRealEstate ? 'lg:col-span-2 lg:row-span-2' : ''}`}
+                className={`group relative ${isExpanded ? 'lg:col-span-2 lg:row-span-2' : ''}`}
                 whileHover={{ y: -6, transition: { duration: 0.3, ease: [0.5, 0, 0, 1] } }}
               >
                 <div className="relative h-full rounded-2xl border border-border bg-background p-6 overflow-hidden">
@@ -208,6 +228,33 @@ const WhoWeWorkWithSection = () => {
                               </CarouselContent>
                             </Carousel>
                           </div>
+                        </>
+                      ) : isHealthcare ? (
+                        <>
+                          {/* Healthcare: Desktop 3-column grid */}
+                          <div className="hidden md:grid grid-cols-3 gap-4">
+                            {healthcareUseCases.map((useCase) => (
+                              <UseCaseMiniCard key={useCase.title} useCase={useCase} />
+                            ))}
+                          </div>
+                          
+                          {/* Healthcare: Mobile carousel */}
+                          <div className="md:hidden">
+                            <Carousel opts={{ align: 'start', dragFree: true }}>
+                              <CarouselContent className="-ml-3">
+                                {healthcareUseCases.map((useCase) => (
+                                  <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
+                                    <UseCaseMiniCard useCase={useCase} />
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                            </Carousel>
+                          </div>
+                          
+                          {/* Healthcare disclaimer */}
+                          <p className="text-[10px] text-muted-foreground/70 mt-4 italic">
+                            This supports intake and routing and does not replace clinical judgment.
+                          </p>
                         </>
                       ) : (
                         <>
