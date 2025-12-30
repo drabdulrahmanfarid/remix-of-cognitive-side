@@ -73,6 +73,34 @@ const financeUseCases: DetailedUseCase[] = [
   }
 ];
 
+const logisticsUseCases: DetailedUseCase[] = [
+  {
+    title: 'Supply Chain Control Tower (Instant Answers)',
+    description: 'A single operations view where your team can ask questions about shipments, delays, and performance—and get clear answers instantly, backed by your operational data.',
+    outcomes: ['Faster decisions', 'Fewer blind spots', 'Better KPI visibility', 'Less manual reporting']
+  },
+  {
+    title: 'Automated Order Intake (Email → Structured)',
+    description: 'Inbound orders arriving by email are automatically read, structured, and logged so nothing gets missed and ops teams receive clean order lines.',
+    outcomes: ['Faster processing', 'Fewer entry errors', 'Clear warehouse handoff', 'Higher throughput']
+  },
+  {
+    title: 'Route Time & Distance Calculator (ETA + Costs)',
+    description: 'Automatically calculates distance and driving time for transport lanes to improve ETAs, quoting, and cost simulations without manual lookups.',
+    outcomes: ['Faster quoting', 'More accurate ETAs', 'Better cost control', 'Standardized lane data']
+  },
+  {
+    title: 'Multi-Stop Pickup Planner (Optimize Stops)',
+    description: 'Multi-stop pickup requests are converted into an optimized stop sequence with a complete route plan and timing—ready to dispatch.',
+    outcomes: ['Fewer kilometers', 'Lower fuel/time', 'Better driver utilization', 'More reliable schedules']
+  },
+  {
+    title: 'Transport Request Management (Confirm + Enrich)',
+    description: 'Shipment requests are captured, key details extracted, route info added, and a professional confirmation is generated to reduce delays and back-and-forth.',
+    outcomes: ['Faster confirmations', 'Cleaner request data', 'Better customer experience', 'Strong audit trail']
+  }
+];
+
 const industries = [
   {
     title: 'Real Estate',
@@ -100,8 +128,8 @@ const industries = [
     useCases: ['Predictive Maintenance', 'Quality Control', 'Supply Chain']
   },
   {
-    title: 'Logistics',
-    subtitle: 'Route optimization and delivery prediction',
+    title: 'Logistics & Supply Chain',
+    subtitle: 'Control, speed, and visibility across orders, routes, and operations.',
     useCases: ['Route Planning', 'Delivery ETAs', 'Fleet Management']
   },
   {
@@ -192,7 +220,8 @@ const WhoWeWorkWithSection = () => {
             const isRealEstate = industry.title === 'Real Estate';
             const isHealthcare = industry.title === 'Healthcare';
             const isFinance = industry.title === 'Finance & Accounting';
-            const isExpanded = isRealEstate || isHealthcare || isFinance;
+            const isLogistics = industry.title === 'Logistics & Supply Chain';
+            const isExpanded = isRealEstate || isHealthcare || isFinance || isLogistics;
             
             return (
               <motion.div
@@ -294,6 +323,28 @@ const WhoWeWorkWithSection = () => {
                             <Carousel opts={{ align: 'start', dragFree: true }}>
                               <CarouselContent className="-ml-3">
                                 {financeUseCases.map((useCase) => (
+                                  <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
+                                    <UseCaseMiniCard useCase={useCase} />
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                            </Carousel>
+                          </div>
+                        </>
+                      ) : isLogistics ? (
+                        <>
+                          {/* Logistics: Desktop 3-column grid (3 top + 2 bottom) */}
+                          <div className="hidden md:grid grid-cols-3 gap-4">
+                            {logisticsUseCases.map((useCase) => (
+                              <UseCaseMiniCard key={useCase.title} useCase={useCase} />
+                            ))}
+                          </div>
+                          
+                          {/* Logistics: Mobile carousel */}
+                          <div className="md:hidden">
+                            <Carousel opts={{ align: 'start', dragFree: true }}>
+                              <CarouselContent className="-ml-3">
+                                {logisticsUseCases.map((useCase) => (
                                   <CarouselItem key={useCase.title} className="basis-[85%] pl-3">
                                     <UseCaseMiniCard useCase={useCase} />
                                   </CarouselItem>
