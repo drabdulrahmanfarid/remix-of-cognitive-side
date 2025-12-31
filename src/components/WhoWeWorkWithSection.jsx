@@ -173,7 +173,7 @@ const IndustryCard = ({
             <h3 className="text-2xl md:text-3xl font-bold text-primary mb-1">
               {industry.title}
             </h3>
-            <p className="text-base md:text-lg text-primary font-semibold leading-relaxed max-w-2xl text-justify">
+            <p className="text-base text-primary font-semibold leading-relaxed max-w-2xl text-justify md:text-base">
               {industry.subtitle}
             </p>
           </div>
