@@ -119,7 +119,7 @@ const industriesData = [{
   useCases: insuranceUseCases
 }, {
   title: "Restaurants",
-  subtitle: "From WhatsApp orders to reservations and feedback—run smoother with less manual work.",
+  subtitle: "WhatsApp orders to reservations and feedback—run smoother with less manual work.",
   useCases: restaurantsUseCases
 }];
 const UseCaseMiniCard = ({
