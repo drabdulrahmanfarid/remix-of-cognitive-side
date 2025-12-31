@@ -353,8 +353,8 @@ const IndustryCard = ({ industry, index, isInView }) => {
 
         <div className="relative z-10 p-6 md:p-8">
           {/* Header */}
-          <div className="mb-4">
-            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">
+          <div className="mb-2">
+            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-1">
               {industry.title}
             </h3>
             <p className="text-base md:text-lg text-primary font-semibold leading-relaxed max-w-2xl">
@@ -363,10 +363,10 @@ const IndustryCard = ({ industry, index, isInView }) => {
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-gradient-to-r from-accent/50 via-accent/20 to-transparent mb-4" />
+          <div className="h-px bg-gradient-to-r from-accent/50 via-accent/20 to-transparent mb-2" />
 
           {/* Use Cases Label */}
-          <span className="text-sm font-semibold tracking-wider uppercase text-accent mb-4 block">
+          <span className="text-sm font-semibold tracking-wider uppercase text-accent mb-3 block">
             Use Cases
           </span>
 
