@@ -4,10 +4,10 @@ import { usePerformance } from '@/hooks/usePerformance';
 import LightweightFlowOutline from './ui/LightweightFlowOutline';
 
 const FlowOutlineSection = () => {
-  const { tier } = usePerformance();
+  const { isLowEnd } = usePerformance();
   
-  // Use lightweight version for medium and low tier devices
-  if (tier === 'medium' || tier === 'low') {
+  // For low-end devices, use the lightweight version
+  if (isLowEnd) {
     return <LightweightFlowOutline />;
   }
   
