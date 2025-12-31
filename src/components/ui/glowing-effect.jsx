@@ -21,38 +21,12 @@ const GlowingEffect = memo(
     const lastPosition = useRef({ x: 0, y: 0 });
     const animationFrameRef = useRef(0);
 
-    // For low-end devices or disabled, render a simple static border
-    if (disabled || performanceTier === "low") {
-      return (
-        <div
-          className={cn(
-            "pointer-events-none absolute -inset-px rounded-[inherit] border border-border/30 opacity-100",
-            className
-          )}
-        />
-      );
-    }
+    // Determine if we should run the full interactive version
+    const isFullVersion = !disabled && performanceTier === "high";
 
-    // For medium-end devices, use CSS-only hover effect (no JS tracking)
-    if (performanceTier === "medium") {
-      return (
-        <div
-          className={cn(
-            "pointer-events-none absolute -inset-px rounded-[inherit] border border-border/20 opacity-0 transition-all duration-500",
-            "group-hover:opacity-100 group-hover:border-accent/40",
-            className
-          )}
-          style={{
-            background: `radial-gradient(circle at center, hsl(var(--accent) / 0.08) 0%, transparent 70%)`,
-          }}
-        />
-      );
-    }
-
-    // Full interactive version for high-end devices only
     const handleMove = useCallback(
       (e) => {
-        if (!containerRef.current) return;
+        if (!containerRef.current || !isFullVersion) return;
         if (animationFrameRef.current) {
           cancelAnimationFrame(animationFrameRef.current);
         }
@@ -99,10 +73,12 @@ const GlowingEffect = memo(
           });
         });
       },
-      [inactiveZone, proximity, movementDuration]
+      [inactiveZone, proximity, movementDuration, isFullVersion]
     );
 
     useEffect(() => {
+      if (!isFullVersion) return;
+      
       const handleScroll = () => handleMove();
       const handlePointerMove = (e) => handleMove(e);
       window.addEventListener("scroll", handleScroll, { passive: true });
@@ -116,8 +92,37 @@ const GlowingEffect = memo(
         window.removeEventListener("scroll", handleScroll);
         document.body.removeEventListener("pointermove", handlePointerMove);
       };
-    }, [handleMove]);
+    }, [handleMove, isFullVersion]);
 
+    // For low-end devices or disabled, render a simple static border
+    if (disabled || performanceTier === "low") {
+      return (
+        <div
+          className={cn(
+            "pointer-events-none absolute -inset-px rounded-[inherit] border border-border/30 opacity-100",
+            className
+          )}
+        />
+      );
+    }
+
+    // For medium-end devices, use CSS-only hover effect (no JS tracking)
+    if (performanceTier === "medium") {
+      return (
+        <div
+          className={cn(
+            "pointer-events-none absolute -inset-px rounded-[inherit] border border-border/20 opacity-0 transition-all duration-500",
+            "group-hover:opacity-100 group-hover:border-accent/40",
+            className
+          )}
+          style={{
+            background: `radial-gradient(circle at center, hsl(var(--accent) / 0.08) 0%, transparent 70%)`,
+          }}
+        />
+      );
+    }
+
+    // Full interactive version for high-end devices
     return (
       <div
         ref={containerRef}
