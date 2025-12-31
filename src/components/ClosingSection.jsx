@@ -86,7 +86,7 @@ const ClosingSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.5, 0, 0, 1] }}
-          className="text-lg text-primary/80 text-center max-w-2xl mx-auto mb-16"
+          className="text-lg text-primary font-medium text-center max-w-2xl mx-auto mb-16"
         >
           Have a project in mind? Let's create something exceptional together.
         </motion.p>
@@ -121,7 +121,7 @@ const ClosingSection = () => {
             </a>
 
             <div className="mt-6 pt-6 border-t border-border/50">
-              <p className="text-sm text-primary/70">
+              <p className="text-sm text-primary font-medium">
                 We typically respond within 24 hours during business days.
               </p>
             </div>

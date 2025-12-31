@@ -66,7 +66,7 @@ const WhatWeDoSection = () => {
         </motion.span>
 
         <ul className="grid md:grid-cols-3 gap-6 list-none p-0 m-0 mb-20">
-          {services.map((service, index) => <motion.li key={service.title} custom={index} initial="initial" animate={isInView ? "animate" : "initial"} variants={cardVariants} className="relative min-h-[16rem] list-none">
+          {services.map((service, index) => <motion.li key={service.title} custom={index} initial="initial" animate={isInView ? "animate" : "initial"} variants={cardVariants} className="relative list-none">
               <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
                 <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
                 <div className="group relative h-full flex flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] md:p-6">
@@ -83,7 +83,7 @@ const WhatWeDoSection = () => {
                   width: "40px"
                 }} />
 
-                    <p className="text-primary/80 leading-relaxed group-hover:text-primary transition-colors duration-300 text-base md:text-lg">
+                    <p className="text-primary font-medium leading-relaxed group-hover:text-primary transition-colors duration-300 text-base md:text-lg">
                       {service.description}
                     </p>
                   </div>
@@ -92,7 +92,7 @@ const WhatWeDoSection = () => {
                 opacity: 0,
                 x: -10
               }}>
-                    <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       Learn more
                     </span>
                     <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-300" />
@@ -134,14 +134,14 @@ const WhatWeDoSection = () => {
           duration: 0.6,
           delay: 0.5 + index * 0.1,
           ease: [0.5, 0, 0, 1]
-        }} className="relative min-h-[10rem]">
+        }} className="relative">
               <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
                 <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
                 <div className="h-full text-center p-8 rounded-xl bg-background border border-border/50">
                   <h4 className="text-xl font-bold text-primary mb-3">
                     {feature.title}
                   </h4>
-                  <p className="text-base text-primary/80 leading-relaxed">
+                  <p className="text-base text-primary font-medium leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
