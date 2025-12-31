@@ -46,9 +46,9 @@ const ClosingSection = () => {
       {/* Overlay for text readability */}
       <div className="absolute inset-0 bg-background/60" />
 
-      {/* Availability Status - Top Right */}
+      {/* Availability Status - Top Right on desktop, hidden on mobile */}
       <motion.div
-        className="absolute top-8 right-8 z-10 flex items-center gap-2"
+        className="absolute top-8 right-8 z-10 hidden sm:flex items-center gap-2"
         initial={{ opacity: 0, y: -20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
         transition={{ duration: 0.6, delay: 0.3, ease: [0.5, 0, 0, 1] }}
@@ -57,7 +57,7 @@ const ClosingSection = () => {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
         </span>
-        <span className="text-sm text-muted-foreground font-medium">
+        <span className="text-sm text-primary/80 font-medium">
           Available for projects
         </span>
       </motion.div>
@@ -86,7 +86,7 @@ const ClosingSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.5, 0, 0, 1] }}
-          className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-16"
+          className="text-lg text-primary/80 text-center max-w-2xl mx-auto mb-16"
         >
           Have a project in mind? Let's create something exceptional together.
         </motion.p>
@@ -121,7 +121,7 @@ const ClosingSection = () => {
             </a>
 
             <div className="mt-6 pt-6 border-t border-border/50">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-primary/70">
                 We typically respond within 24 hours during business days.
               </p>
             </div>

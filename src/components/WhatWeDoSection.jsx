@@ -83,7 +83,7 @@ const WhatWeDoSection = () => {
                   width: "40px"
                 }} />
 
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/70 transition-colors duration-300 text-base md:text-lg">
+                    <p className="text-primary/80 leading-relaxed group-hover:text-primary transition-colors duration-300 text-base md:text-lg">
                       {service.description}
                     </p>
                   </div>
@@ -141,7 +141,7 @@ const WhatWeDoSection = () => {
                   <h4 className="text-xl font-bold text-primary mb-3">
                     {feature.title}
                   </h4>
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                  <p className="text-base text-primary/80 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

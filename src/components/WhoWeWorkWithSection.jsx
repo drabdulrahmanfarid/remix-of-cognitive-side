@@ -302,7 +302,7 @@ const UseCaseMiniCard = ({ useCase }) => (
     <h4 className="text-lg font-semibold text-primary mb-3 leading-tight">
       {useCase.title}
     </h4>
-    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+    <p className="text-sm text-primary/80 leading-relaxed mb-4">
       {useCase.description}
     </p>
     <p className="text-sm text-accent">
@@ -357,7 +357,7 @@ const IndustryCard = ({ industry, index, isInView }) => {
             <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3">
               {industry.title}
             </h3>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            <p className="text-base md:text-lg text-primary/80 leading-relaxed max-w-2xl">
               {industry.subtitle}
             </p>
           </div>

@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "What industries do you specialize in?",
     answer:
-      "We work across multiple sectors including finance, healthcare, e-commerce, manufacturing, logistics, insurance, real estate, and retail. Our AI solutions are adaptable to various industry-specific requirements.",
+      "We work across multiple sectors including Real Estate, Finance and Accounting, Healthcare, Logistics and Supply Chain, Insurance, and Restaurants. Our AI solutions are adaptable to various industry-specific requirements.",
   },
   {
     question: "How do you ensure data security and privacy?",
@@ -82,7 +82,7 @@ const FAQSection = () => {
                 <AccordionTrigger className="text-left text-primary font-semibold hover:text-accent transition-colors py-5">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
+                <AccordionContent className="text-primary/80 pb-5">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
