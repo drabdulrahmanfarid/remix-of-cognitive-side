@@ -67,9 +67,9 @@ const WhatWeDoSection = () => {
 
         <ul className="grid md:grid-cols-3 gap-6 list-none p-0 m-0 mb-20">
           {services.map((service, index) => <motion.li key={service.title} custom={index} initial="initial" animate={isInView ? "animate" : "initial"} variants={cardVariants} className="relative list-none">
-              <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
+              <div className="relative rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
                 <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                <div className="group relative h-full flex flex-col gap-5 overflow-hidden rounded-xl border-[0.75px] border-border bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] md:p-6">
+                <div className="group relative flex flex-col gap-5 overflow-hidden rounded-xl border-[0.75px] border-border bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] md:p-6">
                   <div className="relative z-10">
                     <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3 group-hover:text-glow transition-all duration-300">
                       {service.title}
@@ -126,9 +126,9 @@ const WhatWeDoSection = () => {
           delay: 0.5 + index * 0.1,
           ease: [0.5, 0, 0, 1]
         }} className="relative">
-              <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
+              <div className="relative rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
                 <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
-                <div className="h-full text-center p-8 rounded-xl bg-background border border-border/50">
+                <div className="text-center p-8 rounded-xl bg-background border border-border/50">
                   <h4 className="text-xl font-bold text-primary mb-3">
                     {feature.title}
                   </h4>
