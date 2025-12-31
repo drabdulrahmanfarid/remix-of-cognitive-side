@@ -160,6 +160,18 @@
   --ease-premium: cubic-bezier(0.5, 0, 0, 1);
 }
 
+/* GPU acceleration utilities for smoother animations */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce paint complexity on animated elements */
+.paint-optimized {
+  contain: layout style paint;
+}
+
 /* Animated gradient border */
 @keyframes border-glow {
   0%, 100% { opacity: 0.3; }
