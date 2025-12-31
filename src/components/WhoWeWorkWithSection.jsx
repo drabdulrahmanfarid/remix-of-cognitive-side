@@ -274,16 +274,6 @@ const industries = [
     useCases: ["Diagnostics", "Patient Flow", "Resource Planning"],
   },
   {
-    title: "E-commerce",
-    subtitle: "Personalized shopping and inventory intelligence",
-    useCases: ["Recommendations", "Demand Forecasting", "Price Optimization"],
-  },
-  {
-    title: "Manufacturing",
-    subtitle: "Predictive maintenance and quality control",
-    useCases: ["Predictive Maintenance", "Quality Control", "Supply Chain"],
-  },
-  {
     title: "Logistics & Supply Chain",
     subtitle:
       "Control, speed, and visibility across orders, routes, and operations.",
@@ -301,21 +291,16 @@ const industries = [
       "From WhatsApp orders to reservations and feedback—run smoother with less manual work.",
     useCases: ["Reservations", "Order Taking", "Feedback Collection"],
   },
-  {
-    title: "Retail",
-    subtitle: "Customer analytics and inventory management",
-    useCases: ["Customer Insights", "Stock Optimization", "Sales Forecasting"],
-  },
 ];
 const UseCaseMiniCard = ({ useCase }) => (
-  <div className="p-4 rounded-xl bg-secondary/40 border border-border/40 h-full">
-    <h4 className="text-sm font-semibold text-primary mb-2 leading-tight">
+  <div className="p-5 rounded-xl bg-secondary/40 border border-border/40 h-full">
+    <h4 className="text-base font-semibold text-primary mb-2 leading-tight">
       {useCase.title}
     </h4>
-    <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+    <p className="text-sm text-muted-foreground leading-relaxed mb-3">
       {useCase.description}
     </p>
-    <p className="text-xs text-accent/80">
+    <p className="text-sm text-accent/80">
       <span className="font-medium">Outcomes:</span>{" "}
       {useCase.outcomes.join(" • ")}
     </p>
