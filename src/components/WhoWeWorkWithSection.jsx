@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+
 const realEstateUseCases = [
   {
     title: "AI Property Concierge (Match + Book Viewings)",
@@ -48,6 +49,7 @@ const realEstateUseCases = [
     ],
   },
 ];
+
 const healthcareUseCases = [
   {
     title: "AI Symptom Pre-Screening + Doctor Recommendations",
@@ -83,6 +85,7 @@ const healthcareUseCases = [
     ],
   },
 ];
+
 const financeUseCases = [
   {
     title: "AI Finance Desk (CFO-Level Support)",
@@ -129,6 +132,7 @@ const financeUseCases = [
     ],
   },
 ];
+
 const logisticsUseCases = [
   {
     title: "Supply Chain Control Tower (Instant Answers)",
@@ -186,6 +190,7 @@ const logisticsUseCases = [
     ],
   },
 ];
+
 const insuranceUseCases = [
   {
     title: "Insurance Market Intelligence (News + Signals)",
@@ -210,6 +215,7 @@ const insuranceUseCases = [
     ],
   },
 ];
+
 const restaurantsUseCases = [
   {
     title: "Smart Reservation Handling (Book / Change / Cancel)",
@@ -256,79 +262,149 @@ const restaurantsUseCases = [
     ],
   },
 ];
-const industries = [
+
+const industriesData = [
   {
     title: "Real Estate",
-    subtitle: "Smart property insights and automated valuations",
-    useCases: ["Property Valuation", "Lead Scoring", "Market Analysis"],
+    subtitle: "Smart property insights, automated lead handling, and seamless tenant management.",
+    useCases: realEstateUseCases,
   },
   {
     title: "Finance & Accounting",
-    subtitle:
-      "Reliable reporting, cash visibility, and controlled spending—without manual chasing.",
-    useCases: ["Risk Analysis", "Fraud Detection", "Portfolio Optimization"],
+    subtitle: "Reliable reporting, cash visibility, and controlled spending—without manual chasing.",
+    useCases: financeUseCases,
   },
   {
     title: "Healthcare",
-    subtitle: "AI-powered diagnostics and patient care optimization",
-    useCases: ["Diagnostics", "Patient Flow", "Resource Planning"],
+    subtitle: "AI-powered patient intake, smart routing, and streamlined clinic operations.",
+    useCases: healthcareUseCases,
+    disclaimer: "This supports intake and routing and does not replace clinical judgment.",
   },
   {
     title: "Logistics & Supply Chain",
-    subtitle:
-      "Control, speed, and visibility across orders, routes, and operations.",
-    useCases: ["Route Planning", "Delivery ETAs", "Fleet Management"],
+    subtitle: "Control, speed, and visibility across orders, routes, and operations.",
+    useCases: logisticsUseCases,
   },
   {
     title: "Insurance",
-    subtitle:
-      "Faster submissions, better market visibility, and cleaner operations.",
-    useCases: ["Claims Processing", "Risk Assessment", "Fraud Detection"],
+    subtitle: "Faster submissions, better market visibility, and cleaner operations.",
+    useCases: insuranceUseCases,
   },
   {
     title: "Restaurants",
-    subtitle:
-      "From WhatsApp orders to reservations and feedback—run smoother with less manual work.",
-    useCases: ["Reservations", "Order Taking", "Feedback Collection"],
+    subtitle: "From WhatsApp orders to reservations and feedback—run smoother with less manual work.",
+    useCases: restaurantsUseCases,
   },
 ];
+
 const UseCaseMiniCard = ({ useCase }) => (
-  <div className="p-5 rounded-xl bg-secondary/40 border border-border/40 h-full">
-    <h4 className="text-base font-semibold text-primary mb-2 leading-tight">
+  <div className="p-6 rounded-xl bg-secondary/50 border border-border/40 h-full hover:bg-secondary/70 transition-colors duration-300">
+    <h4 className="text-lg font-semibold text-primary mb-3 leading-tight">
       {useCase.title}
     </h4>
-    <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
       {useCase.description}
     </p>
-    <p className="text-sm text-accent/80">
-      <span className="font-medium">Outcomes:</span>{" "}
+    <p className="text-sm text-accent">
+      <span className="font-semibold">Outcomes:</span>{" "}
       {useCase.outcomes.join(" • ")}
     </p>
   </div>
 );
-const WhoWeWorkWithSection = () => {
-  const { ref, isInView } = useInView({ threshold: 0.2 });
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+
+const IndustryCard = ({ industry, index, isInView }) => {
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.7,
+        delay: index * 0.1,
         ease: [0.5, 0, 0, 1],
       },
     },
   };
+
+  const getGridCols = (count) => {
+    if (count === 2) return "md:grid-cols-2";
+    if (count === 3) return "md:grid-cols-3";
+    if (count === 4) return "md:grid-cols-2 lg:grid-cols-4";
+    if (count === 5) return "md:grid-cols-2 lg:grid-cols-3";
+    return "md:grid-cols-2";
+  };
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      className="w-full"
+    >
+      <div className="relative rounded-2xl border border-border bg-background overflow-hidden">
+        <GlowingEffect
+          spread={80}
+          glow={true}
+          disabled={false}
+          proximity={100}
+          inactiveZone={0.01}
+          borderWidth={1}
+        />
+
+        <div className="relative z-10 p-8 md:p-10 lg:p-12">
+          {/* Header */}
+          <div className="mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3">
+              {industry.title}
+            </h3>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              {industry.subtitle}
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-accent/50 via-accent/20 to-transparent mb-8" />
+
+          {/* Use Cases Label */}
+          <span className="text-sm font-semibold tracking-wider uppercase text-accent mb-6 block">
+            Use Cases
+          </span>
+
+          {/* Desktop Grid */}
+          <div className={`hidden md:grid ${getGridCols(industry.useCases.length)} gap-5`}>
+            {industry.useCases.map((useCase) => (
+              <UseCaseMiniCard key={useCase.title} useCase={useCase} />
+            ))}
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden">
+            <Carousel opts={{ align: "start", dragFree: true }}>
+              <CarouselContent className="-ml-4">
+                {industry.useCases.map((useCase) => (
+                  <CarouselItem key={useCase.title} className="basis-[85%] pl-4">
+                    <UseCaseMiniCard useCase={useCase} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+
+          {/* Disclaimer if exists */}
+          {industry.disclaimer && (
+            <p className="text-xs text-muted-foreground/70 mt-6 italic">
+              {industry.disclaimer}
+            </p>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const WhoWeWorkWithSection = () => {
+  const { ref, isInView } = useInView({ threshold: 0.1 });
+
   return (
     <section
       ref={ref}
@@ -338,7 +414,8 @@ const WhoWeWorkWithSection = () => {
       <div className="absolute inset-0 grid-pattern opacity-40" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        {/* Section Header */}
+        <div className="text-center mb-20">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -359,284 +436,20 @@ const WhoWeWorkWithSection = () => {
           </motion.p>
         </div>
 
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {industries.map((industry) => {
-            const isRealEstate = industry.title === "Real Estate";
-            const isHealthcare = industry.title === "Healthcare";
-            const isFinance = industry.title === "Finance & Accounting";
-            const isLogistics = industry.title === "Logistics & Supply Chain";
-            const isInsurance = industry.title === "Insurance";
-            const isRestaurants = industry.title === "Restaurants";
-            const isExpanded =
-              isRealEstate ||
-              isHealthcare ||
-              isFinance ||
-              isLogistics ||
-              isInsurance ||
-              isRestaurants;
-            return (
-              <motion.div
-                key={industry.title}
-                variants={cardVariants}
-                className={`group relative ${isExpanded ? "lg:col-span-2 lg:row-span-2" : ""}`}
-                whileHover={{
-                  y: -6,
-                  transition: { duration: 0.3, ease: [0.5, 0, 0, 1] },
-                }}
-              >
-                <div className="relative h-full rounded-2xl border border-border bg-background p-6 overflow-hidden">
-                  <GlowingEffect
-                    spread={60}
-                    glow={true}
-                    disabled={false}
-                    proximity={80}
-                    inactiveZone={0.01}
-                    borderWidth={1}
-                  />
-
-                  <div className="relative z-10">
-                    {/* Title */}
-                    <h3 className="text-xl font-semibold text-primary mb-2">
-                      {industry.title}
-                    </h3>
-
-                    {/* Subtitle */}
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                      {industry.subtitle}
-                    </p>
-
-                    {/* Divider */}
-                    <div className="h-px bg-accent/30 mb-4" />
-
-                    {/* Use Cases Section */}
-                    <div>
-                      <span className="text-xs font-medium tracking-wider uppercase text-accent/80 mb-3 block">
-                        Use Cases
-                      </span>
-
-                      {isRealEstate ? (
-                        <>
-                          {/* Real Estate: Desktop 2x2 grid */}
-                          <div className="hidden md:grid grid-cols-2 gap-4">
-                            {realEstateUseCases.map((useCase) => (
-                              <UseCaseMiniCard
-                                key={useCase.title}
-                                useCase={useCase}
-                              />
-                            ))}
-                          </div>
-
-                          {/* Real Estate: Mobile carousel */}
-                          <div className="md:hidden">
-                            <Carousel opts={{ align: "start", dragFree: true }}>
-                              <CarouselContent className="-ml-3">
-                                {realEstateUseCases.map((useCase) => (
-                                  <CarouselItem
-                                    key={useCase.title}
-                                    className="basis-[85%] pl-3"
-                                  >
-                                    <UseCaseMiniCard useCase={useCase} />
-                                  </CarouselItem>
-                                ))}
-                              </CarouselContent>
-                            </Carousel>
-                          </div>
-                        </>
-                      ) : isHealthcare ? (
-                        <>
-                          {/* Healthcare: Desktop 3-column grid */}
-                          <div className="hidden md:grid grid-cols-3 gap-4">
-                            {healthcareUseCases.map((useCase) => (
-                              <UseCaseMiniCard
-                                key={useCase.title}
-                                useCase={useCase}
-                              />
-                            ))}
-                          </div>
-
-                          {/* Healthcare: Mobile carousel */}
-                          <div className="md:hidden">
-                            <Carousel opts={{ align: "start", dragFree: true }}>
-                              <CarouselContent className="-ml-3">
-                                {healthcareUseCases.map((useCase) => (
-                                  <CarouselItem
-                                    key={useCase.title}
-                                    className="basis-[85%] pl-3"
-                                  >
-                                    <UseCaseMiniCard useCase={useCase} />
-                                  </CarouselItem>
-                                ))}
-                              </CarouselContent>
-                            </Carousel>
-                          </div>
-
-                          {/* Healthcare disclaimer */}
-                          <p className="text-[10px] text-muted-foreground/70 mt-4 italic">
-                            This supports intake and routing and does not
-                            replace clinical judgment.
-                          </p>
-                        </>
-                      ) : isFinance ? (
-                        <>
-                          {/* Finance: Desktop 2x2 grid */}
-                          <div className="hidden md:grid grid-cols-2 gap-4">
-                            {financeUseCases.map((useCase) => (
-                              <UseCaseMiniCard
-                                key={useCase.title}
-                                useCase={useCase}
-                              />
-                            ))}
-                          </div>
-
-                          {/* Finance: Mobile carousel */}
-                          <div className="md:hidden">
-                            <Carousel opts={{ align: "start", dragFree: true }}>
-                              <CarouselContent className="-ml-3">
-                                {financeUseCases.map((useCase) => (
-                                  <CarouselItem
-                                    key={useCase.title}
-                                    className="basis-[85%] pl-3"
-                                  >
-                                    <UseCaseMiniCard useCase={useCase} />
-                                  </CarouselItem>
-                                ))}
-                              </CarouselContent>
-                            </Carousel>
-                          </div>
-                        </>
-                      ) : isLogistics ? (
-                        <>
-                          {/* Logistics: Desktop 3-column grid (3 top + 2 bottom) */}
-                          <div className="hidden md:grid grid-cols-3 gap-4">
-                            {logisticsUseCases.map((useCase) => (
-                              <UseCaseMiniCard
-                                key={useCase.title}
-                                useCase={useCase}
-                              />
-                            ))}
-                          </div>
-
-                          {/* Logistics: Mobile carousel */}
-                          <div className="md:hidden">
-                            <Carousel opts={{ align: "start", dragFree: true }}>
-                              <CarouselContent className="-ml-3">
-                                {logisticsUseCases.map((useCase) => (
-                                  <CarouselItem
-                                    key={useCase.title}
-                                    className="basis-[85%] pl-3"
-                                  >
-                                    <UseCaseMiniCard useCase={useCase} />
-                                  </CarouselItem>
-                                ))}
-                              </CarouselContent>
-                            </Carousel>
-                          </div>
-                        </>
-                      ) : isInsurance ? (
-                        <>
-                          {/* Insurance: Desktop 2-column grid */}
-                          <div className="hidden md:grid grid-cols-2 gap-4">
-                            {insuranceUseCases.map((useCase) => (
-                              <UseCaseMiniCard
-                                key={useCase.title}
-                                useCase={useCase}
-                              />
-                            ))}
-                          </div>
-
-                          {/* Insurance: Mobile carousel */}
-                          <div className="md:hidden">
-                            <Carousel opts={{ align: "start", dragFree: true }}>
-                              <CarouselContent className="-ml-3">
-                                {insuranceUseCases.map((useCase) => (
-                                  <CarouselItem
-                                    key={useCase.title}
-                                    className="basis-[85%] pl-3"
-                                  >
-                                    <UseCaseMiniCard useCase={useCase} />
-                                  </CarouselItem>
-                                ))}
-                              </CarouselContent>
-                            </Carousel>
-                          </div>
-                        </>
-                      ) : isRestaurants ? (
-                        <>
-                          {/* Restaurants: Desktop 2x2 grid */}
-                          <div className="hidden md:grid grid-cols-2 gap-4">
-                            {restaurantsUseCases.map((useCase) => (
-                              <UseCaseMiniCard
-                                key={useCase.title}
-                                useCase={useCase}
-                              />
-                            ))}
-                          </div>
-
-                          {/* Restaurants: Mobile carousel */}
-                          <div className="md:hidden">
-                            <Carousel opts={{ align: "start", dragFree: true }}>
-                              <CarouselContent className="-ml-3">
-                                {restaurantsUseCases.map((useCase) => (
-                                  <CarouselItem
-                                    key={useCase.title}
-                                    className="basis-[85%] pl-3"
-                                  >
-                                    <UseCaseMiniCard useCase={useCase} />
-                                  </CarouselItem>
-                                ))}
-                              </CarouselContent>
-                            </Carousel>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          {/* Other industries: Desktop flex wrap */}
-                          <div className="hidden md:flex md:flex-wrap gap-2">
-                            {industry.useCases.slice(0, 3).map((useCase) => (
-                              <span
-                                key={useCase}
-                                className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90"
-                              >
-                                {useCase}
-                              </span>
-                            ))}
-                          </div>
-
-                          {/* Other industries: Mobile carousel */}
-                          <div className="md:hidden">
-                            <Carousel opts={{ align: "start", dragFree: true }}>
-                              <CarouselContent className="-ml-2">
-                                {industry.useCases
-                                  .slice(0, 3)
-                                  .map((useCase) => (
-                                    <CarouselItem
-                                      key={useCase}
-                                      className="basis-auto pl-2"
-                                    >
-                                      <span className="px-3 py-1.5 text-xs font-medium text-primary/70 bg-secondary/60 rounded-full border border-border/50 transition-colors duration-200 group-hover:bg-secondary group-hover:text-primary/90 inline-block">
-                                        {useCase}
-                                      </span>
-                                    </CarouselItem>
-                                  ))}
-                              </CarouselContent>
-                            </Carousel>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        {/* Industry Cards - Full Width Stack */}
+        <div className="flex flex-col gap-8">
+          {industriesData.map((industry, index) => (
+            <IndustryCard
+              key={industry.title}
+              industry={industry}
+              index={index}
+              isInView={isInView}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
 };
+
 export default WhoWeWorkWithSection;
