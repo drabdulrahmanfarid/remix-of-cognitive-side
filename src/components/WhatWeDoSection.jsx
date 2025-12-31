@@ -6,7 +6,7 @@ const services = [{
   title: "Custom AI Software",
   description: "We develop tailor-made AI solutions designed specifically for your business needs, from intelligent automation to predictive analytics."
 }, {
-  title: "Business Consulting",
+  title: "AI Enablement & Advisory",
   description: "Strategic AI consulting and workshops to help you identify opportunities and implement AI-driven transformation in your organization."
 }, {
   title: "AI Agents Development",
