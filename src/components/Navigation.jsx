@@ -13,9 +13,6 @@ const navLinks = [{
   label: "Benefits",
   href: "#benefits"
 }, {
-  label: "Testimonials",
-  href: "#testimonials"
-}, {
   label: "FAQ",
   href: "#faq"
 }, {
@@ -70,8 +67,8 @@ const Navigation = () => {
                   </motion.a>)}
               </div>
 
-              {/* Stats badge replacing contact button */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-card/50">
+              {/* Stats badge replacing contact button - hidden on mobile */}
+              <div className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-card/50">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>

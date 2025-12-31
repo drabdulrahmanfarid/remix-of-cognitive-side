@@ -61,7 +61,7 @@ const HeroSection = () => {
           duration: isLowEnd ? 0.4 : 0.8,
           delay: 0.3,
           ease: [0.5, 0, 0, 1]
-        }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-primary mb-8 text-center">In-House Artificial Intelligence & Automation</motion.h1>
+        }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-primary mb-8 text-center text-balance leading-tight">In-House Artificial Intelligence & Automation</motion.h1>
 
           <motion.p initial={{
           opacity: 0,
