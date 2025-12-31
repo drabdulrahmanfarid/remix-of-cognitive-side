@@ -25,7 +25,7 @@ const Navigation = () => {
     const handleScroll = () => {
       const heroHeight = window.innerHeight;
       const isMobile = window.innerWidth < 768;
-      setIsVisible(window.scrollY > heroHeight * (isMobile ? 0.3 : 0.8));
+      setIsVisible(window.scrollY > heroHeight * (isMobile ? 0.15 : 0.8));
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
