@@ -2,6 +2,7 @@
 import { memo, useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { animate } from "motion/react";
+
 const GlowingEffect = memo(
   ({
     blur = 0,
@@ -14,10 +15,41 @@ const GlowingEffect = memo(
     movementDuration = 2,
     borderWidth = 1,
     disabled = true,
+    performanceTier = "high",
   }) => {
     const containerRef = useRef(null);
     const lastPosition = useRef({ x: 0, y: 0 });
     const animationFrameRef = useRef(0);
+
+    // For low-end devices or disabled, render a simple static border
+    if (disabled || performanceTier === "low") {
+      return (
+        <div
+          className={cn(
+            "pointer-events-none absolute -inset-px rounded-[inherit] border border-border/30 opacity-100",
+            className
+          )}
+        />
+      );
+    }
+
+    // For medium-end devices, use CSS-only hover effect (no JS tracking)
+    if (performanceTier === "medium") {
+      return (
+        <div
+          className={cn(
+            "pointer-events-none absolute -inset-px rounded-[inherit] border border-border/20 opacity-0 transition-all duration-500",
+            "group-hover:opacity-100 group-hover:border-accent/40",
+            className
+          )}
+          style={{
+            background: `radial-gradient(circle at center, hsl(var(--accent) / 0.08) 0%, transparent 70%)`,
+          }}
+        />
+      );
+    }
+
+    // Full interactive version for high-end devices only
     const handleMove = useCallback(
       (e) => {
         if (!containerRef.current) return;
@@ -36,7 +68,7 @@ const GlowingEffect = memo(
           const center = [left + width * 0.5, top + height * 0.5];
           const distanceFromCenter = Math.hypot(
             mouseX - center[0],
-            mouseY - center[1],
+            mouseY - center[1]
           );
           const inactiveRadius = 0.5 * Math.min(width, height) * inactiveZone;
           if (distanceFromCenter < inactiveRadius) {
@@ -67,10 +99,10 @@ const GlowingEffect = memo(
           });
         });
       },
-      [inactiveZone, proximity, movementDuration],
+      [inactiveZone, proximity, movementDuration]
     );
+
     useEffect(() => {
-      if (disabled) return;
       const handleScroll = () => handleMove();
       const handlePointerMove = (e) => handleMove(e);
       window.addEventListener("scroll", handleScroll, { passive: true });
@@ -84,71 +116,61 @@ const GlowingEffect = memo(
         window.removeEventListener("scroll", handleScroll);
         document.body.removeEventListener("pointermove", handlePointerMove);
       };
-    }, [handleMove, disabled]);
+    }, [handleMove]);
+
     return (
-      <>
+      <div
+        ref={containerRef}
+        style={{
+          "--blur": `${blur}px`,
+          "--spread": spread,
+          "--start": "0",
+          "--active": "0",
+          "--glowingeffect-border-width": `${borderWidth}px`,
+          "--repeating-conic-gradient-times": "5",
+          "--gradient":
+            variant === "white"
+              ? `repeating-conic-gradient(
+                    from 236.84deg at 50% 50%,
+                    var(--black),
+                    var(--black) calc(25% / var(--repeating-conic-gradient-times))
+                  )`
+              : `radial-gradient(circle, hsla(43, 90%, 38%, 0.6) 10%, hsla(43, 90%, 38%, 0) 20%),
+                   radial-gradient(circle at 40% 40%, hsla(43, 70%, 50%, 0.5) 5%, hsla(43, 70%, 50%, 0) 15%),
+                   radial-gradient(circle at 60% 60%, hsla(25, 45%, 55%, 0.5) 10%, hsla(25, 45%, 55%, 0) 20%),
+                   radial-gradient(circle at 40% 60%, hsla(43, 70%, 50%, 0.5) 10%, hsla(43, 70%, 50%, 0) 20%),
+                   repeating-conic-gradient(
+                     from 236.84deg at 50% 50%,
+                     hsla(43, 90%, 38%, 1) 0%,
+                     hsla(43, 70%, 50%, 1) calc(25% / var(--repeating-conic-gradient-times)),
+                     hsla(25, 45%, 55%, 1) calc(50% / var(--repeating-conic-gradient-times)),
+                     hsla(43, 70%, 50%, 1) calc(75% / var(--repeating-conic-gradient-times)),
+                     hsla(43, 90%, 38%, 1) calc(100% / var(--repeating-conic-gradient-times))
+                   )`,
+        }}
+        className={cn(
+          "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",
+          glow && "opacity-100",
+          blur > 0 && "blur-[var(--blur)]",
+          className
+        )}
+      >
         <div
           className={cn(
-            "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
-            glow && "opacity-100",
-            variant === "white" && "border-white",
-            disabled && "!block",
+            "glow",
+            "rounded-[inherit]",
+            'after:content-[""] after:rounded-[inherit] after:absolute after:inset-[calc(-1*var(--glowingeffect-border-width))]',
+            "after:[border:var(--glowingeffect-border-width)_solid_transparent]",
+            "after:[background:var(--gradient)] after:[background-attachment:fixed]",
+            "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
+            "after:[mask-clip:padding-box,border-box]",
+            "after:[mask-composite:intersect]",
+            "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]"
           )}
         />
-        <div
-          ref={containerRef}
-          style={{
-            "--blur": `${blur}px`,
-            "--spread": spread,
-            "--start": "0",
-            "--active": "0",
-            "--glowingeffect-border-width": `${borderWidth}px`,
-            "--repeating-conic-gradient-times": "5",
-            "--gradient":
-              variant === "white"
-                ? `repeating-conic-gradient(
-                      from 236.84deg at 50% 50%,
-                      var(--black),
-                      var(--black) calc(25% / var(--repeating-conic-gradient-times))
-                    )`
-                : `radial-gradient(circle, hsla(43, 90%, 38%, 0.6) 10%, hsla(43, 90%, 38%, 0) 20%),
-                     radial-gradient(circle at 40% 40%, hsla(43, 70%, 50%, 0.5) 5%, hsla(43, 70%, 50%, 0) 15%),
-                     radial-gradient(circle at 60% 60%, hsla(25, 45%, 55%, 0.5) 10%, hsla(25, 45%, 55%, 0) 20%),
-                     radial-gradient(circle at 40% 60%, hsla(43, 70%, 50%, 0.5) 10%, hsla(43, 70%, 50%, 0) 20%),
-                     repeating-conic-gradient(
-                       from 236.84deg at 50% 50%,
-                       hsla(43, 90%, 38%, 1) 0%,
-                       hsla(43, 70%, 50%, 1) calc(25% / var(--repeating-conic-gradient-times)),
-                       hsla(25, 45%, 55%, 1) calc(50% / var(--repeating-conic-gradient-times)),
-                       hsla(43, 70%, 50%, 1) calc(75% / var(--repeating-conic-gradient-times)),
-                       hsla(43, 90%, 38%, 1) calc(100% / var(--repeating-conic-gradient-times))
-                     )`,
-          }}
-          className={cn(
-            "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",
-            glow && "opacity-100",
-            blur > 0 && "blur-[var(--blur)]",
-            className,
-            disabled && "!hidden",
-          )}
-        >
-          <div
-            className={cn(
-              "glow",
-              "rounded-[inherit]",
-              'after:content-[""] after:rounded-[inherit] after:absolute after:inset-[calc(-1*var(--glowingeffect-border-width))]',
-              "after:[border:var(--glowingeffect-border-width)_solid_transparent]",
-              "after:[background:var(--gradient)] after:[background-attachment:fixed]",
-              "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
-              "after:[mask-clip:padding-box,border-box]",
-              "after:[mask-composite:intersect]",
-              "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]",
-            )}
-          />
-        </div>
-      </>
+      </div>
     );
-  },
+  }
 );
 GlowingEffect.displayName = "GlowingEffect";
 export { GlowingEffect };
