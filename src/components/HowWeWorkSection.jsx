@@ -166,7 +166,7 @@ const HowWeWorkSection = () => {
                 <h3 className="text-lg font-semibold text-primary mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-primary/80 leading-relaxed">
+                <p className="text-sm text-primary font-medium leading-relaxed">
                   {step.description}
                 </p>
               </motion.div>
@@ -242,7 +242,7 @@ const HowWeWorkSection = () => {
                   <h3 className="text-lg font-semibold text-primary mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-primary/80 leading-relaxed">
+                  <p className="text-sm text-primary font-medium leading-relaxed">
                     {step.description}
                   </p>
                 </div>

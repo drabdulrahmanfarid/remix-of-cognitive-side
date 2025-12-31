@@ -299,14 +299,14 @@ const industriesData = [
 
 const UseCaseMiniCard = ({ useCase }) => (
   <div className="p-6 rounded-xl bg-secondary/50 border border-border/40 h-full hover:bg-secondary/70 transition-colors duration-300">
-    <h4 className="text-lg font-semibold text-primary mb-3 leading-tight">
+    <h4 className="text-lg font-bold text-primary mb-3 leading-tight">
       {useCase.title}
     </h4>
-    <p className="text-sm text-primary/80 leading-relaxed mb-4">
+    <p className="text-sm text-primary font-medium leading-relaxed mb-4">
       {useCase.description}
     </p>
-    <p className="text-sm text-accent">
-      <span className="font-semibold">Outcomes:</span>{" "}
+    <p className="text-sm text-accent font-semibold">
+      <span className="font-bold">Outcomes:</span>{" "}
       {useCase.outcomes.join(" • ")}
     </p>
   </div>
@@ -357,7 +357,7 @@ const IndustryCard = ({ industry, index, isInView }) => {
             <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3">
               {industry.title}
             </h3>
-            <p className="text-base md:text-lg text-primary/80 leading-relaxed max-w-2xl">
+            <p className="text-base md:text-lg text-primary font-semibold leading-relaxed max-w-2xl">
               {industry.subtitle}
             </p>
           </div>
@@ -429,7 +429,7 @@ const WhoWeWorkWithSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.5, 0, 0, 1] }}
-            className="text-xl sm:text-2xl leading-relaxed text-primary font-semibold max-w-3xl mx-auto"
+            className="text-xl sm:text-2xl leading-relaxed text-primary font-bold max-w-3xl mx-auto"
           >
             We partner with forward-thinking organizations across diverse
             industries to implement AI-driven solutions.

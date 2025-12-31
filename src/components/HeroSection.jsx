@@ -73,7 +73,7 @@ const HeroSection = () => {
           duration: isLowEnd ? 0.4 : 0.8,
           delay: 0.5,
           ease: [0.5, 0, 0, 1]
-        }} className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-6 font-semibold text-primary">We help businesses scale faster by building custom AI systems that automate operations, reduce costs, and unlock growth</motion.p>
+        }} className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-6 font-bold text-primary">We help businesses scale faster by building custom AI systems that automate operations, reduce costs, and unlock growth</motion.p>
 
           <motion.p className="text-base tracking-widest uppercase text-primary/80 mb-4 font-bold" initial={{
           opacity: 0,
