@@ -47,7 +47,7 @@ const HeroSection = () => {
           duration: isLowEnd ? 0.4 : 0.8,
           delay: 0.1,
           ease: [0.5, 0, 0, 1]
-        }} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-primary mb-6 text-center whitespace-nowrap">
+        }} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-primary mb-6 text-center whitespace-nowrap drop-shadow-[0_2px_4px_rgba(92,74,61,0.3)]">
             Cognitive Side
           </motion.p>
 
@@ -61,7 +61,7 @@ const HeroSection = () => {
           duration: isLowEnd ? 0.4 : 0.8,
           delay: 0.3,
           ease: [0.5, 0, 0, 1]
-        }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-primary mb-8 text-center text-balance leading-tight">In-House Artificial Intelligence & Automation</motion.h1>
+        }} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-primary mb-8 text-center text-balance leading-tight drop-shadow-[0_1px_3px_rgba(92,74,61,0.25)]">In-House Artificial Intelligence & Automation</motion.h1>
 
           <motion.p initial={{
           opacity: 0,
@@ -73,9 +73,9 @@ const HeroSection = () => {
           duration: isLowEnd ? 0.4 : 0.8,
           delay: 0.5,
           ease: [0.5, 0, 0, 1]
-        }} className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-6 font-bold text-primary">We help businesses scale faster by building custom AI systems that automate operations, reduce costs, and unlock growth</motion.p>
+        }} className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-6 font-bold text-primary drop-shadow-[0_1px_2px_rgba(92,74,61,0.2)]">We help businesses scale faster by building custom AI systems that automate operations, reduce costs, and unlock growth</motion.p>
 
-          <motion.p className="text-base tracking-widest uppercase text-primary/80 mb-4 font-bold" initial={{
+          <motion.p className="text-base tracking-widest uppercase text-primary mb-4 font-bold drop-shadow-[0_1px_2px_rgba(92,74,61,0.15)]" initial={{
           opacity: 0,
           y: isLowEnd ? 10 : 20
         }} animate={{

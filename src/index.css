@@ -150,6 +150,11 @@
   text-shadow: 0 0 60px hsl(var(--accent) / 0.4), 0 0 100px hsl(var(--primary) / 0.2);
 }
 
+/* Text with readable shadow for contrast */
+.text-readable {
+  text-shadow: 0 1px 3px rgba(92, 74, 61, 0.2);
+}
+
 /* Premium easing variable */
 :root {
   --ease-premium: cubic-bezier(0.5, 0, 0, 1);

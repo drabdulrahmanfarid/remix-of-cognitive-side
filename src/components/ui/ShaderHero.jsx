@@ -72,7 +72,7 @@ export default function ShaderHero({ showPulsingBorder = true }) {
       </div>
 
       {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-background/40 backdrop-blur-[1px]" />
 
       {/* Pulsing border accent */}
       {showPulsingBorder && (

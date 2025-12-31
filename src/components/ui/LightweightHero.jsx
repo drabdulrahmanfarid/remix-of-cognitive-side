@@ -52,7 +52,7 @@ export default function LightweightHero({ showPulsingBorder = true }) {
       </div>
 
       {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-background/60" />
+      <div className="absolute inset-0 bg-background/40" />
 
       {/* Simplified pulsing border accent */}
       {showPulsingBorder && (
