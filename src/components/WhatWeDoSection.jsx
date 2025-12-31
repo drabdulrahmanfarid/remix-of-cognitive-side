@@ -2,119 +2,99 @@ import { motion } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 import { ArrowRight } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
-const services = [
-  {
-    title: "Custom AI Software",
-    description:
-      "We develop tailor-made AI solutions designed specifically for your business needs, from intelligent automation to predictive analytics.",
-  },
-  {
-    title: "Business Consulting",
-    description:
-      "Strategic AI consulting and workshops to help you identify opportunities and implement AI-driven transformation in your organization.",
-  },
-  {
-    title: "AI Agents Development",
-    description:
-      "We create autonomous AI agents that can handle complex tasks, make decisions, and scale your operations automatically.",
-  },
-];
-const serviceFeatures = [
-  {
-    title: "Expert Configuration",
-    description:
-      "Personalized setup and configuration tailored to your specific workflow and requirements.",
-  },
-  {
-    title: "Cost Efficiency",
-    description:
-      "Optimized solutions that maximize ROI while minimizing operational overhead.",
-  },
-  {
-    title: "Team Empowerment",
-    description:
-      "Training and support to help your team leverage AI tools effectively.",
-  },
-  {
-    title: "Continuous Support",
-    description:
-      "Ongoing maintenance, updates, and dedicated support for long-term success.",
-  },
-];
+const services = [{
+  title: "Custom AI Software",
+  description: "We develop tailor-made AI solutions designed specifically for your business needs, from intelligent automation to predictive analytics."
+}, {
+  title: "Business Consulting",
+  description: "Strategic AI consulting and workshops to help you identify opportunities and implement AI-driven transformation in your organization."
+}, {
+  title: "AI Agents Development",
+  description: "We create autonomous AI agents that can handle complex tasks, make decisions, and scale your operations automatically."
+}];
+const serviceFeatures = [{
+  title: "Expert Configuration",
+  description: "Personalized setup and configuration tailored to your specific workflow and requirements."
+}, {
+  title: "Cost Efficiency",
+  description: "Optimized solutions that maximize ROI while minimizing operational overhead."
+}, {
+  title: "Team Empowerment",
+  description: "Training and support to help your team leverage AI tools effectively."
+}, {
+  title: "Continuous Support",
+  description: "Ongoing maintenance, updates, and dedicated support for long-term success."
+}];
 const cardVariants = {
-  initial: { opacity: 0, y: 40 },
-  animate: (index) => ({
+  initial: {
+    opacity: 0,
+    y: 40
+  },
+  animate: index => ({
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
       delay: index * 0.12,
-      ease: [0.5, 0, 0, 1],
-    },
-  }),
+      ease: [0.5, 0, 0, 1]
+    }
+  })
 };
 const WhatWeDoSection = () => {
-  const { ref, isInView } = useInView({ threshold: 0.2 });
-  return (
-    <section
-      ref={ref}
-      id="services"
-      className="py-32 md:py-40 px-6 bg-secondary/30 relative overflow-hidden"
-    >
+  const {
+    ref,
+    isInView
+  } = useInView({
+    threshold: 0.2
+  });
+  return <section ref={ref} id="services" className="py-32 md:py-40 px-6 bg-secondary/30 relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, ease: [0.5, 0, 0, 1] }}
-          className="block font-medium tracking-widest uppercase text-accent mb-16 text-center text-3xl"
-        >
+        <motion.span initial={{
+        opacity: 0,
+        y: 20
+      }} animate={isInView ? {
+        opacity: 1,
+        y: 0
+      } : {
+        opacity: 0,
+        y: 20
+      }} transition={{
+        duration: 0.6,
+        ease: [0.5, 0, 0, 1]
+      }} className="block font-medium tracking-widest uppercase text-accent mb-16 text-center text-3xl">
           What we do
         </motion.span>
 
         <ul className="grid md:grid-cols-3 gap-6 list-none p-0 m-0 mb-20">
-          {services.map((service, index) => (
-            <motion.li
-              key={service.title}
-              custom={index}
-              initial="initial"
-              animate={isInView ? "animate" : "initial"}
-              variants={cardVariants}
-              className="relative min-h-[16rem] list-none"
-            >
+          {services.map((service, index) => <motion.li key={service.title} custom={index} initial="initial" animate={isInView ? "animate" : "initial"} variants={cardVariants} className="relative min-h-[16rem] list-none">
               <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
-                <GlowingEffect
-                  spread={40}
-                  glow={true}
-                  disabled={false}
-                  proximity={64}
-                  inactiveZone={0.01}
-                  borderWidth={3}
-                />
+                <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
                 <div className="group relative h-full flex flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] md:p-6">
                   <div className="relative z-10">
                     <h3 className="text-xl md:text-2xl font-semibold text-primary mb-3 group-hover:text-glow transition-all duration-300">
                       {service.title}
                     </h3>
 
-                    <motion.div
-                      className="h-[1px] bg-accent/60 mb-4 origin-left"
-                      initial={{ scaleX: 0.3 }}
-                      whileInView={{ scaleX: 0.3 }}
-                      style={{ width: "40px" }}
-                    />
+                    <motion.div className="h-[1px] bg-accent/60 mb-4 origin-left" initial={{
+                  scaleX: 0.3
+                }} whileInView={{
+                  scaleX: 0.3
+                }} style={{
+                  width: "40px"
+                }} />
 
-                    <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/70 transition-colors duration-300">
+                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/70 transition-colors duration-300 text-xl">
                       {service.description}
                     </p>
                   </div>
 
-                  <motion.div
-                    className="flex items-center gap-2 text-accent"
-                    initial={{ opacity: 0, x: -10 }}
-                  >
+                  <motion.div className="flex items-center gap-2 text-accent" initial={{
+                opacity: 0,
+                x: -10
+              }}>
                     <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       Learn more
                     </span>
@@ -122,42 +102,44 @@ const WhatWeDoSection = () => {
                   </motion.div>
                 </div>
               </div>
-            </motion.li>
-          ))}
+            </motion.li>)}
         </ul>
 
         {/* Service Features */}
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.4, ease: [0.5, 0, 0, 1] }}
-          className="text-2xl md:text-3xl font-semibold text-primary text-center mb-12"
-        >
+        <motion.h3 initial={{
+        opacity: 0,
+        y: 20
+      }} animate={isInView ? {
+        opacity: 1,
+        y: 0
+      } : {
+        opacity: 0,
+        y: 20
+      }} transition={{
+        duration: 0.6,
+        delay: 0.4,
+        ease: [0.5, 0, 0, 1]
+      }} className="text-2xl md:text-3xl font-semibold text-primary text-center mb-12">
           What Sets Us Apart
         </motion.h3>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {serviceFeatures.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.5 + index * 0.1,
-                ease: [0.5, 0, 0, 1],
-              }}
-              className="relative min-h-[10rem]"
-            >
+          {serviceFeatures.map((feature, index) => <motion.div key={feature.title} initial={{
+          opacity: 0,
+          y: 30
+        }} animate={isInView ? {
+          opacity: 1,
+          y: 0
+        } : {
+          opacity: 0,
+          y: 30
+        }} transition={{
+          duration: 0.6,
+          delay: 0.5 + index * 0.1,
+          ease: [0.5, 0, 0, 1]
+        }} className="relative min-h-[10rem]">
               <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
-                <GlowingEffect
-                  spread={40}
-                  glow={true}
-                  disabled={false}
-                  proximity={64}
-                  inactiveZone={0.01}
-                  borderWidth={3}
-                />
+                <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={3} />
                 <div className="h-full text-center p-6 rounded-xl bg-background border border-border/50">
                   <h4 className="text-lg font-semibold text-primary mb-2">
                     {feature.title}
@@ -167,11 +149,9 @@ const WhatWeDoSection = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            </motion.div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 export default WhatWeDoSection;
