@@ -79,9 +79,8 @@ const Navigation = () => {
                   {!isLowEnd && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>}
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                 </span>
-                <span className="text-xs sm:text-sm font-medium text-primary">
-                  <span className="hidden sm:inline">20+ Successful Projects Delivered</span>
-                  <span className="sm:hidden">20+ Projects</span>
+                <span className="text-xs sm:text-sm font-medium text-primary whitespace-nowrap">
+                  20+ Successful Projects Delivered
                 </span>
               </div>
             </nav>
