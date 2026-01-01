@@ -128,6 +128,7 @@ const HeroSection = () => {
         }} />
           </div>
         </motion.div>}
-    </section>;
+    </section>
+  );
 };
 export default HeroSection;
