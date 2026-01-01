@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 import { TestimonialCarousel } from "./ui/testimonial";
+import { usePerformance } from "@/hooks/usePerformance";
+
 const testimonials = [
   {
     id: 1,
@@ -31,8 +33,14 @@ const testimonials = [
       "Working with Cognitive Side was a game-changer. Their custom AI software has given us a significant competitive advantage in our market.",
   },
 ];
+
 const TestimonialsSection = () => {
   const { ref, isInView } = useInView({ threshold: 0.2 });
+  const { isLowEnd, performanceTier } = usePerformance();
+  
+  // Adaptive animation settings
+  const animDuration = isLowEnd ? 0.3 : 0.6;
+  const animDelay = isLowEnd ? 0.1 : 0.2;
   return (
     <section
       ref={ref}
@@ -44,9 +52,9 @@ const TestimonialsSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: isLowEnd ? 10 : 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: animDuration }}
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 mb-6 font-medium tracking-wider uppercase bg-accent/10 text-accent rounded-full border border-accent/20 text-3xl">
@@ -62,9 +70,10 @@ const TestimonialsSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: isLowEnd ? 20 : 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: animDuration, delay: animDelay }}
+          className="gpu-accelerated"
         >
           <TestimonialCarousel
             testimonials={testimonials}

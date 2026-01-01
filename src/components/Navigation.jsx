@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePerformance } from "@/hooks/usePerformance";
+
 const navLinks = [{
   label: "About",
   href: "#about"
@@ -19,15 +21,18 @@ const navLinks = [{
   label: "Contact",
   href: "#contact"
 }];
+
 const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { isLowEnd } = usePerformance();
+  
   useEffect(() => {
     const handleScroll = () => {
       const heroHeight = window.innerHeight;
       const isMobile = window.innerWidth < 768;
       setIsVisible(window.scrollY > heroHeight * (isMobile ? 0.15 : 0.8));
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return <AnimatePresence>
@@ -68,10 +73,10 @@ const Navigation = () => {
                   </motion.a>)}
               </div>
 
-              {/* Stats badge replacing contact button - hidden on mobile */}
+              {/* Stats badge - disable ping animation on low-end devices */}
               <div className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-card/50">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                  {!isLowEnd && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>}
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                 </span>
                 <span className="text-sm font-medium text-primary">20+ Successful Projects Delivered</span>

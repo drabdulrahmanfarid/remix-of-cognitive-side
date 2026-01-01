@@ -2,13 +2,13 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { usePerformance } from "@/hooks/usePerformance";
 import LightweightFlowOutline from "./ui/LightweightFlowOutline";
+
+// Wrapper component that handles conditional rendering without hooks issues
 const FlowOutlineSection = () => {
   const { isLowEnd } = usePerformance();
-  // For low-end devices, use the lightweight version
-  if (isLowEnd) {
-    return <LightweightFlowOutline />;
-  }
-  return <FullFlowOutlineSection />;
+  
+  // Use conditional rendering in JSX, not early return, to avoid hooks issues
+  return isLowEnd ? <LightweightFlowOutline /> : <FullFlowOutlineSection />;
 };
 const FullFlowOutlineSection = () => {
   const sectionRef = useRef(null);

@@ -2,16 +2,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import ShaderHero from "./ui/ShaderHero";
 import LightweightHero from "./ui/LightweightHero";
 import { usePerformance } from "@/hooks/usePerformance";
-const HeroSection = () => {
-  const {
-    isLowEnd
-  } = usePerformance();
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Conditional background based on device performance */}
-      {isLowEnd ? <LightweightHero showPulsingBorder={true} /> : <ShaderHero showPulsingBorder={true} />}
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+const HeroSection = () => {
+  const { isLowEnd } = usePerformance();
+  
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden gpu-accelerated">
+      {/* Conditional background based on device performance */}
+      {isLowEnd ? <LightweightHero showPulsingBorder={false} /> : <ShaderHero showPulsingBorder={true} />}
+
+      {/* Content - ensure proper mobile padding */}
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto pt-16 sm:pt-0">
         <AnimatePresence>
           {/* Animated Logo - simplified for low-end devices */}
           <motion.div initial={{
