@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 import { usePerformance } from "../hooks/usePerformance";
-import { ArrowRight } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 
 const services = [
@@ -127,12 +126,6 @@ const WhatWeDoSection = () => {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-accent mt-auto">
-                    <span className="text-sm font-semibold group-hover:text-accent transition-colors duration-300">
-                      Learn more
-                    </span>
-                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-all duration-300" />
-                  </div>
                 </div>
               </div>
             </motion.li>
