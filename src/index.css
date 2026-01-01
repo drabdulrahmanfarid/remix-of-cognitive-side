@@ -181,3 +181,52 @@
 .animate-border-glow {
   animation: border-glow 3s ease-in-out infinite;
 }
+
+/* CSS-only gradient animation for medium-tier devices */
+@keyframes gradient-shift {
+  0% { transform: translateX(-10%) translateY(-10%); }
+  50% { transform: translateX(10%) translateY(10%); }
+  100% { transform: translateX(-10%) translateY(-10%); }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+/* Slow pulse for CSS pulsing border */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Glow pulse animation */
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px hsl(47 70% 47% / 0.3),
+      inset 0 0 15px hsl(47 70% 47% / 0.05);
+  }
+  50% { 
+    box-shadow: 
+      0 0 40px hsl(47 70% 47% / 0.5),
+      inset 0 0 25px hsl(47 70% 47% / 0.1);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Slow spin for text circle */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
