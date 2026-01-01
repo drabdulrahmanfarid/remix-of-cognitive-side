@@ -74,12 +74,15 @@ const Navigation = () => {
               </div>
 
               {/* Stats badge - disable ping animation on low-end devices */}
-              <div className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-card/50">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-full border border-accent/30 bg-card/50">
                 <span className="relative flex h-2 w-2">
                   {!isLowEnd && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>}
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                 </span>
-                <span className="text-sm font-medium text-primary">20+ Successful Projects Delivered</span>
+                <span className="text-xs sm:text-sm font-medium text-primary">
+                  <span className="hidden sm:inline">20+ Successful Projects Delivered</span>
+                  <span className="sm:hidden">20+ Projects</span>
+                </span>
               </div>
             </nav>
           </div>
