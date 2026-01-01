@@ -1,14 +1,22 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { usePerformance, getMotionConfig } from "@/hooks/usePerformance";
+
 const TestimonialCarousel = React.forwardRef(
   (
     { className, testimonials, showArrows = true, showDots = true, ...props },
-    ref,
+    ref
   ) => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const [exitX, setExitX] = React.useState(0);
+    const { performanceTier, prefersReducedMotion, isLowEnd, isMediumEnd } = usePerformance();
+    const motionConfig = getMotionConfig(performanceTier, prefersReducedMotion);
+
     const handleDragEnd = (event, info) => {
+      // Disable drag on low-end devices
+      if (isLowEnd) return;
+      
       if (Math.abs(info.offset.x) > 100) {
         setExitX(info.offset.x);
         setTimeout(() => {
@@ -17,14 +25,28 @@ const TestimonialCarousel = React.forwardRef(
         }, 200);
       }
     };
+
     const goToPrev = () => {
       setCurrentIndex(
-        (prev) => (prev - 1 + testimonials.length) % testimonials.length,
+        (prev) => (prev - 1 + testimonials.length) % testimonials.length
       );
     };
+
     const goToNext = () => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     };
+
+    // Get transition config based on performance tier
+    const getTransition = () => {
+      if (isLowEnd || prefersReducedMotion) {
+        return { type: "tween", duration: 0.15 };
+      }
+      if (isMediumEnd) {
+        return { type: "tween", duration: 0.3, ease: "easeOut" };
+      }
+      return { type: "spring", stiffness: 300, damping: 30 };
+    };
+
     return (
       <div ref={ref} className={cn("relative w-full", className)} {...props}>
         <div className="relative h-[320px] w-full">
@@ -35,6 +57,7 @@ const TestimonialCarousel = React.forwardRef(
             const isNextCard =
               index === (currentIndex + 2) % testimonials.length;
             if (!isCurrentCard && !isPrevCard && !isNextCard) return null;
+
             return (
               <motion.div
                 key={testimonial.id}
@@ -42,7 +65,7 @@ const TestimonialCarousel = React.forwardRef(
                   "absolute left-1/2 top-0 h-[280px] w-full max-w-md cursor-grab rounded-2xl border border-border bg-card p-6 shadow-lg active:cursor-grabbing",
                   isCurrentCard && "z-30",
                   isPrevCard && "z-20",
-                  isNextCard && "z-10",
+                  isNextCard && "z-10"
                 )}
                 initial={false}
                 animate={{
@@ -52,8 +75,8 @@ const TestimonialCarousel = React.forwardRef(
                   opacity: isCurrentCard ? 1 : isPrevCard ? 0.7 : 0.4,
                 }}
                 exit={{ x: exitX > 0 ? 300 : -300, opacity: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                drag={isCurrentCard ? "x" : false}
+                transition={getTransition()}
+                drag={isCurrentCard && !isLowEnd ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={isCurrentCard ? handleDragEnd : undefined}
               >
@@ -101,7 +124,7 @@ const TestimonialCarousel = React.forwardRef(
                     "h-2 w-2 rounded-full transition-all duration-300",
                     index === currentIndex
                       ? "w-6 bg-primary"
-                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
+                      : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
                   )}
                 />
               ))}
@@ -110,7 +133,9 @@ const TestimonialCarousel = React.forwardRef(
         </div>
       </div>
     );
-  },
+  }
 );
+
 TestimonialCarousel.displayName = "TestimonialCarousel";
+
 export { TestimonialCarousel };

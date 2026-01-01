@@ -2,35 +2,49 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { usePerformance } from "@/hooks/usePerformance";
 import LightweightFlowOutline from "./ui/LightweightFlowOutline";
+import MediumFlowOutline from "./ui/MediumFlowOutline";
 
-// Wrapper component that handles conditional rendering without hooks issues
+// Wrapper component that handles conditional rendering based on performance tier
 const FlowOutlineSection = () => {
-  const { isLowEnd } = usePerformance();
-  
-  // Use conditional rendering in JSX, not early return, to avoid hooks issues
-  return isLowEnd ? <LightweightFlowOutline /> : <FullFlowOutlineSection />;
+  const { performanceTier, prefersReducedMotion } = usePerformance();
+
+  // Low-end or reduced motion: static lightweight version
+  if (performanceTier === "low" || prefersReducedMotion) {
+    return <LightweightFlowOutline />;
+  }
+
+  // Medium: IntersectionObserver-based with simpler animations
+  if (performanceTier === "medium") {
+    return <MediumFlowOutline />;
+  }
+
+  // High: Full scroll-driven animations
+  return <FullFlowOutlineSection />;
 };
+
 const FullFlowOutlineSection = () => {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
+
   // Transform scroll progress for different animation phases
   const pathProgress = useTransform(scrollYProgress, [0.1, 0.6], [0, 1]);
   const pathOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 0.7]);
   const convergenceOpacity = useTransform(
     scrollYProgress,
     [0.25, 0.45, 0.65],
-    [0, 0.5, 0],
+    [0, 0.5, 0]
   );
   const convergenceScale = useTransform(
     scrollYProgress,
     [0.25, 0.45, 0.65],
-    [0.5, 1, 1.3],
+    [0.5, 1, 1.3]
   );
   const textOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
   const textY = useTransform(scrollYProgress, [0.3, 0.5], [30, 0]);
+
   // Flow path configurations - 4 lines representing engagement phases
   const flowPaths = [
     { id: 1, startY: 20, chaos: 35, delay: 0 },
@@ -38,6 +52,7 @@ const FullFlowOutlineSection = () => {
     { id: 3, startY: 60, chaos: 45, delay: 0.16 },
     { id: 4, startY: 80, chaos: 55, delay: 0.24 },
   ];
+
   // Generate SVG path for each flow line - all converge to single exit line
   const generateFlowPath = (startY, chaos) => {
     const centerY = 50;
@@ -52,6 +67,7 @@ const FullFlowOutlineSection = () => {
     const cp4y = exitY;
     return `M -5 ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, 50 ${centerY} C ${cp3x} ${cp3y}, ${cp4x} ${cp4y}, 105 ${exitY}`;
   };
+
   return (
     <section
       ref={sectionRef}
@@ -179,4 +195,5 @@ const FullFlowOutlineSection = () => {
     </section>
   );
 };
+
 export default FlowOutlineSection;

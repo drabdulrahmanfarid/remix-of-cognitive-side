@@ -398,9 +398,9 @@ const IndustryCard = ({ industry, index, isInView, performanceTier, isLowEnd }) 
             ))}
           </div>
 
-          {/* Mobile Carousel */}
+          {/* Mobile Carousel - disable dragFree on low-end */}
           <div className="md:hidden">
-            <Carousel opts={{ align: "start", dragFree: true }}>
+            <Carousel opts={{ align: "start", dragFree: !isLowEnd }}>
               <CarouselContent className="-ml-4">
                 {industry.useCases.map((useCase) => (
                   <CarouselItem key={useCase.title} className="basis-[85%] pl-4">
