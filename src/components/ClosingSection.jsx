@@ -122,7 +122,7 @@ const ClosingSection = () => {
 
             <div className="mt-6 pt-6 border-t border-border/50">
               <p className="text-sm text-primary font-medium">
-                We typically respond within 24 hours during business days.
+                We typically respond within 24 hours during business days
               </p>
             </div>
           </div>
